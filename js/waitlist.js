@@ -4,7 +4,7 @@
 // account (formspree.io), create a form, and paste your form's endpoint URL
 // below. Until you do that, submissions are only shown as a success message
 // in the browser and are not saved anywhere.
-const FORMSPREE_ENDPOINT = ""; // e.g. "https://formspree.io/f/abcdwxyz"
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrpbepog";
 
 const waitlistForm = document.getElementById("waitlist-form");
 const successEl = document.getElementById("wl-success");

@@ -6,7 +6,7 @@
 // endpoint below. Formspree's dashboard also lets you export submissions
 // straight to CSV, which is the easiest way to fold these into
 // data/visa_outcomes.csv over time.
-const REPORT_FORMSPREE_ENDPOINT = ""; // e.g. "https://formspree.io/f/abcdwxyz"
+const REPORT_FORMSPREE_ENDPOINT = "https://formspree.io/f/mppwqpye";
 
 const otherSelect = document.getElementById("r-destination");
 const otherRow = document.getElementById("r-destination-other-row");
