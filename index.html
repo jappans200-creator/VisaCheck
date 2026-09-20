@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisaCheck — Know your visa odds before you apply</title>
+<meta name="description" content="VisaCheck shows your visa approval odds based on real outcomes from people with a similar profile — before you pay the application fee.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">VisaCheck<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#story">Our story</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="report.html">Report an outcome</a>
+      <a href="#waitlist">Waitlist</a>
+      <a href="visacheck-v1.html">India → Ireland → France (detailed)</a>
+      <a href="check.html" class="btn-nav">Check my odds</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Immigrants lost €145 million on avoidable visa rejections in 2024 alone.<br>Don't be next.</h1>
+    <p class="lede">
+      VisaCheck shows your real approval odds in 2 minutes. Based on real outcomes
+      from people exactly like you.
+    </p>
+    <a href="check.html" class="btn-primary btn-large">Check My Visa Odds — It's Free</a>
+    <p style="margin-top:16px; font-size:0.9rem; color:var(--text-dim);">
+      🇮🇳 Indian passport holder in 🇮🇪 Ireland, applying to 🇫🇷 France?
+      <a href="visacheck-v1.html">Try our detailed check</a> — hidden rules, document checklist and all.
+    </p>
+  </div>
+</section>
+
+<section class="stats-bar">
+  <div class="wrap">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-value">🇪🇺 €145M</div>
+        <div class="stat-label">lost on rejected Schengen applications in 2024</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">🇮🇳 €30.6M</div>
+        <div class="stat-label">lost by Indian applicants on Schengen visas in 2024</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">🇧🇩 54.9%</div>
+        <div class="stat-label">of Bangladeshi Schengen applications rejected in 2024</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">1 in 7</div>
+        <div class="stat-label">Schengen applications rejected worldwide</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">1 in 2</div>
+        <div class="stat-label">or worse for some nationalities (Comoros: 62.8%)</div>
+      </div>
+    </div>
+    <p class="stats-source">Sources: European Commission Schengen visa statistics, schengenvisainfo.com, hellosafe.com (2024 data)</p>
+  </div>
+</section>
+
+<section class="alt" id="story">
+  <div class="wrap">
+    <div class="story">
+      <h2>Why I built this</h2>
+      <p>
+        In 2026, I walked into the Cyprus embassy with every document they asked for.
+        My Irish permit had more than 3 months left. I had done everything right. I
+        paid <span class="highlight">€90</span> and waited.
+      </p>
+      <p>
+        The rejection letter arrived with no explanation. But as the consular officer
+        handed it back, he hinted at the real reason — they wanted
+        <span class="highlight">6 months</span> of permit validity remaining, not 3.
+        A rule that existed nowhere on their official website. A rule I only found
+        buried in Reddit threads and YouTube comments after I had already lost my money.
+      </p>
+      <p>
+        That €90 hurt. But what hurt more was knowing it was completely avoidable.
+        The information existed. It was just scattered across forums that take hours
+        to find. So I built <span class="highlight">VisaCheck</span>. Because no
+        immigrant should lose money on a rejection they could have seen coming.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="counters">
+  <div class="wrap">
+    <div class="counters-row">
+      <div class="counter-item">
+        <div class="counter-value" id="counter-checks">0</div>
+        <div class="counter-label">immigrants have already checked their odds</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-value" id="counter-savings">€0</div>
+        <div class="counter-label">estimated fees saved</div>
+      </div>
+    </div>
+    <p class="counters-note">Counted from real checks completed on this device — company-wide totals are coming soon.</p>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="section-sub">Three steps, about a minute, no account needed.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Tell us your profile</h3>
+        <p>Nationality, residence permit, its expiry date, where you want to travel, and your travel history.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>We match real outcomes</h3>
+        <p>We compare you against real applicants with a similar profile — not generic visa rules.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>See your odds, clearly</h3>
+        <p>Get an approval percentage, common rejection reasons, and the best country to apply through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="waitlist">
+  <div class="wrap">
+    <h2>Be the first to know when we launch fully</h2>
+    <p class="section-sub">
+      VisaCheck is in early access. Leave your email and we'll let you know as soon
+      as more destinations and data are live.
+    </p>
+    <div class="waitlist-card">
+      <form id="waitlist-form">
+        <div class="form-row">
+          <label for="wl-email">Email address</label>
+          <input type="email" id="wl-email" name="email" required placeholder="you@example.com">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Join the waitlist</button>
+        <p class="form-note">We'll only use this to notify you about VisaCheck. No spam.</p>
+        <div class="form-success" id="wl-success">You're on the list — thanks! We'll be in touch.</div>
+        <div class="form-error" id="wl-error">Something went wrong. Please try again in a moment.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    VisaCheck is an information tool only. Not legal advice. Past outcomes do not guarantee future results.
+    <br>© 2026 VisaCheck.
+  </div>
+</footer>
+
+<script src="js/waitlist.js"></script>
+<script src="js/counters.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report your outcome — VisaCheck</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">VisaCheck<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="check.html">Check my odds</a>
+      <a href="index.html#waitlist">Waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<section style="padding-top:56px;">
+  <div class="wrap">
+    <h2>Tell us what actually happened</h2>
+    <p class="section-sub">
+      Every real outcome makes VisaCheck's odds more accurate for the next person.
+      Takes two minutes. If there was a requirement nobody told you about until it was
+      too late — that's exactly the detail we most want to know.
+    </p>
+
+    <div class="checker-card">
+      <form id="report-form">
+
+        <div class="form-row">
+          <label for="r-nationality">Nationality</label>
+          <input type="text" id="r-nationality" name="nationality" placeholder="e.g. India" required>
+        </div>
+
+        <div class="two-col">
+          <div class="form-row">
+            <label for="r-residence">Country of residence at the time</label>
+            <input type="text" id="r-residence" name="residence" placeholder="e.g. Ireland" required>
+          </div>
+          <div class="form-row">
+            <label for="r-permit-type">Permit / visa type you held</label>
+            <input type="text" id="r-permit-type" name="permit-type" placeholder="e.g. Irish IRP" required>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="form-row">
+            <label for="r-permit-expiry">Permit expiry date (at time of application)</label>
+            <input type="date" id="r-permit-expiry" name="permit-expiry" required>
+          </div>
+          <div class="form-row">
+            <label for="r-destination">Destination you applied to</label>
+            <select id="r-destination" name="destination" required>
+              <option value="">Select a country</option>
+              <optgroup label="Schengen area">
+                <option>Cyprus</option>
+                <option>France</option>
+                <option>Germany</option>
+                <option>Netherlands</option>
+                <option>Greece</option>
+                <option>Portugal</option>
+                <option>Italy</option>
+                <option>Spain</option>
+                <option>Switzerland</option>
+                <option>Czechia</option>
+                <option>Hungary</option>
+                <option>Poland</option>
+                <option>Croatia</option>
+                <option>Belgium</option>
+                <option>Austria</option>
+                <option>Denmark</option>
+                <option>Norway</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option>United Kingdom</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>Australia</option>
+                <option>UAE</option>
+                <option>Saudi Arabia</option>
+                <option>Philippines</option>
+                <option>Ireland</option>
+                <option value="__other__">Other (type below)</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row" id="r-destination-other-row" style="display:none;">
+          <label for="r-destination-other">Destination (please specify)</label>
+          <input type="text" id="r-destination-other" name="destination-other">
+        </div>
+
+        <fieldset>
+          <legend>Other visas you held at the time</legend>
+          <div class="checkbox-grid">
+            <label class="checkbox-item"><input type="checkbox" name="other-visas" value="US"> US</label>
+            <label class="checkbox-item"><input type="checkbox" name="other-visas" value="UK"> UK</label>
+            <label class="checkbox-item"><input type="checkbox" name="other-visas" value="Schengen"> Schengen</label>
+            <label class="checkbox-item"><input type="checkbox" name="other-visas" value="UAE"> UAE</label>
+            <label class="checkbox-item"><input type="checkbox" name="other-visas" value="Canada"> Canada</label>
+            <label class="checkbox-item"><input type="checkbox" name="other-visas" value="Australia"> Australia</label>
+          </div>
+        </fieldset>
+
+        <div class="two-col">
+          <div class="form-row">
+            <label for="r-countries-visited">Countries visited before this application</label>
+            <input type="number" id="r-countries-visited" name="countries-visited" min="0" value="0" required>
+          </div>
+          <div class="form-row">
+            <label>Rejected before, for any country?</label>
+            <div class="radio-row" style="margin-top:11px;">
+              <label class="radio-item"><input type="radio" name="prior-rejection" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="prior-rejection" value="No"> No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>What happened?</label>
+          <div class="radio-row" style="margin-top:11px; flex-wrap:wrap;">
+            <label class="radio-item"><input type="radio" name="outcome" value="Approved" required> Approved</label>
+            <label class="radio-item"><input type="radio" name="outcome" value="Rejected"> Rejected</label>
+            <label class="radio-item"><input type="radio" name="outcome" value="Pending"> Still waiting</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="r-reason">If rejected — what reason were you given (if any)?</label>
+          <textarea id="r-reason" name="reason" rows="3" placeholder="e.g. Told my permit needed 6+ months remaining, even though the guidance said 3"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="r-unsaid">Was there anything nobody told you upfront that you only found out the hard way?</label>
+          <textarea id="r-unsaid" name="unsaid-rule" rows="3" placeholder="This is the single most useful thing you can tell us"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="r-email">Email (optional — only if you're open to us following up)</label>
+          <input type="email" id="r-email" name="email">
+        </div>
+
+        <div class="form-row" style="display:flex; align-items:flex-start; gap:10px;">
+          <input type="checkbox" id="r-consent" name="consent" required style="width:auto; margin-top:4px;">
+          <label for="r-consent" style="margin:0;">
+            I'm okay with this information being used, anonymously, to help other applicants understand their odds.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:100%; margin-top:8px;">Submit my outcome</button>
+        <div class="form-success" id="report-success">Thank you — this genuinely helps the next applicant.</div>
+        <div class="form-error" id="report-error">Something went wrong. Please try again in a moment.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    VisaCheck is an information tool only. Not legal advice. Past outcomes do not guarantee future results.
+    <br>© 2026 VisaCheck.
+  </div>
+</footer>
+
+<script src="js/report.js"></script>
+</body>
+</html>

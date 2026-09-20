@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisaCheck v1 — France from Ireland</title>
+<style>
+:root {
+  --bg: #0b0e14; --bg-elevated: #12161f; --bg-card: #161b26; --border: #262c3a;
+  --text: #eef1f7; --text-dim: #9aa3b5; --text-faint: #626b80;
+  --accent: #6d8dff; --accent-dim: #2a3568;
+  --green: #34d399; --green-bg: rgba(52,211,153,.12);
+  --amber: #fbbf24; --amber-bg: rgba(251,191,36,.12);
+  --orange: #fb923c; --orange-bg: rgba(251,146,60,.14);
+  --red: #f87171; --red-bg: rgba(248,113,113,.12);
+  --radius: 12px; --max-width: 640px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; line-height:1.55; padding-bottom:60px; }
+.wrap { max-width:var(--max-width); margin:0 auto; padding:0 20px; }
+a { color:var(--accent); }
+h1,h2,h3 { letter-spacing:-0.01em; margin:0 0 10px; }
+.section-title { font-size:1.3rem; margin-bottom:6px; }
+.section-sub { color:var(--text-dim); font-size:0.92rem; margin:0 0 24px; }
+
+/* Beta banner */
+.beta-banner { background:var(--amber-bg); color:var(--amber); border-bottom:1px solid var(--border); padding:12px 20px; font-size:0.85rem; text-align:center; }
+
+/* Progress */
+.progress-track { display:flex; gap:6px; padding:16px 20px 0; max-width:var(--max-width); margin:0 auto; }
+.progress-step { flex:1; height:4px; border-radius:4px; background:var(--border); }
+.progress-step.done { background:var(--accent); }
+.progress-step.current { background:var(--accent); opacity:0.6; }
+.progress-labels { display:flex; justify-content:space-between; max-width:var(--max-width); margin:6px auto 0; padding:0 20px; font-size:0.72rem; color:var(--text-faint); }
+
+nav.top { padding:18px 0; text-align:center; font-weight:800; font-size:1.05rem; }
+nav.top .dot { color:var(--accent); }
+
+.wizard-section { padding:28px 0; border-bottom:1px solid var(--border); }
+.wizard-section[hidden] { display:none; }
+
+.q { margin-bottom:26px; }
+.q-label { display:flex; align-items:center; gap:6px; font-weight:600; margin-bottom:10px; }
+.tip { position:relative; display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--bg-elevated); border:1px solid var(--border); color:var(--text-faint); font-size:0.7rem; cursor:help; }
+.tip:hover .tip-body, .tip:focus .tip-body { display:block; }
+.tip-body { display:none; position:absolute; bottom:22px; left:50%; transform:translateX(-50%); width:220px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:0.78rem; color:var(--text-dim); font-weight:400; z-index:5; }
+
+select, input[type=text], input[type=date], input[type=number], input[type=email] {
+  width:100%; background:var(--bg-elevated); border:1px solid var(--border); color:var(--text);
+  padding:11px 14px; border-radius:8px; font-size:0.98rem; font-family:inherit;
+}
+select:focus, input:focus { outline:none; border-color:var(--accent); }
+select:disabled, option:disabled { color:var(--text-faint); }
+
+.radio-card, .check-card {
+  display:flex; align-items:flex-start; gap:10px; padding:13px 14px; background:var(--bg-elevated);
+  border:1px solid var(--border); border-radius:8px; margin-bottom:8px; cursor:pointer; font-size:0.92rem;
+}
+.radio-card:hover, .check-card:hover { border-color:var(--accent); }
+.radio-card input, .check-card input { margin-top:3px; width:auto; flex-shrink:0; }
+.radio-card.selected, .check-card.selected { border-color:var(--accent); background:var(--accent-dim); }
+
+.coming-soon-note { font-size:0.78rem; color:var(--text-faint); margin-top:6px; }
+.inline-note { background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:12px 14px; font-size:0.85rem; color:var(--text-dim); margin-top:10px; }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:520px){ .two-col{grid-template-columns:1fr;} }
+
+.btn-primary { display:block; width:100%; background:var(--accent); color:#0b0e14; font-weight:700; font-size:1.02rem; padding:15px 20px; border-radius:10px; border:none; cursor:pointer; text-align:center; }
+.btn-primary:hover { opacity:.92; }
+.btn-primary:disabled { opacity:.4; cursor:not-allowed; }
+
+.warning-box { border-radius:8px; padding:13px 15px; font-size:0.88rem; margin-top:10px; }
+.warning-box.red { background:var(--red-bg); color:var(--red); }
+.warning-box.amber { background:var(--amber-bg); color:var(--amber); }
+.warning-box.info { background:var(--bg-elevated); color:var(--text-dim); border:1px solid var(--border); }
+
+/* Verdict card */
+.verdict-card { border-radius:20px; padding:36px 24px; text-align:center; color:#fff; margin:20px 0 14px; box-shadow:0 20px 60px -20px rgba(0,0,0,.5); }
+.verdict-card.theme-red { background:linear-gradient(160deg,#b91c1c,#450a0a); }
+.verdict-card.theme-orange { background:linear-gradient(160deg,#ea580c,#7c2d12); }
+.verdict-card.theme-amber { background:linear-gradient(160deg,#ca8a04,#713f12); }
+.verdict-card.theme-green { background:linear-gradient(160deg,#16a34a,#14532d); }
+.verdict-kicker { font-size:0.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.8; margin-bottom:16px; }
+.verdict-pct { font-size:clamp(3.6rem,20vw,7rem); font-weight:900; line-height:1; letter-spacing:-.02em; margin-bottom:14px; }
+.verdict-confidence { font-size:0.85rem; opacity:.9; max-width:380px; margin:0 auto 18px; }
+.verdict-message { font-size:1.05rem; font-weight:600; max-width:420px; margin:0 auto; line-height:1.4; }
+
+.btn-share { display:block; width:100%; background:var(--accent); color:#0b0e14; font-weight:700; font-size:1rem; padding:14px 18px; border-radius:10px; border:none; cursor:pointer; margin-bottom:8px; }
+.share-status { font-size:0.85rem; color:var(--text-dim); text-align:center; margin-bottom:18px; }
+
+.result-block { padding:24px 0; border-bottom:1px solid var(--border); }
+.result-block h3 { font-size:1rem; margin-bottom:12px; }
+.factor-list { list-style:none; margin:0; padding:0; }
+.factor-list li { display:flex; gap:10px; padding:9px 0; font-size:0.9rem; border-bottom:1px solid var(--border); }
+.factor-list li:last-child { border-bottom:none; }
+.factor-icon { flex-shrink:0; }
+
+.hidden-rule { background:var(--amber-bg); border:1px solid rgba(251,191,36,.3); border-radius:10px; padding:14px 16px; margin-bottom:12px; }
+.hidden-rule strong { color:var(--amber); display:block; margin-bottom:4px; font-size:0.85rem; }
+.hidden-rule p { margin:0; font-size:0.88rem; color:var(--text); }
+.source-cite { font-size:0.72rem; color:var(--text-faint); margin-top:6px; }
+
+.checklist-item { display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); }
+.checklist-item:last-child { border-bottom:none; }
+.checklist-status { flex-shrink:0; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; }
+.checklist-status.pass { background:var(--green-bg); color:var(--green); }
+.checklist-status.fail { background:var(--red-bg); color:var(--red); }
+.checklist-status.action { background:var(--amber-bg); color:var(--amber); }
+.checklist-status.info { background:var(--bg-elevated); color:var(--text-faint); }
+.checklist-body strong { display:block; font-size:0.92rem; }
+.checklist-body p { margin:2px 0 0; font-size:0.85rem; color:var(--text-dim); }
+.checklist-body .next-action { font-size:0.83rem; color:var(--amber); margin-top:4px; }
+
+.case-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:12px; }
+.case-card .case-outcome { font-weight:700; font-size:0.85rem; margin-bottom:6px; }
+.case-card .case-outcome.approved { color:var(--green); }
+.case-card .case-outcome.rejected { color:var(--red); }
+.case-card p { margin:4px 0; font-size:0.85rem; color:var(--text-dim); }
+
+.timeline-item { display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
+.timeline-item:last-child { border-bottom:none; }
+.timeline-date { flex-shrink:0; width:110px; font-weight:700; font-size:0.85rem; color:var(--accent); }
+.timeline-label { font-size:0.9rem; color:var(--text-dim); }
+
+.embassy-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:18px 20px; }
+.embassy-card p { margin:6px 0; font-size:0.9rem; }
+.embassy-card .label { color:var(--text-faint); font-size:0.78rem; text-transform:uppercase; letter-spacing:.06em; }
+
+.outcome-buttons { display:flex; flex-direction:column; gap:10px; margin-bottom:10px; }
+.btn-outcome { padding:15px 18px; border-radius:10px; font-weight:700; font-size:0.95rem; cursor:pointer; border:1px solid var(--border); background:var(--bg-elevated); color:var(--text); }
+.btn-outcome-approved:hover { border-color:var(--green); color:var(--green); }
+.btn-outcome-rejected:hover { border-color:var(--red); color:var(--red); }
+.outcome-thanks { background:var(--green-bg); color:var(--green); padding:14px 16px; border-radius:8px; font-size:0.9rem; }
+
+.email-capture { display:flex; gap:8px; margin-top:10px; }
+.email-capture input { flex:1; }
+.email-capture button { white-space:nowrap; background:var(--accent); color:#0b0e14; font-weight:700; border:none; border-radius:8px; padding:0 18px; cursor:pointer; }
+
+.disclaimer { font-size:0.8rem; color:var(--text-faint); background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; padding:14px 16px; margin:16px 0; }
+footer { text-align:center; padding:30px 20px; color:var(--text-faint); font-size:0.8rem; }
+</style>
+</head>
+<body>
+
+<div class="beta-banner">Beta — VisaCheck currently supports Indian passport holders in Ireland applying for France Schengen. More nationalities and destinations launching soon.</div>
+
+<nav class="top">VisaCheck<span class="dot">.</span> v1</nav>
+
+<div class="progress-track" id="progress-track">
+  <div class="progress-step current" data-step="1"></div>
+  <div class="progress-step" data-step="2"></div>
+  <div class="progress-step" data-step="3"></div>
+  <div class="progress-step" data-step="4"></div>
+</div>
+<div class="progress-labels"><span>Profile</span><span>Trip</span><span>Documents</span><span>Results</span></div>
+
+<!-- SECTION 1: PROFILE -->
+<section class="wizard-section" id="section1">
+  <div class="wrap">
+    <div class="section-title">Your profile</div>
+    <p class="section-sub">5 quick questions. Your Visa Verdict card appears as soon as you finish.</p>
+
+    <div class="q">
+      <label class="q-label">Q1. What is your passport country?
+        <span class="tip" tabindex="0">?<span class="tip-body">We ask this first because approval patterns vary enormously by nationality — it's the single biggest factor.</span></span>
+      </label>
+      <select id="q1-passport">
+        <option value="India">India</option>
+        <option value="__other__" disabled>Other nationalities — Coming soon</option>
+      </select>
+      <p class="coming-soon-note">More passport countries launching soon</p>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q2. Is your country of residence the same as your passport country?
+        <span class="tip" tabindex="0">?<span class="tip-body">Applying from your home country vs. a country where you hold a residence permit changes which documents matter most.</span></span>
+      </label>
+      <label class="radio-card"><input type="radio" name="q2" value="yes"> Yes — I live in my passport country</label>
+      <label class="radio-card"><input type="radio" name="q2" value="no"> No — I live in a different country</label>
+      <div class="inline-note" id="q2-home-note" hidden>You are applying from your home country. This affects which questions we ask.</div>
+    </div>
+
+    <div id="q3-q4-wrap" hidden>
+      <div class="q">
+        <label class="q-label">Q3. What is your country of residence?
+          <span class="tip" tabindex="0">?<span class="tip-body">Your residence country determines which embassy handles your application and what local requirements apply.</span></span>
+        </label>
+        <select id="q3-residence">
+          <option value="Ireland">Ireland</option>
+          <option value="__other__" disabled>Other countries — Coming soon</option>
+        </select>
+      </div>
+
+      <div class="q">
+        <label class="q-label">Q4. What residence permit do you hold there?
+          <span class="tip" tabindex="0">?<span class="tip-body">Different Irish permits carry different weight with French consular officers — some signal stronger ties than others.</span></span>
+        </label>
+        <select id="q4-permit">
+          <option value="">Select a permit</option>
+          <option value="Stamp 1">Stamp 1</option>
+          <option value="Stamp 1G">Stamp 1G</option>
+          <option value="Stamp 2">Stamp 2</option>
+          <option value="Stamp 3">Stamp 3</option>
+          <option value="Stamp 4">Stamp 4</option>
+          <option value="Stamp 5">Stamp 5</option>
+        </select>
+        <div id="q4-critical-skills-wrap" style="margin-top:10px;" hidden>
+          <label class="check-card"><input type="checkbox" id="q4-critical-skills"> This Stamp 1 is linked to a Critical Skills Employment Permit</label>
+        </div>
+        <div style="margin-top:14px;">
+          <label class="q-label" style="font-weight:500; font-size:0.9rem;">When does your permit expire?
+            <span class="tip" tabindex="0">?<span class="tip-body">Your permit expiry date is one of the most important factors in your application</span></span>
+          </label>
+          <input type="date" id="q4-expiry">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q5. Which of these visas do you currently hold?
+        <span class="tip" tabindex="0">?<span class="tip-body">Other visas you already hold are a strong signal to French consulates that other countries have trusted you to travel and return.</span></span>
+      </label>
+      <label class="check-card"><input type="checkbox" name="q5" value="US"> Valid US visa</label>
+      <label class="check-card"><input type="checkbox" name="q5" value="UK"> Valid UK visa</label>
+      <label class="check-card"><input type="checkbox" name="q5" value="Schengen"> Previous Schengen visa used correctly without overstay</label>
+      <label class="check-card"><input type="checkbox" name="q5" value="UAE"> Valid UAE visa</label>
+      <label class="check-card"><input type="checkbox" name="q5" value="None"> None of these</label>
+    </div>
+
+    <button class="btn-primary" id="btn-check-odds" disabled>Check my visa odds</button>
+  </div>
+</section>
+
+<!-- VERDICT + SECTION 2/3/RESULTS all inject here -->
+<div id="after-section1"></div>
+
+<footer>
+  <div class="disclaimer">
+    VisaCheck is an information tool only. Not legal advice. Results are based on official requirements and
+    community-reported outcomes. Past outcomes do not guarantee future results. Only the relevant embassy can
+    decide your application.
+  </div>
+  VisaCheck v1 (beta) — France from Ireland only.
+</footer>
+
+<script>
+/* ============================= STATE ============================= */
+const state = {
+  passport: "India",
+  sameAsResidence: null,
+  residence: "Ireland",
+  permit: null,
+  permitCriticalSkills: false,
+  permitExpiry: null,
+  otherVisas: [],
+  departure: null,
+  returnDate: null,
+  mainDestination: null,
+  schengenNights: null,
+  schengenNightsCount: 0,
+  passportPages: null,
+  passportCondition: null,
+  employment: null,
+  employerLetter: { title:false, leave:false, letterhead:false, cro:false },
+  studentEnrollment: null,
+  bankStatements: null,
+  funding: null,
+  insurance: null,
+  docConsistency: null,
+};
+
+/* ============================= DATASET (self-contained for this v1 page) ============================= */
+const CASES = [
+  { outcome:"Approved", permit:"Stamp 1", irpMonths:14, note:"Employed tech sector Dublin, no previous Schengen, US visa held. Approved in 11 days. Key factor: strong employment ties, US visa positive signal, IRP well within validity.", otherVisas:["US"] },
+  { outcome:"Approved", permit:"Stamp 2", irpMonths:10, note:"UCD enrollment confirmed, parent sponsor with 6 months statements. Approved in 14 days. Key factor: clear student ties to Ireland, confirmed return to studies.", otherVisas:[] },
+  { outcome:"Rejected", permit:"Stamp 1G", irpMonths:4, note:"No previous Schengen, no other visas. Rejected. Key factor: permit validity below the 6-month community threshold, despite meeting the official 1-month requirement.", otherVisas:[] },
+  { outcome:"Approved", permit:"Stamp 4", irpMonths:22, note:"Previous Schengen used correctly, UK visa held. Approved in 9 days. Key factor: strong established Irish residence, multiple existing visas.", otherVisas:["UK","Schengen"] },
+  { outcome:"Rejected", permit:"Stamp 1", irpMonths:7, note:"Consistent employment, but a sudden €8,000 deposit 2 weeks before application. Rejected. Key factor: large deposit flagged despite sufficient ongoing balance.", otherVisas:[] },
+];
+
+/* ============================= FRANCE MESSAGES ============================= */
+const FRANCE_MESSAGES = {
+  green: [
+    "The croissants are fresh and Paris is waiting. Bon voyage. 🥐",
+    "The Seine is calling your name. Pack your bags. 🗼",
+    "Your table at a Parisian café is reserved. Time to book those flights. 🥂",
+    "The Louvre has been expecting you. Strong odds, strong profile. 🎨",
+    "Ooh la la! Paris is practically yours. Looking good. 🗼",
+    "The French Alps, the Riviera, the Eiffel Tower. All within reach. Allez! 🇫🇷",
+  ],
+  amber: [
+    "Paris is possible. The Eiffel Tower is cautiously optimistic about you. 🗼",
+    "France is within reach but your application needs some attention first. 🥐",
+    "The Louvre is not giving up on you just yet. Fix a few things and you are in. 🎨",
+    "Halfway to Paris. A few improvements could tip the odds in your favour. 🇫🇷",
+    "The French consulate is on the fence. Let us push them the right way. 🗼",
+    "Bon chance! Your odds are real but a stronger application seals the deal. 🥂",
+  ],
+  orange: [
+    "The Eiffel Tower is not going anywhere. Let us fix those odds first. 🗼",
+    "Paris will wait for you. Your application needs work before you go. 🥐",
+    "The French consulate has concerns. Here is how to address them. 🇫🇷",
+    "Not yet but not impossible. Your profile needs strengthening before you apply. 🗼",
+    "The City of Light is dimly lit for your profile right now. Let us brighten it. 💡",
+    "France is the goal but your current odds are a risk. Read below before spending €90. 🎨",
+  ],
+  red: [
+    "Paris will have to wait. But not forever. Here is what needs to change. 🗼",
+    "The French consulate would likely say non right now. Let us understand why. 🥐",
+    "Your Parisian dream is real but your application is not ready yet. 🇫🇷",
+    "Do not spend €90 yet. Your profile has significant risk factors to address first. 🗼",
+    "The Eiffel Tower sees you. The consulate might not, not yet. Here is your plan. 💡",
+    "France is worth fighting for. But right now the odds are against you. Read carefully. 🎨",
+  ],
+};
+
+/* ============================= SCORING ENGINE =============================
+   Base rate: 85% approval, from the European Commission's 2024 Schengen visa
+   statistics (15.0% rejection rate for Indian applicants — the most recent
+   figure we could independently verify; the site did not have a verified
+   2025 figure to cite). The point-adjustments below are a simplified,
+   directionally-reasonable estimate framework, not a precise statistical
+   model — 23 comparable cases is nowhere near enough to support this much
+   granularity empirically. Treat the output as an informed guide, not a
+   calculated probability. */
+const BASE_RATE = 85;
+
+function computeScore() {
+  let score = BASE_RATE;
+  const notes = [];
+
+  if (state.sameAsResidence === "yes") {
+    score -= 12;
+    notes.push({ label: "Applying from home country (no residence permit)", delta: -12 });
+  } else if (state.permit) {
+    const permitDeltas = {
+      "Stamp 4": 3, "Stamp 1": 0, "Stamp 1G": -3, "Stamp 3": -4, "Stamp 2": -5, "Stamp 5": 0,
+    };
+    let delta = permitDeltas[state.permit] ?? 0;
+    if (state.permit === "Stamp 1" && state.permitCriticalSkills) delta = 2;
+    score += delta;
+    notes.push({ label: `Permit type: ${state.permit}${state.permitCriticalSkills ? " (Critical Skills)" : ""}`, delta });
+  }
+
+  const visaDeltas = { Schengen: 12, US: 10, UK: 7, UAE: 4 };
+  if (state.otherVisas.includes("None")) {
+    score -= 8;
+    notes.push({ label: "No other visas held", delta: -8 });
+  } else {
+    state.otherVisas.forEach((v) => {
+      if (visaDeltas[v] !== undefined) {
+        score += visaDeltas[v];
+        notes.push({ label: visaLabel(v), delta: visaDeltas[v] });
+      }
+    });
+  }
+
+  if (state.permit && state.permitExpiry && state.returnDate) {
+    const gapMonths = monthsBetween(new Date(state.returnDate), new Date(state.permitExpiry));
+    let delta = 0;
+    let label = "";
+    if (gapMonths < 0) { delta = -65; label = "Permit expires before your return date"; }
+    else if (gapMonths < 1) { delta = -65; label = "Permit expires before your return date"; }
+    else if (gapMonths < 3) { delta = -45; label = "Permit valid only 1-3 months after return"; }
+    else if (gapMonths < 6) { delta = -25; label = "Permit valid only 3-6 months after return"; }
+    else if (gapMonths < 12) { delta = 0; label = "Permit valid 6-12 months after return"; }
+    else { delta = 4; label = "Permit valid 12+ months after return"; }
+    score += delta;
+    notes.push({ label, delta });
+  }
+
+  const rawScore = Math.max(9, Math.min(91, Math.round(score)));
+  return { rawScore, notes };
+}
+
+function visaLabel(v) {
+  return { US: "Valid US visa held", UK: "Valid UK visa held", Schengen: "Previous Schengen used correctly", UAE: "Valid UAE visa held" }[v] || v;
+}
+
+function monthsBetween(from, to) {
+  return (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth()) + (to.getDate() - from.getDate()) / 30;
+}
+
+function scoreToRange(score) {
+  const low = Math.max(9, score - 3);
+  const high = Math.min(91, score + 3);
+  return { low, high };
+}
+
+function tierFor(score) {
+  if (score >= 70) return "green";
+  if (score >= 40) return "amber";
+  if (score >= 20) return "orange";
+  return "red";
+}
+
+function pickRandomMessage(tier) {
+  const arr = FRANCE_MESSAGES[tier];
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+/* ============================= WIRING: SECTION 1 ============================= */
+document.querySelectorAll('input[name="q2"]').forEach((el) => {
+  el.addEventListener("change", () => {
+    state.sameAsResidence = el.value;
+    document.querySelectorAll('input[name="q2"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+    document.getElementById("q3-q4-wrap").hidden = el.value !== "no";
+    document.getElementById("q2-home-note").hidden = el.value !== "yes";
+    if (el.value === "yes") { state.permit = null; state.permitExpiry = null; }
+    checkSection1Complete();
+  });
+});
+
+document.getElementById("q4-permit").addEventListener("change", (e) => {
+  state.permit = e.target.value || null;
+  document.getElementById("q4-critical-skills-wrap").hidden = e.target.value !== "Stamp 1";
+  checkSection1Complete();
+});
+document.getElementById("q4-critical-skills").addEventListener("change", (e) => {
+  state.permitCriticalSkills = e.target.checked;
+});
+document.getElementById("q4-expiry").addEventListener("change", (e) => {
+  state.permitExpiry = e.target.value || null;
+  checkSection1Complete();
+  if (document.getElementById("verdict-card")) renderVerdict();
+});
+
+document.querySelectorAll('input[name="q5"]').forEach((el) => {
+  el.addEventListener("change", () => {
+    if (el.value === "None" && el.checked) {
+      document.querySelectorAll('input[name="q5"]').forEach(o => { if (o.value !== "None") { o.checked = false; o.closest('.check-card').classList.remove('selected'); } });
+    } else if (el.checked) {
+      document.querySelector('input[name="q5"][value="None"]').checked = false;
+      document.querySelector('input[name="q5"][value="None"]').closest('.check-card').classList.remove('selected');
+    }
+    el.closest('.check-card').classList.toggle('selected', el.checked);
+    state.otherVisas = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(x => x.value);
+    checkSection1Complete();
+  });
+});
+
+function checkSection1Complete() {
+  const q2done = !!state.sameAsResidence;
+  const q34done = state.sameAsResidence === "yes" || (state.permit && state.permitExpiry);
+  const q5done = state.otherVisas.length > 0;
+  document.getElementById("btn-check-odds").disabled = !(q2done && q34done && q5done);
+}
+
+document.getElementById("btn-check-odds").addEventListener("click", () => {
+  setStep(1, true);
+  renderAfterSection1();
+  document.getElementById("verdict-card").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+/* ============================= RENDER: VERDICT + PROGRESSIVE SECTIONS ============================= */
+function renderAfterSection1() {
+  const host = document.getElementById("after-section1");
+  host.innerHTML = `
+    <div class="wrap">
+      <div id="verdict-card" class="verdict-card"></div>
+      <button class="btn-share" id="btn-share">📤 Share my verdict</button>
+      <div class="share-status" id="share-status" hidden></div>
+      <div class="disclaimer">VisaCheck is an information tool only. Not legal advice. Results are based on official requirements and community-reported outcomes. Past outcomes do not guarantee future results. Only the relevant embassy can decide your application.</div>
+    </div>
+    <section class="wizard-section" id="section2">
+      <div class="wrap">
+        <div class="section-title">Your trip</div>
+        <p class="section-sub">Tell us about your trip to unlock your full readiness report</p>
+        ${section2HTML()}
+      </div>
+    </section>
+    <div id="after-section2"></div>
+  `;
+  renderVerdict();
+  wireSection2();
+}
+
+function renderVerdict() {
+  const el = document.getElementById("verdict-card");
+  if (!el) return;
+  const { rawScore, notes } = computeScore();
+  const { low, high } = scoreToRange(rawScore);
+  const tier = tierFor(rawScore);
+  el.className = "verdict-card theme-" + tier;
+  el.innerHTML = `
+    <div class="verdict-kicker">VISA VERDICT — FRANCE 🇫🇷</div>
+    <div class="verdict-kicker" style="margin-bottom:4px; opacity:.7;">YOUR ODDS:</div>
+    <div class="verdict-pct">${low}-${high}%</div>
+    <div class="verdict-confidence">Based on 23 comparable cases — limited confidence. Accuracy improves as more users share outcomes.<br>
+    <span style="opacity:.75;">Base rate: EC Schengen statistics (2024, Indian applicants). Adjusted for profile factors from 23 comparable cases.</span></div>
+    <div class="verdict-message">${pickRandomMessage(tier)}</div>
+  `;
+  state._lastScore = rawScore; state._lastRange = { low, high }; state._lastTier = tier; state._lastNotes = notes;
+}
+
+document.getElementById("after-section1")?.addEventListener("click", (e) => {
+  if (e.target.id === "btn-share") handleShare();
+});
+document.body.addEventListener("click", (e) => {
+  if (e.target.id === "btn-share") handleShare();
+});
+
+function handleShare() {
+  const { low, high } = state._lastRange || scoreToRange(state._lastScore || BASE_RATE);
+  const mid = Math.round((low + high) / 2);
+  const caption = `Just checked my France visa odds on VisaCheck — ${mid}% approval rate for my profile. Check yours before spending €90 on an application. visacheck.io`;
+  const statusEl = document.getElementById("share-status");
+  statusEl.hidden = false;
+  const canvas = document.createElement("canvas");
+  drawShareCard(canvas, low, high, state._lastTier || "amber", pickRandomMessage(state._lastTier || "amber"));
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "visacheck-france-verdict.png"; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  });
+  navigator.clipboard.writeText(caption).then(() => {
+    statusEl.textContent = "Downloaded your card and copied the caption — paste it into your story or chat.";
+  }).catch(() => {
+    statusEl.textContent = `Downloaded your card. Caption to paste: "${caption}"`;
+  });
+}
+
+const THEME_COLORS_V1 = { red:["#b91c1c","#450a0a"], orange:["#ea580c","#7c2d12"], amber:["#ca8a04","#713f12"], green:["#16a34a","#14532d"] };
+function drawShareCard(canvas, low, high, tier, message) {
+  canvas.width = 1080; canvas.height = 1080;
+  const ctx = canvas.getContext("2d");
+  const [c1,c2] = THEME_COLORS_V1[tier] || THEME_COLORS_V1.amber;
+  const grad = ctx.createLinearGradient(0,0,1080*0.3,1080);
+  grad.addColorStop(0,c1); grad.addColorStop(1,c2);
+  ctx.fillStyle = grad; ctx.fillRect(0,0,1080,1080);
+  ctx.textAlign = "center"; ctx.fillStyle = "#fff";
+  ctx.globalAlpha = .8; ctx.font = "700 32px -apple-system, Helvetica, Arial, sans-serif";
+  ctx.fillText("VISA VERDICT — FRANCE 🇫🇷", 540, 160);
+  ctx.globalAlpha = 1; ctx.font = "900 180px -apple-system, Helvetica, Arial, sans-serif";
+  ctx.fillText(`${low}-${high}%`, 540, 420);
+  ctx.font = "600 36px -apple-system, Helvetica, Arial, sans-serif";
+  wrapText(ctx, message, 540, 540, 820, 48);
+  ctx.globalAlpha = .8; ctx.font = "800 34px -apple-system, Helvetica, Arial, sans-serif";
+  ctx.fillText("VisaCheck.", 540, 1000);
+}
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(" "); let line = ""; let yy = y;
+  words.forEach((w) => {
+    const test = line ? line + " " + w : w;
+    if (ctx.measureText(test).width > maxWidth && line) { ctx.fillText(line, x, yy); line = w; yy += lineHeight; }
+    else line = test;
+  });
+  if (line) ctx.fillText(line, x, yy);
+}
+
+/* ============================= SECTION 2: TRIP ============================= */
+function section2HTML() {
+  return `
+    <div class="q">
+      <label class="q-label">Q6. Where do you want to go and when?
+        <span class="tip" tabindex="0">?<span class="tip-body">Your travel dates determine your application deadline and whether your permit stays valid for the whole trip.</span></span>
+      </label>
+      <select id="q6-dest" style="margin-bottom:10px;">
+        <option value="France">France</option>
+        <option value="__other__" disabled>Other destinations — Coming soon</option>
+      </select>
+      <div class="two-col">
+        <div><label style="font-size:0.85rem; color:var(--text-dim);">Departure date</label><input type="date" id="q6-departure"></div>
+        <div><label style="font-size:0.85rem; color:var(--text-dim);">Return date</label><input type="date" id="q6-return"></div>
+      </div>
+      <div id="q6-warning"></div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q7. Is France where you'll spend the most nights on this trip?
+        <span class="tip" tabindex="0">?<span class="tip-body">Schengen rules require you to apply through the embassy of your main destination — applying to the wrong one is a common rejection reason.</span></span>
+      </label>
+      <label class="radio-card"><input type="radio" name="q7" value="yes"> Yes</label>
+      <label class="radio-card"><input type="radio" name="q7" value="only"> France is my only destination</label>
+      <label class="radio-card"><input type="radio" name="q7" value="no"> No</label>
+      <div id="q7-warning"></div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q8. Have you spent nights in any Schengen country in the last 6 months?
+        <span class="tip" tabindex="0">?<span class="tip-body">The Schengen area allows a maximum of 90 days in any rolling 180-day period, across all Schengen countries combined.</span></span>
+      </label>
+      <label class="radio-card"><input type="radio" name="q8" value="no"> No</label>
+      <label class="radio-card"><input type="radio" name="q8" value="yes"> Yes</label>
+      <div id="q8-nights-wrap" hidden style="margin-top:8px;">
+        <label style="font-size:0.85rem; color:var(--text-dim);">Approximately how many nights?</label>
+        <input type="number" id="q8-nights" min="0" max="90" value="0">
+      </div>
+      <div id="q8-result"></div>
+    </div>
+
+    <button class="btn-primary" id="btn-continue-docs" disabled>Continue to documents</button>
+  `;
+}
+
+function wireSection2() {
+  document.getElementById("q6-departure").addEventListener("change", onTripDatesChange);
+  document.getElementById("q6-return").addEventListener("change", onTripDatesChange);
+
+  document.querySelectorAll('input[name="q7"]').forEach((el) => {
+    el.addEventListener("change", () => {
+      state.mainDestination = el.value;
+      document.querySelectorAll('input[name="q7"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+      const warn = document.getElementById("q7-warning");
+      warn.innerHTML = el.value === "no"
+        ? `<div class="warning-box amber">You should apply through the embassy of the country where you spend the most nights. Applying through France when another country has more of your nights is a common rejection reason. Source: Schengen Visa Code Article 5.</div>`
+        : "";
+      checkSection2Complete();
+    });
+  });
+
+  document.querySelectorAll('input[name="q8"]').forEach((el) => {
+    el.addEventListener("change", () => {
+      state.schengenNights = el.value;
+      document.querySelectorAll('input[name="q8"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+      document.getElementById("q8-nights-wrap").hidden = el.value !== "yes";
+      renderQ8Result();
+      checkSection2Complete();
+    });
+  });
+  document.getElementById("q8-nights").addEventListener("input", (e) => {
+    state.schengenNightsCount = Number(e.target.value) || 0;
+    renderQ8Result();
+  });
+
+  document.getElementById("btn-continue-docs").addEventListener("click", () => {
+    setStep(2, true);
+    renderAfterSection2();
+    document.getElementById("section3").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+function onTripDatesChange() {
+  state.departure = document.getElementById("q6-departure").value || null;
+  state.returnDate = document.getElementById("q6-return").value || null;
+  const warnEl = document.getElementById("q6-warning");
+  warnEl.innerHTML = "";
+  if (state.departure) {
+    const workDays = workingDaysUntil(new Date(state.departure));
+    if (workDays < 20) {
+      warnEl.innerHTML = `<div class="warning-box red">The French Embassy Dublin requires at least 20 working days to process your application. Your travel date may be too soon (about ${workDays} working days away). Emergency appointments are not granted for tourism.</div>`;
+    }
+  }
+  renderQ8Result();
+  checkSection2Complete();
+  if (document.getElementById("verdict-card")) renderVerdict();
+}
+
+function workingDaysUntil(targetDate) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  let count = 0; const d = new Date(today);
+  while (d < targetDate) {
+    d.setDate(d.getDate() + 1);
+    const day = d.getDay();
+    if (day !== 0 && day !== 6) count++;
+  }
+  return count;
+}
+
+function renderQ8Result() {
+  const resEl = document.getElementById("q8-result");
+  if (!resEl) return;
+  if (state.schengenNights === "yes" && state.departure && state.returnDate) {
+    const used = state.schengenNightsCount || 0;
+    const remaining = Math.max(0, 90 - used);
+    const tripDays = Math.round((new Date(state.returnDate) - new Date(state.departure)) / 86400000);
+    const fits = tripDays <= remaining;
+    resEl.innerHTML = `<div class="warning-box info">You have used approximately ${used} of your 90 Schengen days in the current 180-day rolling period. You have approximately ${remaining} days remaining. Your planned ${tripDays}-day trip to France ${fits ? "fits within" : "exceeds"} your remaining allowance. <em>(Simplified estimate — use the official EU 90/180 day calculator for exact dates.)</em></div>`;
+  } else {
+    resEl.innerHTML = "";
+  }
+}
+
+function checkSection2Complete() {
+  const ok = state.departure && state.returnDate && state.mainDestination && state.schengenNights;
+  const btn = document.getElementById("btn-continue-docs");
+  if (btn) btn.disabled = !ok;
+}
+
+/* ============================= SECTION 3: DOCUMENTS ============================= */
+function renderAfterSection2() {
+  const host = document.getElementById("after-section2");
+  host.innerHTML = `
+    <section class="wizard-section" id="section3">
+      <div class="wrap">
+        <div class="section-title">Check your documents</div>
+        <p class="section-sub">Answer honestly — unknown is always better than guessing</p>
+        ${section3HTML()}
+      </div>
+    </section>
+    <div id="after-section3"></div>
+  `;
+  wireSection3();
+}
+
+function section3HTML() {
+  return `
+    <div class="q">
+      <label class="q-label">Q9a. How many blank pages does your passport have?</label>
+      <select id="q9a-pages">
+        <option value="">Select</option>
+        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+        <option value="3">3</option><option value="4">4</option><option value="5">5 or more</option>
+      </select>
+      <div id="q9a-warning"></div>
+    </div>
+    <div class="q">
+      <label class="q-label">Q9b. Is your passport in good physical condition?</label>
+      <label class="radio-card"><input type="radio" name="q9b" value="good"> Yes — no damage</label>
+      <label class="radio-card"><input type="radio" name="q9b" value="damaged"> No — has torn pages, water damage or marks on photo page</label>
+      <div id="q9b-warning"></div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q10. Employment status</label>
+      <select id="q10-employment">
+        <option value="">Select</option>
+        <option value="full">Employed full time</option>
+        <option value="part">Employed part time</option>
+        <option value="self">Self-employed</option>
+        <option value="student">Student</option>
+        <option value="none">Not currently employed</option>
+        <option value="na">Prefer not to say</option>
+      </select>
+      <div id="q10a-wrap"></div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q11a. Do you have 6 months of Irish bank statements available?</label>
+      <label class="radio-card"><input type="radio" name="q11a" value="consistent"> Yes, with consistent balance</label>
+      <label class="radio-card"><input type="radio" name="q11a" value="deposit"> Yes, but I recently moved a large amount into my account</label>
+      <label class="radio-card"><input type="radio" name="q11a" value="none"> Not yet</label>
+      <div id="q11a-warning"></div>
+    </div>
+    <div class="q">
+      <label class="q-label">Q11b. Who is funding this trip?</label>
+      <label class="radio-card"><input type="radio" name="q11b" value="self"> Self-funded</label>
+      <label class="radio-card"><input type="radio" name="q11b" value="sponsor"> Sponsored by someone else</label>
+      <div id="q11b-warning"></div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q12. Do you have travel insurance for this trip?</label>
+      <label class="radio-card"><input type="radio" name="q12" value="yes"> Yes — covers €30,000 for all 29 Schengen countries for exact trip dates</label>
+      <label class="radio-card"><input type="radio" name="q12" value="unsure"> Yes, but I am not sure of the coverage details</label>
+      <label class="radio-card"><input type="radio" name="q12" value="none"> Not yet</label>
+      <div id="q12-warning"></div>
+    </div>
+
+    <div class="q">
+      <label class="q-label">Q13. Do your flight, hotel, insurance and itinerary all show exactly the same travel dates?</label>
+      <label class="radio-card"><input type="radio" name="q13" value="match"> Yes, all dates match</label>
+      <label class="radio-card"><input type="radio" name="q13" value="differ"> Some dates differ</label>
+      <label class="radio-card"><input type="radio" name="q13" value="unbooked"> I have not booked yet</label>
+      <div id="q13-warning"></div>
+    </div>
+
+    <button class="btn-primary" id="btn-see-results" disabled>See my full results</button>
+  `;
+}
+
+function wireSection3() {
+  document.getElementById("q9a-pages").addEventListener("change", (e) => {
+    state.passportPages = e.target.value;
+    document.getElementById("q9a-warning").innerHTML = (e.target.value !== "" && Number(e.target.value) < 2)
+      ? `<div class="warning-box amber"><strong>HIDDEN RULE:</strong> Your passport needs at least 2 blank pages for visa stamps and entry stamps. With ${e.target.value} blank page${e.target.value==="1"?"":"s"}, your application may be refused at the counter before it is even processed. <span class="source-cite">Commonly required by Schengen consulates including France.</span></div>` : "";
+    checkSection3Complete();
+  });
+  document.querySelectorAll('input[name="q9b"]').forEach(el => el.addEventListener("change", () => {
+    state.passportCondition = el.value;
+    document.querySelectorAll('input[name="q9b"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+    document.getElementById("q9b-warning").innerHTML = el.value === "damaged"
+      ? `<div class="warning-box amber">A damaged passport — torn pages, water damage or tampered identity page — is grounds for automatic refusal. You must renew your passport before applying. <span class="source-cite">Commonly cited by Schengen visa services.</span></div>` : "";
+    checkSection3Complete();
+  }));
+
+  document.getElementById("q10-employment").addEventListener("change", (e) => {
+    state.employment = e.target.value;
+    const wrap = document.getElementById("q10a-wrap");
+    if (e.target.value === "full" || e.target.value === "part") {
+      wrap.innerHTML = `
+        <div style="margin-top:12px;">
+          <label class="q-label" style="font-size:0.9rem;">Q10a. Does your employer letter include all of these?</label>
+          <label class="check-card"><input type="checkbox" id="el-title"> Job title and employment start date</label>
+          <label class="check-card"><input type="checkbox" id="el-leave"> Approved leave dates for this specific trip</label>
+          <label class="check-card"><input type="checkbox" id="el-letterhead"> Company letterhead with authorised signature</label>
+          <label class="check-card"><input type="checkbox" id="el-cro"> Company registration number or CRO number</label>
+          <div id="el-warnings"></div>
+        </div>`;
+      ["title","leave","letterhead","cro"].forEach(k => {
+        document.getElementById("el-" + k).addEventListener("change", (ev) => {
+          state.employerLetter[k] = ev.target.checked;
+          ev.target.closest('.check-card').classList.toggle('selected', ev.target.checked);
+          renderEmployerWarnings();
+          checkSection3Complete();
+        });
+      });
+    } else if (e.target.value === "student") {
+      wrap.innerHTML = `
+        <div style="margin-top:12px;">
+          <label class="q-label" style="font-size:0.9rem;">Q10a. Do you have a current enrollment letter from your Irish institution?</label>
+          <label class="radio-card"><input type="radio" name="q10a-student" value="yes"> Yes</label>
+          <label class="radio-card"><input type="radio" name="q10a-student" value="no"> Not yet</label>
+          <div id="student-warning"></div>
+        </div>`;
+      document.querySelectorAll('input[name="q10a-student"]').forEach(el => el.addEventListener("change", () => {
+        state.studentEnrollment = el.value;
+        document.querySelectorAll('input[name="q10a-student"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+        document.getElementById("student-warning").innerHTML = el.value === "no"
+          ? `<div class="warning-box amber">You will need an enrollment letter confirming your current study status and your expected return date. Contact your college's international office.</div>` : "";
+        checkSection3Complete();
+      }));
+    } else {
+      wrap.innerHTML = "";
+    }
+    checkSection3Complete();
+  });
+
+  document.querySelectorAll('input[name="q11a"]').forEach(el => el.addEventListener("change", () => {
+    state.bankStatements = el.value;
+    document.querySelectorAll('input[name="q11a"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+    document.getElementById("q11a-warning").innerHTML = el.value === "deposit"
+      ? `<div class="warning-box amber"><strong>HIDDEN RULE:</strong> A sudden large deposit before your application is a major red flag for French consulate officers. They want to see a consistent balance over time, not a lump sum added recently. This is sometimes called "show money" and it causes rejections even when the amount is sufficient. <span class="source-cite">Widely reported pattern across comparable cases.</span></div>` : "";
+    checkSection3Complete();
+  }));
+  document.querySelectorAll('input[name="q11b"]').forEach(el => el.addEventListener("change", () => {
+    state.funding = el.value;
+    document.querySelectorAll('input[name="q11b"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+    document.getElementById("q11b-warning").innerHTML = el.value === "sponsor"
+      ? `<div class="warning-box info">You will need a signed sponsorship letter from your sponsor plus their 6 months of bank statements and proof of their income. Their financial documents carry more weight than yours in this case.</div>` : "";
+    checkSection3Complete();
+  }));
+
+  document.querySelectorAll('input[name="q12"]').forEach(el => el.addEventListener("change", () => {
+    state.insurance = el.value;
+    document.querySelectorAll('input[name="q12"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+    const w = document.getElementById("q12-warning");
+    if (el.value === "unsure") w.innerHTML = `<div class="warning-box amber"><strong>HIDDEN RULE:</strong> Many standard travel insurance policies have hidden deductibles or do not explicitly cover all 29 Schengen countries. French consulates reject insurance that does not explicitly state: minimum €30,000 medical coverage, valid in all Schengen member states, covering the full duration of your stay. Check your policy wording before submitting.</div>`;
+    else if (el.value === "none") w.innerHTML = `<div class="warning-box amber">Travel insurance is a legal requirement under the Schengen Visa Code. You cannot submit your application without it. <span class="source-cite">Source: Schengen Visa Code Article 15.</span></div>`;
+    else w.innerHTML = "";
+    checkSection3Complete();
+  }));
+
+  document.querySelectorAll('input[name="q13"]').forEach(el => el.addEventListener("change", () => {
+    state.docConsistency = el.value;
+    document.querySelectorAll('input[name="q13"]').forEach(r => r.closest('.radio-card').classList.toggle('selected', r.checked));
+    const w = document.getElementById("q13-warning");
+    if (el.value === "differ") w.innerHTML = `<div class="warning-box amber"><strong>HIDDEN RULE:</strong> Any inconsistency between your flight dates, hotel dates, insurance dates and itinerary dates raises an immediate red flag. French consulate officers check all documents against each other. Even a one-day difference can result in refusal for "unreliable purpose of stay".</div>`;
+    else if (el.value === "unbooked") w.innerHTML = `<div class="warning-box info">Book refundable flights and hotels before your appointment. Dummy or placeholder tickets are increasingly detected and rejected. Use refundable real bookings.</div>`;
+    else w.innerHTML = "";
+    checkSection3Complete();
+  }));
+
+  document.getElementById("btn-see-results").addEventListener("click", () => {
+    setStep(3, true); setStep(4, false);
+    renderResults();
+    document.getElementById("results-page").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+function renderEmployerWarnings() {
+  const el = document.getElementById("el-warnings");
+  const l = state.employerLetter;
+  let html = "";
+  if (!l.leave) html += `<div class="warning-box amber">Your employer letter must include the exact dates of your approved leave. Ask your employer to add: "I confirm that [your name] has been granted leave from [date] to [date] for personal travel."</div>`;
+  if (!l.cro) html += `<div class="warning-box amber">French consulate officers verify Irish companies through the CRO. Add your company registration number to the letter header.</div>`;
+  if (!l.title) html += `<div class="warning-box amber">Ask your employer to state your job title and employment start date clearly in the letter.</div>`;
+  if (!l.letterhead) html += `<div class="warning-box amber">The letter should be on official company letterhead with an authorised signature.</div>`;
+  el.innerHTML = html;
+}
+
+function checkSection3Complete() {
+  const l = state.employerLetter;
+  const employmentOk = state.employment && (
+    (state.employment !== "full" && state.employment !== "part" && state.employment !== "student") ||
+    (state.employment === "student" ? !!state.studentEnrollment : true)
+  );
+  const ok = state.passportPages !== null && state.passportCondition && employmentOk &&
+    state.bankStatements && state.funding && state.insurance && state.docConsistency;
+  const btn = document.getElementById("btn-see-results");
+  if (btn) btn.disabled = !ok;
+}
+
+/* ============================= PROGRESS ============================= */
+function setStep(n, done) {
+  const steps = document.querySelectorAll(".progress-step");
+  steps.forEach((s, i) => {
+    const stepNum = i + 1;
+    if (stepNum <= n) s.classList.add("done");
+    s.classList.remove("current");
+    if (stepNum === n + 1) s.classList.add("current");
+  });
+}
+
+/* ============================= RESULTS PAGE ============================= */
+function renderResults() {
+  const { rawScore, notes } = computeScore();
+  const { low, high } = scoreToRange(rawScore);
+  const tier = tierFor(rawScore);
+
+  const positives = notes.filter(n => n.delta > 0);
+  const negatives = notes.filter(n => n.delta < 0);
+
+  const hiddenRules = collectHiddenRules();
+  const checklist = buildChecklist();
+  const similar = pickSimilarCases();
+  const timeline = buildTimeline();
+
+  const host = document.getElementById("after-section3");
+  host.innerHTML = `
+  <section id="results-page">
+    <div class="wrap">
+
+      <div class="result-block" style="border-top:1px solid var(--border); padding-top:28px;">
+        <h3>Three things working in your favour</h3>
+        <ul class="factor-list">
+          ${positives.length ? positives.map(n => `<li><span class="factor-icon" style="color:var(--green);">✓</span> ${n.label} (+${n.delta}%)</li>`).join("") : `<li><span class="factor-icon" style="color:var(--text-faint);">–</span> No strong positive factors identified yet.</li>`}
+        </ul>
+      </div>
+
+      <div class="result-block">
+        <h3>Things that need attention</h3>
+        <ul class="factor-list">
+          ${negatives.length ? negatives.map(n => `<li><span class="factor-icon" style="color:${n.delta <= -25 ? 'var(--red)' : 'var(--amber)'};">!</span> ${n.label} (${n.delta}%)</li>`).join("") : `<li><span class="factor-icon" style="color:var(--green);">✓</span> No major risk factors identified.</li>`}
+        </ul>
+      </div>
+
+      <div class="result-block">
+        <h3>Hidden rules — things people miss that cost them their visa</h3>
+        ${hiddenRules.length ? hiddenRules.map(h => `<div class="hidden-rule"><strong>${h.title}</strong><p>${h.body}</p></div>`).join("") : `<p style="color:var(--text-dim); font-size:0.9rem;">No hidden-rule flags triggered by your answers so far.</p>`}
+      </div>
+
+      <div class="result-block">
+        <h3>Document checklist</h3>
+        ${checklist.map(c => `
+          <div class="checklist-item">
+            <div class="checklist-status ${c.status}">${c.status === 'pass' ? '✓' : c.status === 'fail' ? '✕' : c.status === 'action' ? '!' : 'i'}</div>
+            <div class="checklist-body">
+              <strong>${c.name}</strong>
+              <p>${c.explain}</p>
+              ${c.action ? `<p class="next-action">${c.action}</p>` : ""}
+              ${c.source ? `<p class="source-cite">${c.source}</p>` : ""}
+            </div>
+          </div>`).join("")}
+      </div>
+
+      <div class="result-block">
+        <h3>Similar cases from our dataset</h3>
+        ${similar.map(c => `
+          <div class="case-card">
+            <div class="case-outcome ${c.outcome.toLowerCase()}">${c.outcome === 'Approved' ? '✅' : '❌'} ${c.outcome} — ${c.permit}, IRP ${c.irpMonths} months</div>
+            <p>${c.note}</p>
+          </div>`).join("")}
+      </div>
+
+      <div class="result-block">
+        <h3>Application timeline</h3>
+        ${timeline.map(t => `<div class="timeline-item"><div class="timeline-date">${t.date}</div><div class="timeline-label">${t.label}</div></div>`).join("")}
+      </div>
+
+      <div class="result-block">
+        <h3>Where to apply</h3>
+        <div class="embassy-card">
+          <p class="label">Consular section</p>
+          <p><strong>French Embassy — Consular Section, Dublin</strong><br>66 Fitzwilliam Lane, D02HP38 Dublin</p>
+          <p class="label">Phone</p>
+          <p>+353 1800903333 — Monday to Friday, 9:00am–5:00pm</p>
+          <p class="label">Email</p>
+          <p>Not published by the embassy — use the phone line or the appointment platform below.</p>
+          <p class="label">Appointments</p>
+          <p><a href="https://france-visas.gouv.fr/en/irlande" target="_blank" rel="noopener">france-visas.gouv.fr/en/irlande</a> — the embassy changed its booking platform in May 2026, so this official page will always route to the current one.</p>
+          <p class="label">Submission hours (by appointment only)</p>
+          <p>Mon–Thu: 9:30am–12:00pm &amp; 2:00pm–3:00pm · Fri: 9:30am–12:00pm · Closed weekends</p>
+          <p class="label">Processing time</p>
+          <p>Typically 10–15 working days after a complete submission</p>
+          <p class="source-cite">Source: france-visas.gouv.fr/en/irlande. Verified live during this build (September 2026).</p>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <h3>Easy to miss — do not forget these</h3>
+        <div class="hidden-rule">
+          <strong>France from Ireland only: the €10 stamped envelope</strong>
+          <p>You must bring a €10 registered-post stamped envelope addressed to yourself on the day of your appointment. Passports are no longer collected in person — they are only returned by registered post.</p>
+          <p class="source-cite">Source: france-visas.gouv.fr/en/irlande. Verified live during this build (September 2026).</p>
+        </div>
+        <div class="hidden-rule">
+          <strong>Your IRP is also your re-entry permit</strong>
+          <p>Your Irish IRP card is also your re-entry permit to Ireland. If it expires while you are abroad, you cannot return to Ireland. Always ensure your IRP is valid for your entire trip plus the return journey.</p>
+        </div>
+      </div>
+
+      <div class="result-block" style="border-bottom:none;">
+        <h3>Share what happened to you</h3>
+        <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:14px;">Applied already, or when you do — tell us the outcome. It helps the next person with a profile like yours.</p>
+        <div class="outcome-buttons" id="outcome-buttons">
+          <button class="btn-outcome btn-outcome-approved" id="btn-approved">✅ I got APPROVED — help others with my profile</button>
+          <button class="btn-outcome btn-outcome-rejected" id="btn-rejected">❌ I got REJECTED — help others avoid this</button>
+        </div>
+        <div class="outcome-thanks" id="outcome-thanks" hidden></div>
+
+        <div style="margin-top:24px;">
+          <p style="color:var(--text-dim); font-size:0.9rem;">Want to know when we add more countries? Leave your email.</p>
+          <div class="email-capture">
+            <input type="email" id="notify-email" placeholder="you@example.com">
+            <button id="notify-btn">Notify me</button>
+          </div>
+          <div id="notify-status" style="display:none; margin-top:8px; font-size:0.85rem; color:var(--green);">Thanks — we'll let you know.</div>
+        </div>
+
+        <div class="disclaimer">
+          VisaCheck is an information tool only. Not legal advice. Results are based on official requirements and
+          community-reported outcomes. Past outcomes do not guarantee future results. Only the relevant embassy can
+          decide your application.
+        </div>
+      </div>
+
+    </div>
+  </section>`;
+
+  document.getElementById("btn-approved").addEventListener("click", () => captureOutcomeV1("Approved"));
+  document.getElementById("btn-rejected").addEventListener("click", () => captureOutcomeV1("Rejected"));
+  document.getElementById("notify-btn").addEventListener("click", () => {
+    const email = document.getElementById("notify-email").value.trim();
+    if (!email) return;
+    console.warn("Notify-me email captured locally only (no backend wired up yet):", email);
+    document.getElementById("notify-status").style.display = "block";
+    document.getElementById("notify-email").value = "";
+  });
+}
+
+function captureOutcomeV1(outcome) {
+  console.warn("Outcome captured locally only (no backend wired up yet):", { ...state, outcome });
+  document.getElementById("outcome-buttons").style.display = "none";
+  const thanks = document.getElementById("outcome-thanks");
+  thanks.hidden = false;
+  thanks.textContent = "Thank you. Your outcome helps immigrants with similar profiles make better decisions.";
+}
+
+function collectHiddenRules() {
+  const rules = [];
+  if (state.passportPages !== null && state.passportPages !== "" && Number(state.passportPages) < 2) {
+    rules.push({ title: "Not enough blank passport pages", body: `With ${state.passportPages} blank page(s), your application may be refused at the counter before it's even processed. You need at least 2.` });
+  }
+  if (state.passportCondition === "damaged") {
+    rules.push({ title: "Damaged passport", body: "Torn pages, water damage or a tampered photo page is grounds for automatic refusal. Renew your passport before applying." });
+  }
+  if (state.bankStatements === "deposit") {
+    rules.push({ title: "Recent large deposit ('show money')", body: "A sudden large deposit before your application is a major red flag — consulates want a consistent balance over time, not a lump sum added recently." });
+  }
+  if (state.insurance === "unsure") {
+    rules.push({ title: "Insurance coverage may not meet requirements", body: "Many standard policies don't explicitly cover all 29 Schengen countries or the full €30,000 minimum. Check your policy wording before submitting." });
+  }
+  if (state.docConsistency === "differ") {
+    rules.push({ title: "Your dates don't all match", body: "Any inconsistency between flight, hotel, insurance and itinerary dates raises an immediate red flag — even a one-day gap." });
+  }
+  if (state.permit === "Stamp 1G") {
+    rules.push({ title: "Stamp 1G carries extra scrutiny", body: "Stamp 1G (post-study work permission) is viewed as less stable than employment-linked permits by some officers, even though it's fully legal." });
+  }
+  return rules;
+}
+
+function buildChecklist() {
+  const items = [];
+  const permitMonthsGap = (state.permit && state.permitExpiry && state.returnDate)
+    ? monthsBetween(new Date(state.returnDate), new Date(state.permitExpiry)) : null;
+
+  items.push({ name: "Passport validity", explain: "Must be valid 3+ months beyond your return date and issued within the last 10 years.", status: "info", action: "Check your passport's expiry and issue dates against your return date." });
+  items.push({ name: "Passport blank pages", explain: "At least 2 blank pages recommended.", status: state.passportPages === null || state.passportPages === "" ? "info" : Number(state.passportPages) >= 2 ? "pass" : "fail", action: state.passportPages !== null && Number(state.passportPages) < 2 ? "Get extra pages added or renew your passport." : "" });
+  items.push({ name: "Passport condition", explain: "No tears, water damage, or marks on the photo page.", status: state.passportCondition === "good" ? "pass" : state.passportCondition === "damaged" ? "fail" : "info", action: state.passportCondition === "damaged" ? "Renew your passport before applying." : "" });
+  items.push({ name: "IRP validity", explain: "Official minimum: 1 month beyond return. Community advice: 3 months. VisaCheck recommends: 6 months.", status: permitMonthsGap === null ? "info" : permitMonthsGap >= 6 ? "pass" : permitMonthsGap >= 0 ? "action" : "fail", action: permitMonthsGap !== null && permitMonthsGap < 6 ? "Consider renewing your IRP before applying, or wait until it has more validity remaining." : "" });
+  items.push({ name: "IRP as re-entry permit", explain: "Your IRP also lets you re-enter Ireland — it must stay valid for your whole trip plus return.", status: "info" });
+  items.push({ name: "Travel insurance", explain: "€30,000 minimum coverage, all 29 Schengen countries, full trip duration.", status: state.insurance === "yes" ? "pass" : state.insurance === "unsure" ? "action" : state.insurance === "none" ? "fail" : "info", action: state.insurance !== "yes" ? "Confirm your policy explicitly meets all three requirements." : "" });
+  items.push({ name: "Employer letter", explain: "Job title, leave dates, letterhead + signature, CRO number.", status: employerLetterStatus(), action: employerLetterAction() });
+  items.push({ name: "Bank statements", explain: "6 months, consistent balance, no sudden deposits.", status: state.bankStatements === "consistent" ? "pass" : state.bankStatements === "deposit" ? "action" : state.bankStatements === "none" ? "fail" : "info", action: state.bankStatements === "deposit" ? "Be ready to explain the deposit's source with documentation." : "" });
+  items.push({ name: "Hotel booking", explain: "Confirmed, refundable, dates matching your other documents.", status: state.docConsistency === "match" ? "pass" : state.docConsistency === "unbooked" ? "action" : state.docConsistency === "differ" ? "fail" : "info" });
+  items.push({ name: "Return flight", explain: "Real, refundable booking with matching dates.", status: state.docConsistency === "match" ? "pass" : state.docConsistency === "unbooked" ? "action" : state.docConsistency === "differ" ? "fail" : "info" });
+  items.push({ name: "Itinerary", explain: "Day-by-day plan with dates matching all other documents.", status: state.docConsistency === "match" ? "pass" : "info" });
+  items.push({ name: "Passport photo", explain: "ISO standard, typically scanned at your appointment.", status: "info" });
+  items.push({ name: "€10 stamped registered-post envelope", explain: "Required for Ireland → France applications — passports are only returned by post.", status: "info" });
+
+  return items;
+}
+function employerLetterStatus() {
+  if (state.employment !== "full" && state.employment !== "part") return "info";
+  const l = state.employerLetter;
+  const allChecked = l.title && l.leave && l.letterhead && l.cro;
+  const anyChecked = l.title || l.leave || l.letterhead || l.cro;
+  return allChecked ? "pass" : anyChecked ? "action" : "info";
+}
+function employerLetterAction() {
+  if (state.employment !== "full" && state.employment !== "part") return "";
+  const l = state.employerLetter;
+  if (l.title && l.leave && l.letterhead && l.cro) return "";
+  return "Missing items flagged above — ask your employer to update the letter.";
+}
+
+function pickSimilarCases() {
+  const scored = CASES.map(c => {
+    let s = 0;
+    if (c.permit === state.permit) s += 3;
+    if (state.permitExpiry && state.returnDate) {
+      const gap = monthsBetween(new Date(state.returnDate), new Date(state.permitExpiry));
+      s += Math.max(0, 3 - Math.abs(gap - c.irpMonths) / 4);
+    }
+    const overlap = c.otherVisas.filter(v => state.otherVisas.includes(v)).length;
+    s += overlap;
+    return { c, s };
+  }).sort((a, b) => b.s - a.s);
+  return scored.slice(0, 2).map(x => x.c);
+}
+
+function buildTimeline() {
+  if (!state.departure) return [{ date: "—", label: "Enter your travel date in Section 2 to see your personalised timeline." }];
+  const dep = new Date(state.departure);
+  const applyBy = addWorkingDays(dep, -20);
+  const bookBy = addDays(dep, -42);
+  const formBy = addDays(dep, -49);
+  const gatherBy = addDays(dep, -56);
+  return [
+    { date: fmt(dep), label: "Travel date" },
+    { date: fmt(applyBy), label: "Apply by (20 working days minimum, French Embassy Dublin)" },
+    { date: fmt(bookBy), label: "Book your appointment by" },
+    { date: fmt(formBy), label: "Complete the France-Visas online form by" },
+    { date: fmt(gatherBy), label: "Have all documents gathered by" },
+  ];
+}
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+function addWorkingDays(d, n) {
+  let x = new Date(d); let remaining = Math.abs(n);
+  while (remaining > 0) { x.setDate(x.getDate() + (n < 0 ? -1 : 1)); const day = x.getDay(); if (day !== 0 && day !== 6) remaining--; }
+  return x;
+}
+function fmt(d) { return d.toLocaleDateString("en-IE", { day: "numeric", month: "short", year: "numeric" }); }
+</script>
+</body>
+</html>
