@@ -361,9 +361,9 @@ function computeScore() {
     const gapMonths = monthsBetween(new Date(state.returnDate), new Date(state.permitExpiry));
     let delta = 0;
     let label = "";
-    if (gapMonths < 0) { delta = -65; label = "Permit expires before your return date"; }
-    else if (gapMonths < 1) { delta = -55; label = "Permit expires within 1 month of your return date"; }
-    else if (gapMonths < 3) { delta = -45; label = "Permit valid only 1-3 months after return"; }
+    if (gapMonths < 0) { delta = -65; label = "IRP expires before your return date"; }
+    else if (gapMonths < 1) { delta = -55; label = "IRP expires within 1 month of return"; }
+    else if (gapMonths < 3) { delta = -30; label = "IRP expires 1–3 months after return — cutting it close"; }
     else if (gapMonths < 6) { delta = -25; label = "Permit valid only 3-6 months after return"; }
     else if (gapMonths < 12) { delta = 0; label = "Permit valid 6-12 months after return"; }
     else { delta = 4; label = "Permit valid 12+ months after return"; }
@@ -1082,7 +1082,7 @@ function buildChecklist() {
   items.push({ name: "Passport validity", explain: "Must be valid 3+ months beyond your return date and issued within the last 10 years.", status: "info", action: "Check your passport's expiry and issue dates against your return date." });
   items.push({ name: "Passport blank pages", explain: "At least 2 blank pages recommended.", status: state.passportPages === null || state.passportPages === "" ? "info" : Number(state.passportPages) >= 2 ? "pass" : "fail", action: state.passportPages !== null && Number(state.passportPages) < 2 ? "Get extra pages added or renew your passport." : "" });
   items.push({ name: "Passport condition", explain: "No tears, water damage, or marks on the photo page.", status: state.passportCondition === "good" ? "pass" : state.passportCondition === "damaged" ? "fail" : "info", action: state.passportCondition === "damaged" ? "Renew your passport before applying." : "" });
-  items.push({ name: "IRP validity", explain: "Official minimum: 1 month beyond return. Community advice: 3 months. VisaCheck recommends: 6 months.", status: permitMonthsGap === null ? "info" : permitMonthsGap >= 6 ? "pass" : permitMonthsGap >= 0 ? "action" : "fail", action: permitMonthsGap !== null && permitMonthsGap < 6 ? "Consider renewing your IRP before applying, or wait until it has more validity remaining." : "" });
+  items.push({ name: "IRP validity", explain: "Official requirement: valid for 1 month after your return date (france-visas.gouv.fr). Hidden rule: some community members report officers applying an informal 3-month expectation in practice — your official position is safe at 1 month, but more validity reduces risk.", status: permitMonthsGap === null ? "info" : permitMonthsGap >= 6 ? "pass" : permitMonthsGap >= 0 ? "action" : "fail", action: permitMonthsGap !== null && permitMonthsGap < 6 ? "Consider renewing your IRP before applying, or wait until it has more validity remaining." : "" });
   items.push({ name: "IRP as re-entry permit", explain: "Your IRP also lets you re-enter Ireland — it must stay valid for your whole trip plus return.", status: "info" });
   items.push({ name: "Travel insurance", explain: "€30,000 minimum coverage, all 29 Schengen countries, full trip duration.", status: state.insurance === "yes" ? "pass" : state.insurance === "unsure" ? "action" : state.insurance === "none" ? "fail" : "info", action: state.insurance !== "yes" ? "Confirm your policy explicitly meets all three requirements." : "" });
   items.push({ name: "Employer letter", explain: "Job title, leave dates, letterhead + signature, CRO number.", status: employerLetterStatus(), action: employerLetterAction() });
