@@ -159,6 +159,7 @@ function renderResults(profile) {
     warningEl.style.display = "none";
   }
 
+  document.getElementById("reasons-card").style.display = "block";
   reasonsList.innerHTML = "";
   if (reasons.length === 0) {
     const li = document.createElement("li");
