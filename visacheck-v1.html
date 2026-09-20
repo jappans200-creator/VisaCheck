@@ -371,6 +371,29 @@ function computeScore() {
     notes.push({ label, delta });
   }
 
+  if (state.employment) {
+    const employmentDeltas = {
+      "full": 5, "part": 2, "student": 1, "self": -3, "none": -10, "na": 0,
+    };
+    const employmentLabels = {
+      "full": "Employed full-time", "part": "Employed part-time", "student": "Student",
+      "self": "Self-employed", "none": "Not currently employed", "na": "Employment not disclosed",
+    };
+    const delta = employmentDeltas[state.employment] ?? 0;
+    if (delta !== 0) {
+      score += delta;
+      notes.push({ label: employmentLabels[state.employment], delta });
+    }
+  }
+
+  if (state.bankStatements === "deposit") {
+    score -= 8;
+    notes.push({ label: "Recent large deposit flagged in bank statements", delta: -8 });
+  } else if (state.bankStatements === "none") {
+    score -= 5;
+    notes.push({ label: "Bank statements not yet available", delta: -5 });
+  }
+
   const rawScore = Math.max(9, Math.min(91, Math.round(score)));
   return { rawScore, notes };
 }
