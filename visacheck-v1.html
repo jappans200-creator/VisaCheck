@@ -362,7 +362,7 @@ function computeScore() {
     let delta = 0;
     let label = "";
     if (gapMonths < 0) { delta = -65; label = "Permit expires before your return date"; }
-    else if (gapMonths < 1) { delta = -65; label = "Permit expires before your return date"; }
+    else if (gapMonths < 1) { delta = -55; label = "Permit expires within 1 month of your return date"; }
     else if (gapMonths < 3) { delta = -45; label = "Permit valid only 1-3 months after return"; }
     else if (gapMonths < 6) { delta = -25; label = "Permit valid only 3-6 months after return"; }
     else if (gapMonths < 12) { delta = 0; label = "Permit valid 6-12 months after return"; }
@@ -488,8 +488,8 @@ function renderVerdict() {
     <div class="verdict-kicker">VISA VERDICT — FRANCE 🇫🇷</div>
     <div class="verdict-kicker" style="margin-bottom:4px; opacity:.7;">YOUR ODDS:</div>
     <div class="verdict-pct">${low}-${high}%</div>
-    <div class="verdict-confidence">Based on 23 comparable cases — limited confidence. Accuracy improves as more users share outcomes.<br>
-    <span style="opacity:.75;">Base rate: EC Schengen statistics (2024, Indian applicants). Adjusted for profile factors from 23 comparable cases.</span></div>
+    <div class="verdict-confidence">Based on ${CASES.length} comparable cases — limited confidence. Accuracy improves as more users share outcomes.<br>
+    <span style="opacity:.75;">Base rate: EC Schengen statistics (2024, Indian applicants). Adjusted for profile factors from ${CASES.length} comparable cases.</span></div>
     <div class="verdict-message">${pickRandomMessage(tier)}</div>
   `;
   state._lastScore = rawScore; state._lastRange = { low, high }; state._lastTier = tier; state._lastNotes = notes;
@@ -1033,7 +1033,18 @@ function renderResults() {
 }
 
 function captureOutcomeV1(outcome) {
-  console.warn("Outcome captured locally only (no backend wired up yet):", { ...state, outcome });
+  const submission = {
+    ...state,
+    outcome,
+    submittedAt: new Date().toISOString(),
+  };
+  try {
+    const existing = JSON.parse(localStorage.getItem("visacheck_v1_outcomes") || "[]");
+    existing.push(submission);
+    localStorage.setItem("visacheck_v1_outcomes", JSON.stringify(existing));
+  } catch (e) {
+    // localStorage unavailable — submission is lost but UX still completes
+  }
   document.getElementById("outcome-buttons").style.display = "none";
   const thanks = document.getElementById("outcome-thanks");
   thanks.hidden = false;
