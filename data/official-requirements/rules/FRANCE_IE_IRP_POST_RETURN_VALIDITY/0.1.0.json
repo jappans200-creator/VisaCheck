@@ -1,0 +1,164 @@
+{
+  "rule_revision": "0.1.0",
+  "bundle_id": "FRANCE_SHORT_STAY",
+  "composes_with": [
+    "SCHENGEN_CORE",
+    "IRELAND_RESIDENT"
+  ],
+  "application_stage": "supporting_documentation",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "review_gate": {
+    "ordinary_condition": {
+      "all": [
+        {
+          "fact": "passport.document_type",
+          "op": "eq",
+          "value": "ordinary"
+        },
+        {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        }
+      ]
+    },
+    "affirmative_triggers": [
+      {
+        "fact": "residence.permit_type",
+        "op": "in",
+        "value": [
+          "STAMP 4 EUFAM",
+          "Stamp 4 EUFAM",
+          "stamp_4_eufam"
+        ]
+      }
+    ],
+    "reason_code": "SPECIAL_ROUTE_REQUIRES_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "all": [
+          {
+            "fact": "passport.issuing_country",
+            "op": "eq",
+            "value": "IN"
+          },
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          },
+          {
+            "fact": "application.competent_state",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      {
+        "fact": "residence.country",
+        "op": "eq",
+        "value": "IE"
+      },
+      {
+        "fact": "residence.legal_status",
+        "op": "eq",
+        "value": "legal_resident"
+      },
+      {
+        "not": {
+          "fact": "identity.country_of_origin",
+          "op": "eq",
+          "value": "IE"
+        }
+      }
+    ]
+  },
+  "implementation_notes": [
+    "Supplied Batch 2A specification implemented as a nonpublishable draft. No independently established effective dates or release.",
+    "Scope is the currently supported ordinary IN profile. Country, regime and competence restrictions are data, not generic evaluator conditions. No competent-state inference.",
+    "residence.legal_status uses legal_resident or not_legal_resident; other/missing values remain unresolved. It is not inferred from residence country, physical presence, permission, card possession or card expiry.",
+    "An explicit complete applicant_conditions list [] or [ordinary_adult_applicant] supplies ordinary context; unknown or other conditions require review. EUFAM permit-type indicators also require review. Special-category conditions, including minority and emergencies, must be represented by the adapter; no age cutoff or exemption is invented.",
+    "Country of origin is supplied separately; it is not derived from nationality. Missing origin is UNKNOWN.",
+    "CLAMP is the supplied implementation convention, not a quotation. No thirty-day substitution. Pending renewal never changes card presence or manufactures an expiry."
+  ],
+  "rule_id": "FRANCE_IE_IRP_POST_RETURN_VALIDITY",
+  "requirement": "For the supported applicant resident in Ireland whose country of origin is not Ireland, the IRP must remain valid one calendar month after intended return to Ireland.",
+  "evaluator": "minimum_remaining_validity",
+  "parameters": {
+    "expiry_date": {
+      "fact": "residence.irish_residence_card_expiry_date"
+    },
+    "reference_date": {
+      "fact": "trip.intended_return_to_ireland_date"
+    },
+    "amount": 1,
+    "unit": "CALENDAR_MONTHS",
+    "calendar_policy": "CLAMP"
+  },
+  "source_refs": [
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-05-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-D/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-05-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-G/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-05-I",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-I/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "IE-REGISTRATION-RENEWAL",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/IE-REGISTRATION-RENEWAL/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-G/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "IE-TRAVEL-REENTRY",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/IE-TRAVEL-REENTRY/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-G/0.1.0.json"
+        }
+      ]
+    }
+  ]
+}

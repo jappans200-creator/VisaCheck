@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "FRANCE-VISAS-TOURISM-PRIVATE-STAY",
+  "source_revision": "0.2.0",
+  "url": "https://www.france-visas.gouv.fr/en/tourisme-et-sejour-prive",
+  "authority": "France-Visas / French government",
+  "title": "Tourism and private stay",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in externally supplied final audit batch; no independent verification metadata supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied final audit reference only. www/en path differs from previous non-www/en/web/france-visas reference. Preserve exact URL without claiming redirect/content equivalence. No retrieval or inspection.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

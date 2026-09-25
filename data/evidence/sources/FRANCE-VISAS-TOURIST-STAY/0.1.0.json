@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "FRANCE-VISAS-TOURIST-STAY",
+  "source_revision": "0.1.0",
+  "url": "https://france-visas.gouv.fr/en/web/france-visas/sejour-touristique-de-moins-de-3-mois",
+  "authority": "France-Visas / French government",
+  "title": "Tourist stay of less than 3 months",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-07 through EP001-11 batch; no independent verification supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied batch reference only; no retrieval, inspection, exact excerpt or reviewer. Page described as tourist short-stay guidance; do not infer its examples are an exclusive evidence set.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-01-I",
+  "revision": "0.2.0",
+  "candidate_rule_id": null,
+  "requirement_category": "visa_necessity",
+  "requirement_name": "Visa-required-by-profile and whether the traveller already possesses a usable travel authorisation are separate questions.",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "This describes the supplied research context, not an assertion that the official provision is limited to this route. Wider legal scope is not inferred. Architecture/input distinction supplied by the external review; record only, not a runtime rule or independently sourced legal proposition."
+  },
+  "citations": [],
+  "interpretation": {
+    "explicitly_establishes": "Supplied external-review proposition (paraphrase, not an official quotation; pending evidence verification): Visa-required-by-profile and whether the traveller already possesses a usable travel authorisation are separate questions.",
+    "does_not_establish": "No supplied exact official provision establishes usable-authorisation criteria. Possession alone does not establish usability.",
+    "application_stage": "visa_necessity",
+    "classification": "INFORMATIONAL_PROCEDURAL",
+    "required_applicant_inputs": [
+      {
+        "name": "existing_authorisation_present",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not default to ordinary, exempt, non-exempt, absent, or usable.",
+        "reason_required": "Proposed screening/input dependency from the supplied review; detailed contracts remain unimplemented."
+      },
+      {
+        "name": "existing_authorisation_details",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not default to ordinary, exempt, non-exempt, absent, or usable.",
+        "reason_required": "Proposed screening/input dependency from the supplied review; detailed contracts remain unimplemented."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [],
+    "dependencies": [],
+    "conflicts": [],
+    "reviewer_notes": "Architecture/input distinction supplied by the external review; record only, not a runtime rule or independently sourced legal proposition. No conflict comparison or exact reference event was supplied; empty conflicts/reference_events do not establish that none exist."
+  },
+  "research_status": "UNRESOLVED",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-23T21:40:34Z",
+      "actor": null,
+      "description": "Encoded user-supplied EP001-01 external review. This timestamp records encoding only, not source retrieval, legal effectiveness or completed verification."
+    },
+    {
+      "version": "0.2.0",
+      "changed_at": "2026-09-23T21:48:46Z",
+      "actor": null,
+      "description": "Schema-only migration to 2.0.0. Metadata remains INCOMPLETE; no new research, supplied facts, verification or status changes. Previous revision retained."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "IE-REGISTRATION-RENEWAL",
+  "source_revision": "0.1.0",
+  "url": "https://www.irishimmigration.ie/registering-your-immigration-permission/how-to-renew-your-current-permission/renewing-your-registration-permission-if-you-live-in-the-republic-of-ireland/",
+  "authority": "Immigration Service Delivery / Department of Justice, Ireland",
+  "title": "Renewing your registration permission if you live in the Republic of Ireland",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-05 research; not independently inspected or verified.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-05 reference only. No retrieval, inspection, reviewer or independent date/version verification. Absent metadata remains null.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "V1_IN_IE_FR_PREVIEW",
+  "version": "0.1.0",
+  "publication": "DEVELOPMENT_PREVIEW",
+  "supported": {
+    "nationality": "IN",
+    "issuer": "IN",
+    "residence": "IE",
+    "destination": "FR",
+    "territory": "metropolitan_france",
+    "document": "ordinary",
+    "regime": "schengen",
+    "visa_type": "short_stay"
+  },
+  "adult_minimum_age": 18,
+  "irish_entry_status": "VISA_REQUIRED",
+  "competence_constraint": "France is assumed competent only for an explicitly confirmed single-country, single-visit Metropolitan France itinerary. This is a preview route constraint, not a general competence algorithm.",
+  "irish_entry_basis": "Supplied Batch 2A Indian ordinary-passport mapping; independent of Schengen nationality classification.",
+  "assets": {
+    "IRELAND_RETURN_DOCUMENT_READINESS": "data/official-requirements/diagnostics/IRELAND_RETURN_DOCUMENT_READINESS/0.1.0.json",
+    "FRANCE_APPLICATION_FILE": "data/official-requirements/document-readiness/FRANCE_APPLICATION_FILE/0.1.0.json",
+    "SCHENGEN_SUPPORTING_EVIDENCE": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+    "FRANCE_IRELAND_SUBMISSION": "data/official-requirements/procedure-configurations/FRANCE_IRELAND_SUBMISSION/0.1.0.json",
+    "FRANCE_SHORT_STAY_PURPOSES": "data/official-requirements/procedure-configurations/FRANCE_SHORT_STAY_PURPOSES/0.1.0.json",
+    "SCHENGEN_BIOMETRICS_PROCEDURE": "data/official-requirements/procedure-configurations/SCHENGEN_BIOMETRICS_PROCEDURE/0.1.0.json",
+    "nationality_reference": "data/official-requirements/reference-data/schengen-visa-nationality/2025-12-30.json",
+    "FRANCE_IE_APPLICATION_JURISDICTION": "data/official-requirements/rules/FRANCE_IE_APPLICATION_JURISDICTION/0.1.0.json",
+    "FRANCE_IE_IRP_DOCUMENT_PRESENCE": "data/official-requirements/rules/FRANCE_IE_IRP_DOCUMENT_PRESENCE/0.1.0.json",
+    "FRANCE_IE_IRP_POST_RETURN_VALIDITY": "data/official-requirements/rules/FRANCE_IE_IRP_POST_RETURN_VALIDITY/0.1.0.json",
+    "SCHENGEN_EARLIEST_LODGING": "data/official-requirements/rules/SCHENGEN_EARLIEST_LODGING/0.1.0.json",
+    "SCHENGEN_INSURANCE_COVERAGE_AMOUNT": "data/official-requirements/rules/SCHENGEN_INSURANCE_COVERAGE_AMOUNT/0.1.0.json",
+    "SCHENGEN_INSURANCE_DATE_COVERAGE": "data/official-requirements/rules/SCHENGEN_INSURANCE_DATE_COVERAGE/0.1.0.json",
+    "SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE": "data/official-requirements/rules/SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE/0.1.0.json",
+    "SCHENGEN_INSURANCE_MEDICAL_REPATRIATION": "data/official-requirements/rules/SCHENGEN_INSURANCE_MEDICAL_REPATRIATION/0.1.0.json",
+    "SCHENGEN_INSURANCE_PRESENCE": "data/official-requirements/rules/SCHENGEN_INSURANCE_PRESENCE/0.1.0.json",
+    "SCHENGEN_INSURANCE_TERRITORY": "data/official-requirements/rules/SCHENGEN_INSURANCE_TERRITORY/0.1.0.json",
+    "SCHENGEN_SHORT_STAY_90_IN_180": "data/official-requirements/rules/SCHENGEN_SHORT_STAY_90_IN_180/0.1.0.json",
+    "SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE": "data/official-requirements/rules/SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE/0.1.0.json",
+    "SCHENGEN_TRAVEL_DOCUMENT_BLANK_PAGES": "data/official-requirements/rules/SCHENGEN_TRAVEL_DOCUMENT_BLANK_PAGES/0.1.0.json",
+    "SCHENGEN_TRAVEL_DOCUMENT_MAX_AGE": "data/official-requirements/rules/SCHENGEN_TRAVEL_DOCUMENT_MAX_AGE/0.1.0.json",
+    "SCHENGEN_TRAVEL_DOCUMENT_REMAINING_VALIDITY": "data/official-requirements/rules/SCHENGEN_TRAVEL_DOCUMENT_REMAINING_VALIDITY/0.1.0.json"
+  }
+}

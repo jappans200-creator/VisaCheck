@@ -1,0 +1,205 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-10-C",
+  "revision": "0.1.0",
+  "candidate_rule_id": "CANDIDATE-EP001-10-C",
+  "requirement_category": "travel_medical_insurance",
+  "requirement_name": "Urgent treatment, hospital treatment and death coverage",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied batch research context: IN ordinary passport, IE legal residence, Metropolitan FR, Schengen short stay, tourism/private visit. Broader legal scope not asserted to be exclusive to this profile. Adult/minor conditions remain unresearched."
+  },
+  "citations": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.4.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": "Article 15",
+        "section": null,
+        "heading": "Travel medical insurance",
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied batch association only; stage: supporting_documentation. No source retrieval or exact excerpt. Batch explicitly refers to the already represented current consolidated Visa Code family; reuse existing 0.4.0 without a new consolidation or content-equivalence claim.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied research paraphrase, pending verification: Insurance must cover urgent medical attention and/or emergency hospital treatment and death as provided by Article 15.",
+    "does_not_establish": "Retain the supplied and/or formulation; do not invent policy-specific coverage categories or silently simplify logical meaning.",
+    "application_stage": "supporting_documentation",
+    "classification": "DETERMINISTIC_CANDIDATE",
+    "required_applicant_inputs": [
+      {
+        "name": "insurance.urgent_medical",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer satisfaction, rejection, validated documentation or a monetary amount.",
+        "reason_required": "Future modelling implication only; not implemented."
+      },
+      {
+        "name": "insurance.emergency_hospital",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer satisfaction, rejection, validated documentation or a monetary amount.",
+        "reason_required": "Future modelling implication only; not implemented."
+      },
+      {
+        "name": "insurance.death_coverage",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer satisfaction, rejection, validated documentation or a monetary amount.",
+        "reason_required": "Future modelling implication only; not implemented."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [],
+    "dependencies": [
+      {
+        "description": "Keep multiple-entry application scope separate.",
+        "evidence_reference": {
+          "id": "EP001-10-G",
+          "revision": "0.1.0",
+          "path": "records/EP001-10-G/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "conflicts": [],
+    "reviewer_notes": "Research recording only. Document presence is not substantive acceptance; an example is not a universally mandatory document; application evidence and border-entry conditions remain distinct. No evaluator, score, currency conversion, complete checklist or runtime rule implemented. Missing facts remain unknown. Multiple-entry first-visit and subsequent-stay acknowledgement branch is preserved in EP001-10-G; special passport exceptions are not generalised to ordinary route."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-24T21:59:15Z",
+      "actor": null,
+      "description": "Recorded supplied EP001-07 through EP001-11 batch only. Timestamp is encoding, not source retrieval, inspection or verification."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

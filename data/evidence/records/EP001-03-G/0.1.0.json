@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-03-G",
+  "revision": "0.1.0",
+  "candidate_rule_id": null,
+  "requirement_category": "competent_country_application_jurisdiction",
+  "requirement_name": "A third-country national who is legally present but not resident in a consular jurisdiction can fall within the Visa Code's non-resident lodging route where justification for lodging there is provided.",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "UNDETERMINED",
+        "values": []
+      },
+      "legal_status_conditions": {
+        "mode": "UNDETERMINED",
+        "values": []
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "SPECIFIED",
+      "values": [
+        "legally present but not resident in the consular jurisdiction",
+        "justification for lodging there provided"
+      ]
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied research context, not an assertion that the legal provision is limited to this nationality/residence. Do not determine sufficiency of justification. Ordinary V1 covers legal residents of Ireland; non-resident lodging requires further assessment outside ordinary deterministic coverage. Exceptional branch outside ordinary Ireland-resident coverage; actual residence and justification are unknown."
+  },
+  "citations": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.2.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": "Article 6",
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-03 research association, not independently inspected. No verbatim excerpt supplied.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied external-research proposition (paraphrase, not an official quotation; pending verification): A third-country national who is legally present but not resident in a consular jurisdiction can fall within the Visa Code's non-resident lodging route where justification for lodging there is provided.",
+    "does_not_establish": "Do not determine sufficiency of justification. Ordinary V1 covers legal residents of Ireland; non-resident lodging requires further assessment outside ordinary deterministic coverage.",
+    "application_stage": "procedural",
+    "classification": "DISCRETIONARY",
+    "required_applicant_inputs": [
+      {
+        "name": "applying_outside_country_of_residence",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer jurisdiction, main destination, sufficient justification or intake channel.",
+        "reason_required": "Future input implication from supplied research only; no UI or runtime implementation."
+      },
+      {
+        "name": "legal_presence_country",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer jurisdiction, main destination, sufficient justification or intake channel.",
+        "reason_required": "Future input implication from supplied research only; no UI or runtime implementation."
+      },
+      {
+        "name": "reason_for_nonresident_application",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer jurisdiction, main destination, sufficient justification or intake channel.",
+        "reason_required": "Future input implication from supplied research only; no UI or runtime implementation."
+      },
+      {
+        "name": "residence.country",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer jurisdiction, main destination, sufficient justification or intake channel.",
+        "reason_required": "Future input implication from supplied research only; no UI or runtime implementation."
+      },
+      {
+        "name": "residence.legal_status",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer jurisdiction, main destination, sufficient justification or intake channel.",
+        "reason_required": "Future input implication from supplied research only; no UI or runtime implementation."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [
+      {
+        "description": "Do not determine sufficiency of justification. Ordinary V1 covers legal residents of Ireland; non-resident lodging requires further assessment outside ordinary deterministic coverage. Applicable exception analysis remains unverified.",
+        "evidence_reference": null,
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "dependencies": [],
+    "conflicts": [],
+    "reviewer_notes": "Research/architecture only: main destination, competent Member State, consular territorial jurisdiction, and application intake/service provider remain separate; decision authority is distinct from intake. Do not collapse into apply_to. Main destination is a potential derived fact, not assumed applicant knowledge. Future unresolved competence should be UNKNOWN/needs clarification, not guessed. No resolver implemented."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-23T22:15:08Z",
+      "actor": null,
+      "description": "Encoded supplied EP001-03 research only. Timestamp records encoding, not retrieval, inspection, review or legal effectiveness. No VERIFIED promotion or runtime implementation."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

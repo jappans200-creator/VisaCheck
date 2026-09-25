@@ -1,0 +1,258 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-04-G",
+  "revision": "0.1.0",
+  "candidate_rule_id": "CANDIDATE-EP001-04-G",
+  "requirement_category": "passport_travel_document",
+  "requirement_name": "Travel-document recognition requires reference data",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied research profile only; not a claim that broader legal requirements are limited to this nationality/residence. Other document categories require separate research, not automatic FAIL."
+  },
+  "citations": [
+    {
+      "source_id": "EU-2016-399",
+      "source_revision": "0.1.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": "Article 6",
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-04 association only; stage: border_entry. No source inspection or verbatim excerpt supplied.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "source_id": "EC-TRAVEL-RESIDENCE-DOCUMENTS",
+      "source_revision": "0.1.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-04 association only; stage: border_entry. No source inspection or verbatim excerpt supplied.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "source_id": "EC-TRAVEL-DOCUMENTS-PART-I",
+      "source_revision": "0.1.0",
+      "relationship": "LIMITS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-04 association only; stage: border_entry. No source inspection or verbatim excerpt supplied. Dataset lead only; no exact recognition result. Limits any inferred ordinary-passport recognition result; no matrix result supplied.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied research paraphrase, pending verification: Date validity alone does not establish acceptability. The document must entitle the holder to cross the relevant border; EU recognition information is maintained separately.",
+    "does_not_establish": "No India ordinary-passport recognition by France result is established. Part I is only a dataset lead; exact matrix entry requires inspection.",
+    "application_stage": "border_entry",
+    "classification": "DETERMINISTIC_CANDIDATE",
+    "required_applicant_inputs": [
+      {
+        "name": "travel_document.type",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer a valid document or a failed requirement.",
+        "reason_required": "Future input implication of supplied research; not implemented."
+      },
+      {
+        "name": "travel_document.issuing_country",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer a valid document or a failed requirement.",
+        "reason_required": "Future input implication of supplied research; not implemented."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [],
+    "dependencies": [
+      {
+        "description": "Inspect the exact India + ordinary passport + France entry in versioned recognition data. No result supplied.",
+        "evidence_reference": null,
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "conflicts": [],
+    "reviewer_notes": "Research only; no runtime evaluation. Missing facts remain unknown. Recognition must eventually derive from versioned official reference data (issuing country, document type, destination/member state, source version), not applicant self-certification."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-23T22:24:31Z",
+      "actor": null,
+      "description": "Recorded supplied EP001-04 research only; encoding timestamp is not retrieval, inspection, verification or legal effectiveness."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

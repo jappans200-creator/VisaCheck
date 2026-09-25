@@ -1,0 +1,211 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-14-D",
+  "revision": "0.1.0",
+  "candidate_rule_id": null,
+  "requirement_category": "biometrics_procedure",
+  "requirement_name": "Conditional less-than-59-month reuse",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied research context only. Minor/exceptional evidence may be recorded without bringing those branches into ordinary-adult intended V1 coverage. No numeric adult threshold inferred; no VERIFIED coverage claim."
+  },
+  "citations": [
+    {
+      "source_id": "FRANCE-VISAS-APPLICATION-PROCESS",
+      "source_revision": "0.2.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied four-slot batch association only; no retrieval, inspection or excerpt. Exact page section not supplied; no locator inferred.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied research paraphrase, pending verification: France-Visas says previous biometric data may be reused where a previous biometric Schengen visa was issued less than 59 months ago. It separately describes possible personal-appearance exemption where fingerprints were collected for a previous visa application less than 59 months before the current application.",
+    "does_not_establish": "Less than 59 months is strict, not five years or 60 months. Visa issue date and biometric capture date are different reference facts, not interchangeable; reuse is not guaranteed.",
+    "application_stage": "procedural",
+    "classification": "INFORMATIONAL_PROCEDURAL",
+    "required_applicant_inputs": [
+      {
+        "name": "biometrics.previous_schengen_biometric_visa",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer age, purpose, exemption, reusable biometrics or failure.",
+        "reason_required": "Future modelling implication, not implemented."
+      },
+      {
+        "name": "biometrics.previous_visa_issue_date",
+        "type": "date",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer age, purpose, exemption, reusable biometrics or failure.",
+        "reason_required": "Future modelling implication, not implemented."
+      },
+      {
+        "name": "biometrics.previous_biometric_capture_date",
+        "type": "date",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer age, purpose, exemption, reusable biometrics or failure.",
+        "reason_required": "Future modelling implication, not implemented."
+      },
+      {
+        "name": "biometrics.reuse_possible",
+        "type": "boolean",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer age, purpose, exemption, reusable biometrics or failure.",
+        "reason_required": "Future modelling implication, not implemented."
+      }
+    ],
+    "reference_events": [
+      {
+        "name": "previous_biometric_schengen_visa_issue",
+        "source_wording": "Supplied paraphrase: previous biometric Schengen visa issued less than 59 months ago.",
+        "notes": "Visa issue date, distinct from fingerprint capture. Exact reference event for ago requires source review; no date evaluator."
+      },
+      {
+        "name": "previous_fingerprint_capture_before_current_application",
+        "source_wording": "Supplied paraphrase: fingerprints collected for a previous application less than 59 months before current application.",
+        "notes": "Capture date and current application; do not substitute visa issue date, five years or 60 months."
+      }
+    ],
+    "exceptions": [],
+    "dependencies": [],
+    "conflicts": [],
+    "reviewer_notes": "Research and intended-scope notes only. No applicant-facts code, resolver, evaluation or document checklist implemented. Missing facts remain unknown; unsupported cases are not automatically FAIL. No new minor-consent, birth/custody/travel-authorisation documents, sponsorship obligations, remote-work assessment or medical diagnosis inferred."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-24T22:07:06Z",
+      "actor": null,
+      "description": "Recorded supplied EP001-12-T/12-P/13/14 batch. Timestamp is encoding, not retrieval, inspection or verification."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

@@ -1,0 +1,87 @@
+{
+  "rule_revision": "0.1.0",
+  "bundle_id": "SCHENGEN_CORE",
+  "application_stage": "visa_application",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      },
+      {
+        "fact": "passport.document_type",
+        "op": "eq",
+        "value": "ordinary"
+      }
+    ]
+  },
+  "rule_id": "SCHENGEN_TRAVEL_DOCUMENT_REMAINING_VALIDITY",
+  "requirement": "The travel document must normally remain valid for at least three calendar months after the relevant intended departure from the territory of the Member States. For several intended visits, use the last intended departure.",
+  "evaluator": "minimum_remaining_validity",
+  "parameters": {
+    "expiry_date": {
+      "fact": "passport.expiry_date"
+    },
+    "reference_date": {
+      "fact": "trip.relevant_schengen_departure_date"
+    },
+    "amount": 3,
+    "unit": "CALENDAR_MONTHS",
+    "calendar_policy": "CLAMP"
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/EU-2009-810/0.2.0.json",
+      "locator": "Article 12(a)",
+      "locator_basis": "Supplied Batch 1A specification; existing evidence locator remains Article 12.",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-04-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-04-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-04-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-04-C/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "implementation_notes": [
+    "Draft implementation of the user-supplied Batch 1A specification and clarifications; pinned evidence remains NEEDS_REVIEW. Evaluation is not verification or authorization to publish.",
+    "Effective dates have not been established. No temporal applicability filter is configured for these isolated draft evaluations. No release is created.",
+    "Applicability is deliberately limited to ordinary documents, schengen regime and short_stay type. It makes no assertion about other document types or border-entry assessment.",
+    "CLAMP is an implementation convention supplied for this batch, not a quotation or independently source-verified legal wording: an impossible target day uses the final valid day of that month.",
+    "trip.relevant_schengen_departure_date must be explicitly supplied as departure from the Member States, or the last such departure for several intended visits. No fallback to intended_exit_date or geographic derivation.",
+    "The applicant condition travel_document_emergency_review_requested records a request for authority review, not a finding of legal justification. A supplied complete condition list containing the token triggers review; a supplied complete list without it (including []) records no such condition; null means unknown. Do not turn an incomplete condition list into an assertion of absence.",
+    "Ordinary PASS remains PASS. Ordinary FAIL with an affirmative or unresolved exception condition becomes UNKNOWN; the engine never grants the waiver."
+  ],
+  "exception_conditions": [
+    {
+      "condition": {
+        "fact": "identity.applicant_conditions",
+        "op": "contains",
+        "value": "travel_document_emergency_review_requested"
+      },
+      "behavior": "REQUIRES_REVIEW",
+      "reason_code": "EXCEPTION_REQUIRES_REVIEW",
+      "when_statuses": [
+        "FAIL"
+      ]
+    }
+  ]
+}

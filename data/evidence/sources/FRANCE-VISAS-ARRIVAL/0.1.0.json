@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "FRANCE-VISAS-ARRIVAL",
+  "source_revision": "0.1.0",
+  "url": "https://www.france-visas.gouv.fr/en/votre-arrivee-en-france",
+  "authority": "France-Visas / French government",
+  "title": "Your arrival in France",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-04 research; no independent confirmation supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-04 reference only; no retrieval, inspection, source-version assessment or review performed.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

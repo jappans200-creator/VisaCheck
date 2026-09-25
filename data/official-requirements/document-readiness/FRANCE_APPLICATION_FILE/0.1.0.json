@@ -1,0 +1,398 @@
+{
+  "configuration_id": "FRANCE_APPLICATION_FILE",
+  "revision": "0.1.0",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "checklist_completeness": "NON_EXHAUSTIVE",
+  "items": [
+    {
+      "evidence_id": "FRANCE_PRIVATE_HOST_ORIGINAL_ATTESTATION",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "all": [
+                  {
+                    "fact": "trip.visa_regime",
+                    "op": "eq",
+                    "value": "schengen"
+                  },
+                  {
+                    "fact": "trip.visa_type",
+                    "op": "eq",
+                    "value": "short_stay"
+                  }
+                ]
+              },
+              {
+                "fact": "trip.destination_country",
+                "op": "eq",
+                "value": "FR"
+              }
+            ]
+          },
+          {
+            "fact": "supporting_evidence.accommodation.type",
+            "op": "eq",
+            "value": "PRIVATE_HOST"
+          }
+        ]
+      },
+      "source_refs": [
+        {
+          "source_id": "FRANCE-VISAS-FAQ",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-FAQ/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-09-C",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-09-C/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-09-D",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-09-D/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-09-E",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-09-E/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-12-P-E",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-12-P-E/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Original required for application readiness. Host obtains it from the mairie of their French residence; no issuance automation. Also relevant at entry. Validation and issuance are not inferred from presence."
+      ],
+      "presence_alternatives": [
+        "supporting_evidence.accommodation.private_host_attestation_original_present"
+      ],
+      "context_facts": [
+        "supporting_evidence.accommodation.private_host_certificate_present",
+        "supporting_evidence.accommodation.private_host_attestation_validated"
+      ]
+    },
+    {
+      "evidence_id": "APPLICATION_FORM",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      "source_refs": [],
+      "notes": [
+        "Readiness only; not authenticity, consular acceptance, approval or an exhaustive checklist."
+      ],
+      "presence_alternatives": [
+        "supporting_evidence.application_file.form_present"
+      ],
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED"
+    },
+    {
+      "evidence_id": "APPLICATION_RECEIPT",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      "source_refs": [],
+      "notes": [
+        "Readiness only; not authenticity, consular acceptance, approval or an exhaustive checklist."
+      ],
+      "presence_alternatives": [
+        "supporting_evidence.application_file.receipt_present"
+      ],
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED"
+    },
+    {
+      "evidence_id": "PASSPORT_ORIGINAL",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      "source_refs": [],
+      "notes": [
+        "Readiness only; not authenticity, consular acceptance, approval or an exhaustive checklist."
+      ],
+      "presence_alternatives": [
+        "supporting_evidence.application_file.passport_original_present"
+      ],
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED"
+    },
+    {
+      "evidence_id": "PASSPORT_COPY",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      "source_refs": [],
+      "notes": [
+        "Readiness only; not authenticity, consular acceptance, approval or an exhaustive checklist."
+      ],
+      "presence_alternatives": [
+        "supporting_evidence.application_file.passport_copy_present"
+      ],
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED"
+    },
+    {
+      "evidence_id": "IDENTITY_PHOTOS",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      "source_refs": [],
+      "notes": [
+        "Applicant confirmation of recent qualifying ICAO photographs, with required_count=2. No image-quality or recency inference."
+      ],
+      "presence_alternatives": [
+        "supporting_evidence.application_file.identity_photos_qualifying_confirmed"
+      ],
+      "minimum_count": {
+        "fact": "supporting_evidence.application_file.identity_photo_count",
+        "minimum": 2
+      },
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED"
+    },
+    {
+      "evidence_id": "SUPPORTING_DOCUMENT_SET",
+      "revision": "0.1.0",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      "source_refs": [
+        {
+          "source_id": "FRANCE-VISAS-TOURIST-STAY",
+          "source_revision": "0.1.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-TOURIST-STAY/0.1.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-F",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-F/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-G",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-G/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Originals/copies presence is not checklist completeness or consular acceptance. Exact personal-purpose list remains France-Visas-dependent."
+      ],
+      "presence_condition": {
+        "all": [
+          {
+            "fact": "supporting_evidence.application_file.supporting_originals_present",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "fact": "supporting_evidence.application_file.supporting_copies_present",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED"
+    }
+  ],
+  "evidence_refresh_required": [
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "TLScontact appointment procedure from 12 May 2026",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    },
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "Current original/copy, CERFA/receipt and two recent ICAO photo file details",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    },
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "French translation may be requested for non-English/French documents",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    },
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "EUR 10 stamped addressed return envelope; collection no longer normally in person; rejection handling differs",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    }
+  ]
+}

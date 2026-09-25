@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Versioned pack-manifest schema dispatcher",
+  "anyOf": [
+    {
+      "$ref": "1.0.0/pack-manifest.schema.json"
+    },
+    {
+      "$ref": "1.1.0/pack-manifest.schema.json"
+    },
+    {
+      "$ref": "2.0.0/pack-manifest.schema.json"
+    }
+  ]
+}

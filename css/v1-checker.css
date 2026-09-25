@@ -1,0 +1,24 @@
+.v1-checker { padding-top: 36px; padding-bottom: 36px; }
+.preview-notice { padding: 16px; border: 1px solid var(--amber); border-radius: var(--radius); }
+.form-section { border-bottom: 1px solid var(--border); padding: 16px 0; }
+.form-section summary { cursor: pointer; font-size: 1.1rem; font-weight: 600; padding: 8px 0; }
+.form-section .form-row { margin-top: 18px; }
+.form-section input, .form-section select { max-width: 100%; width: 100%; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+button { cursor: pointer; }
+.stay-row { display: grid; gap: 12px; margin: 16px 0; border: 1px solid var(--border); }
+.stay-row label { display: grid; gap: 8px; }
+.report-section { margin: 28px 0; padding: 20px; background: var(--bg-card); border-radius: var(--radius); }
+.result-row { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.result-row h4 { margin: 0 0 8px; }
+.status { display: inline-block; padding: 3px 8px; border: 1px solid currentColor; border-radius: 5px; }
+.status-PASS, .status-PRESENT, .status-READY { color: var(--green); }
+.status-FAIL { color: var(--red); }
+.status-UNKNOWN { color: var(--accent); }
+.status-MISSING, .status-ACTION_REQUIRED { color: var(--amber); }
+.source-link { display: block; margin: 8px 0; overflow-wrap: anywhere; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .8rem; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .report-section { padding: 12px; } .v1-checker .checker-card { padding: 16px; } }
+
+.field-help { display: block; margin-top: 6px; color: var(--text-dim); line-height: 1.5; }

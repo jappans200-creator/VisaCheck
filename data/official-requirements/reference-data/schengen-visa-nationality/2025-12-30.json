@@ -1,0 +1,65 @@
+{
+  "reference_id": "SCHENGEN_VISA_NATIONALITY",
+  "reference_version": "2025-12-30",
+  "source_version": {
+    "consolidation_date": "2025-12-30",
+    "basis": "User-supplied Batch 1C specification; not independently verified"
+  },
+  "effective_from": null,
+  "effective_to": null,
+  "source_refs": [
+    {
+      "source_id": "EU-2018-1806",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/EU-2018-1806/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-01-A",
+          "revision": "0.2.0",
+          "path": "data/evidence/records/EP001-01-A/0.2.0.json"
+        }
+      ]
+    }
+  ],
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "key_pattern": "^[A-Z]{2}$",
+  "allowed_classifications": [
+    "ANNEX_I_VISA_REQUIRED",
+    "ANNEX_II_VISA_EXEMPT"
+  ],
+  "coverage": {
+    "type": "PARTIAL",
+    "supported_keys": [
+      "IN"
+    ],
+    "key_system": "ISO_3166_1_ALPHA_2",
+    "notes": "Only the supplied ordinary Indian-national baseline is populated. This is not complete Annex I/II coverage."
+  },
+  "classifications": {
+    "IN": {
+      "classification": "ANNEX_I_VISA_REQUIRED",
+      "source_refs": [
+        {
+          "source_id": "EU-2018-1806",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/EU-2018-1806/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-01-A",
+              "revision": "0.2.0",
+              "path": "data/evidence/records/EP001-01-A/0.2.0.json"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "notes": [
+    "Reference version identifies the supplied researched consolidation, not an independently established effective date or evidence promotion.",
+    "No country list has been reconstructed from memory. Baseline classifications do not resolve applicant-specific exceptions."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "FRANCE-VISAS-SCHENGEN",
+  "source_revision": "0.2.0",
+  "url": "https://www.france-visas.gouv.fr/en/la-france-dans-l-espace-schengen",
+  "authority": "France-Visas / French government",
+  "title": "France in the Schengen area",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as an approved official source by the user-supplied external review. Independent provenance verification and its date were not supplied; not performed during encoding.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Registered from the supplied EP001-01 review only; no browsing, direct source retrieval, verbatim excerpt, reference copy, or named reviewer supplied. Applicable version remains to be established. Schema-only migration from revision 0.1.0: supplied reference, not a retrieved source. No research or promotion.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

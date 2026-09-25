@@ -1,0 +1,80 @@
+{
+  "reference_id": "FRANCE_BORDER_FINANCIAL_REFERENCE",
+  "reference_version": "0.1.0",
+  "stage": "BORDER_ENTRY_REFERENCE",
+  "non_determinative_for_visa_application": true,
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "currency": "EUR",
+  "daily_reference_amounts": {
+    "HOTEL": 65,
+    "NO_HOTEL": 120,
+    "QUALIFYING_PRIVATE_HOST_WITH_ATTESTATION": 32.5
+  },
+  "partial_hotel_basis": {
+    "hotel_covered_days_rate": "HOTEL",
+    "uncovered_days_rate": "NO_HOTEL"
+  },
+  "source_refs": [
+    {
+      "source_id": "FRANCE-VISAS-ARRIVAL",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-ARRIVAL/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-08-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-08-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-08-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-08-D/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-08-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-08-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-08-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-08-F/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-08-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-08-G/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-09-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-09-F/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.4.0",
+      "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-08-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-08-G/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Reference data only: no calculator or balance comparison is implemented in this batch.",
+    "These border-stage amounts are not application refusal/approval thresholds. No rule evaluator consumes this file.",
+    "Private-host qualification is not inferred from certificate presence. Missing or unresolved accommodation category cannot select a reference amount.",
+    "No effective date is inferred; supplied current research remains unverified."
+  ],
+  "effective_from": null,
+  "effective_to": null
+}

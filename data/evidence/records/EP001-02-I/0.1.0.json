@@ -1,0 +1,215 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-02-I",
+  "revision": "0.1.0",
+  "candidate_rule_id": "CANDIDATE-EP001-02-I",
+  "requirement_category": "regime_visa_type_territorial_scope",
+  "requirement_name": "Competent Member State is determined by the sole destination where applicable; otherwise the main destination based on length of stay in days or purpose; where no main destination can be determined, intended first external entry.",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied EP001-02 research context, not a claim that the official provision is restricted to the baseline nationality/residence. Competent-state candidate: preserve ordered conditions; no resolver implemented."
+  },
+  "citations": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.1.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": "Article 5",
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Association from supplied EP001-02 external findings; not independently inspected or verified. No verbatim excerpt supplied.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied external-research proposition (paraphrase, not an official quotation; pending verification): Competent Member State is determined by the sole destination where applicable; otherwise the main destination based on length of stay in days or purpose; where no main destination can be determined, intended first external entry.",
+    "does_not_establish": "Do not encode always apply to the first-entry country. Do not infer detailed resolution or jurisdiction exceptions.",
+    "application_stage": "application_admissibility",
+    "classification": "DETERMINISTIC_CANDIDATE",
+    "required_applicant_inputs": [
+      {
+        "name": "schengen_itinerary.destination_country",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; no inferred dates, history, authorisation or destination.",
+        "reason_required": "Future input implication recorded from supplied EP001-02 research; no UI or runtime implementation."
+      },
+      {
+        "name": "schengen_itinerary.arrival_date",
+        "type": "date",
+        "unit": null,
+        "missing_value_meaning": "Unknown; no inferred dates, history, authorisation or destination.",
+        "reason_required": "Future input implication recorded from supplied EP001-02 research; no UI or runtime implementation."
+      },
+      {
+        "name": "schengen_itinerary.departure_date",
+        "type": "date",
+        "unit": null,
+        "missing_value_meaning": "Unknown; no inferred dates, history, authorisation or destination.",
+        "reason_required": "Future input implication recorded from supplied EP001-02 research; no UI or runtime implementation."
+      },
+      {
+        "name": "schengen_itinerary.purpose",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; no inferred dates, history, authorisation or destination.",
+        "reason_required": "Future input implication recorded from supplied EP001-02 research; no UI or runtime implementation."
+      },
+      {
+        "name": "intended_first_external_entry",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; no inferred dates, history, authorisation or destination.",
+        "reason_required": "Future input implication recorded from supplied EP001-02 research; no UI or runtime implementation."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [
+      {
+        "description": "Applicable exceptions and scope limitations have not been independently reviewed. Do not encode always apply to the first-entry country. Do not infer detailed resolution or jurisdiction exceptions.",
+        "evidence_reference": null,
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "dependencies": [],
+    "conflicts": [],
+    "reviewer_notes": "Competent-state candidate: preserve ordered conditions; no resolver implemented. Regime resolution, stay-limit calculation, and competent-state/consular-jurisdiction resolution are separate concepts. Record only; no runtime implementation. No conflict comparison supplied; empty conflicts does not prove absence of conflicts."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-23T22:07:02Z",
+      "actor": null,
+      "description": "Encoded supplied EP001-02 research only. Timestamp is recording time, not retrieval, inspection or review. No runtime rule or VERIFIED promotion."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

@@ -1,0 +1,572 @@
+{
+  "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+  "revision": "0.1.0",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "items": [
+    {
+      "evidence_id": "SCHENGEN_INSURANCE_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.purpose",
+            "op": "in",
+            "value": [
+              "tourism",
+              "business"
+            ]
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.travel_medical_insurance.present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-10-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-10-A/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-07-G",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-G/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-ARRIVAL",
+          "source_revision": "0.1.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-ARRIVAL/0.1.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-10-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-10-A/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "PRESENT is supplied evidence readiness only. Authenticity, reliability, adequacy and consular acceptance require assessment. MISSING is not automatic visa refusal."
+      ],
+      "review_gate": {
+        "ordinary_condition": {
+          "all": [
+            {
+              "fact": "passport.document_type",
+              "op": "eq",
+              "value": "ordinary"
+            },
+            {
+              "fact": "identity.applicant_conditions",
+              "op": "subset",
+              "value": [
+                "ordinary_adult_applicant"
+              ]
+            }
+          ]
+        },
+        "affirmative_triggers": [],
+        "reason_code": "SPECIAL_ROUTE_REQUIRES_REVIEW"
+      }
+    },
+    {
+      "evidence_id": "SCHENGEN_ACCOMMODATION_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.accommodation.evidence_present",
+        "supporting_evidence.accommodation.means_to_cover_evidence_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-B",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-B/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-09-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-09-A/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-09-B",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-09-B/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-ARRIVAL",
+          "source_revision": "0.1.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-ARRIVAL/0.1.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-09-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-09-A/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "PRESENT is supplied evidence readiness only. Authenticity, reliability, adequacy and consular acceptance require assessment. MISSING is not automatic visa refusal."
+      ],
+      "coverage": {
+        "evidence_present_fact": "supporting_evidence.accommodation.evidence_present",
+        "start_date": "supporting_evidence.accommodation.coverage_start",
+        "end_date": "supporting_evidence.accommodation.coverage_end",
+        "required_start_date": "trip.intended_entry_date",
+        "required_end_date": "trip.intended_exit_date"
+      },
+      "annotations": [
+        {
+          "condition": {
+            "fact": "supporting_evidence.accommodation.type",
+            "op": "eq",
+            "value": "PRIVATE_HOST"
+          },
+          "code": "PRIVATE_HOST_ATTESTATION_ASSESSMENT_NOT_IMPLEMENTED"
+        },
+        {
+          "condition": {
+            "fact": "supporting_evidence.accommodation.means_to_cover_evidence_present",
+            "op": "eq",
+            "value": true
+          },
+          "code": "ALTERNATIVE_ACCOMMODATION_MEANS_REQUIRES_ASSESSMENT"
+        }
+      ],
+      "context_facts": [
+        "supporting_evidence.accommodation.type",
+        "supporting_evidence.accommodation.private_host_certificate_present"
+      ]
+    },
+    {
+      "evidence_id": "SCHENGEN_FINANCIAL_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.financial_means.evidence_present",
+        "supporting_evidence.financial_means.sponsorship_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-C",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-C/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-08-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-08-A/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-TOURIST-STAY",
+          "source_revision": "0.1.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-TOURIST-STAY/0.1.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-08-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-08-A/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-08-B",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-08-B/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-FAQ",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-FAQ/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-08-B",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-08-B/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "PRESENT is supplied evidence readiness only. Authenticity, reliability, adequacy and consular acceptance require assessment. MISSING is not automatic visa refusal."
+      ],
+      "context_facts": [
+        "supporting_evidence.financial_means.available_amount",
+        "supporting_evidence.financial_means.currency"
+      ],
+      "annotations": [
+        {
+          "condition": {
+            "fact": "supporting_evidence.financial_means.sponsorship_present",
+            "op": "eq",
+            "value": true
+          },
+          "code": "SPONSORSHIP_REQUIRES_ASSESSMENT"
+        }
+      ]
+    },
+    {
+      "evidence_id": "SCHENGEN_RETURN_FUNDS_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.financial_means.return_funds_evidence_present",
+        "supporting_evidence.financial_means.sponsorship_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-C",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-C/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-08-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-08-A/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-TOURIST-STAY",
+          "source_revision": "0.1.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-TOURIST-STAY/0.1.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-08-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-08-A/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Presence is not sufficiency or proof of admission to an onward country. A sponsor document does not establish which costs are covered; assessment remains required."
+      ]
+    },
+    {
+      "evidence_id": "SCHENGEN_RETURN_ONWARD_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.return_or_onward_evidence.return_or_onward_evidence_present",
+        "supporting_evidence.return_or_onward_evidence.reservation_present",
+        "supporting_evidence.return_or_onward_evidence.funds_to_acquire_return_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-11-C",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-11-C/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-11-E",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-11-E/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-ARRIVAL",
+          "source_revision": "0.1.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-ARRIVAL/0.1.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-11-D",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-11-D/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-11-E",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-11-E/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Configured alternatives implement the supplied Batch 2B specification, not a purchased/non-refundable-ticket requirement.",
+        "The funds-to-acquire example has a border-stage citation; its application-readiness use here follows the supplied specification only and remains pending review, not an application-law equivalence.",
+        "Evidence presence does not establish return ability, onward admission, intention to leave or approval."
+      ]
+    },
+    {
+      "evidence_id": "SCHENGEN_ITINERARY_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.return_or_onward_evidence.itinerary_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-11-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-11-A/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-11-B",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-11-B/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Travel-plan readiness is separate from return/onward evidence; a bare itinerary does not automatically satisfy return readiness."
+      ]
+    },
+    {
+      "evidence_id": "SCHENGEN_PURPOSE_EVIDENCE",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.purpose.evidence_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-A",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-A/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Generic purpose evidence only; no complete tourism/private-visit checklist or adequacy determination."
+      ]
+    },
+    {
+      "evidence_id": "SCHENGEN_INTENTION_INFORMATION",
+      "revision": "0.1.0",
+      "stage": "APPLICATION_DOCUMENT_READINESS",
+      "publication": {
+        "status": "DRAFT_NOT_PUBLISHABLE",
+        "release_ready": false,
+        "evidence_review_status": "NEEDS_REVIEW"
+      },
+      "applicability": {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      "presence_alternatives": [
+        "supporting_evidence.intention_to_leave.evidence_present"
+      ],
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-07-D",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-D/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-07-E",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-E/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-07-G",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-07-G/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Information presence only. Intention to leave is assessed by the authority; no intention score or deterministic finding."
+      ]
+    }
+  ]
+}

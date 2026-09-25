@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "FRANCE-VISAS-FAQ",
+  "source_revision": "0.2.0",
+  "url": "https://france-visas.gouv.fr/en/faq",
+  "authority": "France-Visas / French government",
+  "title": "Frequently asked questions",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-06 research; no independent verification or named review supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-06 reference only; no retrieval or inspection. Supplied non-www FAQ URL preserved separately from previous www URL without asserting redirect/content equivalence.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

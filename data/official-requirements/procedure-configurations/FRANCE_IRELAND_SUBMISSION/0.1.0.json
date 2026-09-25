@@ -1,0 +1,320 @@
+{
+  "configuration_id": "FRANCE_IRELAND_SUBMISSION",
+  "revision": "0.1.0",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      {
+        "fact": "residence.country",
+        "op": "eq",
+        "value": "IE"
+      },
+      {
+        "fact": "application.competent_state",
+        "op": "eq",
+        "value": "FR"
+      }
+    ]
+  },
+  "decision_authority": "French Embassy / competent French authority",
+  "intake_provider": {
+    "name": "TLScontact",
+    "role": "appointment/intake service provider, not decision authority",
+    "reported_effective_from": "2026-05-12",
+    "verification_status": "EVIDENCE_REFRESH_REQUIRED",
+    "basis": "Supplied September 2026 research; not independently verified"
+  },
+  "items": [
+    {
+      "procedure_id": "ONLINE_FORM",
+      "fact": "application.france_visas_form_completed",
+      "ready_code": "COMPLETED",
+      "action_code": "COMPLETE_ONLINE_FORM"
+    },
+    {
+      "procedure_id": "ONLINE_VALIDATION",
+      "fact": "application.france_visas_form_validated",
+      "ready_code": "VALIDATED",
+      "action_code": "VALIDATE_ONLINE_APPLICATION"
+    },
+    {
+      "procedure_id": "APPOINTMENT",
+      "fact": "application.appointment_booked",
+      "ready_code": "BOOKED",
+      "action_code": "NOT_BOOKED"
+    },
+    {
+      "procedure_id": "FILE_ASSERTION",
+      "fact": "application.file_complete_asserted",
+      "ready_code": "FILE_COMPLETENESS_ASSERTED",
+      "action_code": "COMPLETE_APPLICATION_FILE"
+    },
+    {
+      "procedure_id": "SUBMISSION",
+      "fact": "application.submission_completed",
+      "ready_code": "COMPLETED",
+      "action_code": "NOT_COMPLETED"
+    },
+    {
+      "procedure_id": "PASSPORT_RETURN",
+      "fact": "application.return_envelope_ready",
+      "ready_code": "ENVELOPE_READY",
+      "action_code": "OPERATIONAL_ACTION_REQUIRED"
+    }
+  ],
+  "translation": {
+    "fact": "supporting_evidence.application_file.document_languages",
+    "accepted_languages": [
+      "en",
+      "fr",
+      "English",
+      "French"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "FRANCE-VISAS-APPLICATION-PROCESS",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-APPLICATION-PROCESS/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-14-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-I",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-I/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-J",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-J/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-14-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-I",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-I/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-J",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-J/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-17-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-17-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-17-H",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-17-H/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/EU-2009-810/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-03-H",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-H/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.3.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.3.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-03-H",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-H/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-03-I",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-I/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "evidence_refresh_required": [
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "TLScontact appointment procedure from 12 May 2026",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    },
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "Current original/copy, CERFA/receipt and two recent ICAO photo file details",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    },
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "French translation may be requested for non-English/French documents",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    },
+    {
+      "status": "EVIDENCE_REFRESH_REQUIRED",
+      "topic": "EUR 10 stamped addressed return envelope; collection no longer normally in person; rejection handling differs",
+      "evidence_refs": [],
+      "basis": "Supplied Batch 3 September 2026 research; existing records do not establish this exact operational detail."
+    }
+  ],
+  "operational_information": [
+    {
+      "kind": "OPERATIONAL_RECOMMENDATION",
+      "code": "IRELAND_RECOMMENDED_LEAD_TIME",
+      "amount": 20,
+      "unit": "WORKING_DAYS",
+      "source_refs": [
+        {
+          "source_id": "FRANCE-VISAS-IRELAND",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-06-D",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-06-D/0.1.0.json"
+            }
+          ]
+        }
+      ],
+      "calculated_deadline": null
+    },
+    {
+      "kind": "OPERATIONAL_ESTIMATE",
+      "code": "COMPLETE_IN_PERSON_PROCESSING",
+      "minimum": 10,
+      "maximum": 15,
+      "unit": "WORKING_DAYS",
+      "guaranteed": false,
+      "source_refs": [
+        {
+          "source_id": "FRANCE-VISAS-IRELAND",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-06-E",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-06-E/0.1.0.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "UNRESOLVED_LEGAL_WORDING",
+      "code": "LATEST_LODGING_REQUIRES_REVIEW",
+      "details": "15 calendar days versus two weeks remains unresolved; no combined late-application rule.",
+      "source_refs": [
+        {
+          "source_id": "EU-2009-810",
+          "source_revision": "0.4.0",
+          "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-06-J",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-06-J/0.1.0.json"
+            },
+            {
+              "evidence_id": "EP001-17-F",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-17-F/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-FAQ",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-FAQ/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-06-J",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-06-J/0.1.0.json"
+            }
+          ]
+        },
+        {
+          "source_id": "FRANCE-VISAS-IRELAND",
+          "source_revision": "0.2.0",
+          "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+          "evidence_refs": [
+            {
+              "evidence_id": "EP001-17-F",
+              "revision": "0.1.0",
+              "path": "data/evidence/records/EP001-17-F/0.1.0.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "CURRENT_OPERATIONAL_INFORMATION",
+      "code": "PASSPORT_RETURN_ENVELOPE",
+      "amount": 10,
+      "currency": "EUR",
+      "addressed": true,
+      "stamped": true,
+      "normal_in_person_collection": false,
+      "rejection_handling": "Different handling reported; details not supplied and not invented.",
+      "effective_from": null,
+      "verified_at": null,
+      "research_context": "Supplied September 2026 Batch 3 research",
+      "evidence_status": "EVIDENCE_REFRESH_REQUIRED",
+      "source_refs": []
+    }
+  ]
+}

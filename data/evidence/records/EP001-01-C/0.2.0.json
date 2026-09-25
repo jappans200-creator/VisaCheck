@@ -1,0 +1,280 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-01-C",
+  "revision": "0.2.0",
+  "candidate_rule_id": "CANDIDATE-EP001-01-C",
+  "requirement_category": "visa_necessity",
+  "requirement_name": "Legal residence in Ireland alone does not establish a general exemption from the Schengen short-stay visa requirement otherwise applicable to the researched ordinary Indian-passport profile.",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "This describes the supplied research context, not an assertion that the official provision is limited to this route. Wider legal scope is not inferred. Ordinary-route candidate, conditional on separate exemption screening. STAMP 4 EUFAM is a possible branch indicator, not a universally sufficient exemption; do not generalise to Stamp 4."
+  },
+  "citations": [
+    {
+      "source_id": "EU-2018-1806",
+      "source_revision": "0.2.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": "Article 3(1); Articles 4 and 6",
+        "section": "Annex I",
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Source-to-proposition association supplied by external review; not an independently verified citation. No verbatim official excerpt supplied. ",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Source-to-proposition association supplied by external review; not an independently verified citation. No verbatim official excerpt supplied. ",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied external-review proposition (paraphrase, not an official quotation; pending evidence verification): Legal residence in Ireland alone does not establish a general exemption from the Schengen short-stay visa requirement otherwise applicable to the researched ordinary Indian-passport profile.",
+    "does_not_establish": "Does not mean that no Irish residence documentation can ever create an exemption. Special EU/free-movement residence-card situations must be screened separately.",
+    "application_stage": "visa_necessity",
+    "classification": "DETERMINISTIC_CANDIDATE",
+    "required_applicant_inputs": [
+      {
+        "name": "passport_document_type",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not default to ordinary, exempt, non-exempt, absent, or usable.",
+        "reason_required": "Proposed screening/input dependency from the supplied review; detailed contracts remain unimplemented."
+      },
+      {
+        "name": "residence_country",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not default to ordinary, exempt, non-exempt, absent, or usable.",
+        "reason_required": "Proposed screening/input dependency from the supplied review; detailed contracts remain unimplemented."
+      },
+      {
+        "name": "residence_status",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not default to ordinary, exempt, non-exempt, absent, or usable.",
+        "reason_required": "Proposed screening/input dependency from the supplied review; detailed contracts remain unimplemented."
+      },
+      {
+        "name": "residence_document_category",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not default to ordinary, exempt, non-exempt, absent, or usable.",
+        "reason_required": "Proposed screening/input dependency from the supplied review; detailed contracts remain unimplemented."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [
+      {
+        "description": "Full applicable exceptions and their conditions remain to be verified; preserve the supplied limitation: Does not mean that no Irish residence documentation can ever create an exemption. Special EU/free-movement residence-card situations must be screened separately.",
+        "evidence_reference": null,
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "dependencies": [
+      {
+        "description": "Review EP001-01-D before treating this finding as a complete determination.",
+        "evidence_reference": {
+          "id": "EP001-01-D",
+          "revision": "0.2.0",
+          "path": "records/EP001-01-D/0.2.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Review EP001-01-E before treating this finding as a complete determination.",
+        "evidence_reference": {
+          "id": "EP001-01-E",
+          "revision": "0.2.0",
+          "path": "records/EP001-01-E/0.2.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Review EP001-01-H before treating this finding as a complete determination.",
+        "evidence_reference": {
+          "id": "EP001-01-H",
+          "revision": "0.2.0",
+          "path": "records/EP001-01-H/0.2.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "conflicts": [],
+    "reviewer_notes": "Ordinary-route candidate, conditional on separate exemption screening. STAMP 4 EUFAM is a possible branch indicator, not a universally sufficient exemption; do not generalise to Stamp 4. No conflict comparison or exact reference event was supplied; empty conflicts/reference_events do not establish that none exist."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-23T21:40:34Z",
+      "actor": null,
+      "description": "Encoded user-supplied EP001-01 external review. This timestamp records encoding only, not source retrieval, legal effectiveness or completed verification."
+    },
+    {
+      "version": "0.2.0",
+      "changed_at": "2026-09-23T21:48:46Z",
+      "actor": null,
+      "description": "Schema-only migration to 2.0.0. Metadata remains INCOMPLETE; no new research, supplied facts, verification or status changes. Previous revision retained."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

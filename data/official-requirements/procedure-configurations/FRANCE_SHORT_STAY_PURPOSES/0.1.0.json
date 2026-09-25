@@ -1,0 +1,345 @@
+{
+  "configuration_id": "FRANCE_SHORT_STAY_PURPOSES",
+  "revision": "0.1.0",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "all": [
+          {
+            "all": [
+              {
+                "fact": "trip.visa_regime",
+                "op": "eq",
+                "value": "schengen"
+              },
+              {
+                "fact": "trip.visa_type",
+                "op": "eq",
+                "value": "short_stay"
+              }
+            ]
+          },
+          {
+            "fact": "trip.destination_country",
+            "op": "eq",
+            "value": "FR"
+          }
+        ]
+      },
+      {
+        "fact": "passport.document_type",
+        "op": "eq",
+        "value": "ordinary"
+      }
+    ]
+  },
+  "facts": {
+    "purpose": "trip.purpose",
+    "professional_activity": "trip.professional_activity_planned",
+    "family_settlement": "trip.family_settlement_planned",
+    "conditions": "identity.applicant_conditions",
+    "entry": "trip.intended_entry_date",
+    "exit": "trip.intended_exit_date"
+  },
+  "ordinary_conditions": [
+    "ordinary_adult_applicant"
+  ],
+  "routes": {
+    "tourism": {
+      "purpose_label": "TOURISM",
+      "no_professional_activity": true,
+      "duration_parameters": {
+        "amount": 3,
+        "unit": "CALENDAR_MONTHS",
+        "calendar_policy": "CLAMP",
+        "comparison": "LT"
+      },
+      "readiness_references": [
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_INSURANCE_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_ACCOMMODATION_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_FINANCIAL_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_RETURN_FUNDS_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_RETURN_ONWARD_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_ITINERARY_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_PURPOSE_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_INTENTION_INFORMATION"
+        }
+      ],
+      "rule_references": [
+        {
+          "rule_id": "SCHENGEN_INSURANCE_COVERAGE_AMOUNT",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_COVERAGE_AMOUNT/0.1.0.json"
+        },
+        {
+          "rule_id": "SCHENGEN_INSURANCE_DATE_COVERAGE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_DATE_COVERAGE/0.1.0.json"
+        },
+        {
+          "rule_id": "SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE/0.1.0.json"
+        },
+        {
+          "rule_id": "SCHENGEN_INSURANCE_MEDICAL_REPATRIATION",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_MEDICAL_REPATRIATION/0.1.0.json"
+        },
+        {
+          "rule_id": "SCHENGEN_INSURANCE_PRESENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_PRESENCE/0.1.0.json"
+        },
+        {
+          "rule_id": "SCHENGEN_INSURANCE_TERRITORY",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_TERRITORY/0.1.0.json"
+        }
+      ],
+      "coverage_gaps": []
+    },
+    "private_visit": {
+      "purpose_label": "PRIVATE_VISIT",
+      "no_professional_activity": true,
+      "readiness_references": [
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_INSURANCE_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_ACCOMMODATION_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_FINANCIAL_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_RETURN_FUNDS_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_RETURN_ONWARD_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_ITINERARY_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_PURPOSE_EVIDENCE"
+        },
+        {
+          "configuration_id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json",
+          "evidence_id": "SCHENGEN_INTENTION_INFORMATION"
+        }
+      ],
+      "rule_references": [],
+      "coverage_gaps": [
+        "PRIVATE_VISIT_INSURANCE_SCOPE_REQUIRES_REVIEW"
+      ]
+    }
+  },
+  "checklist_completeness": "NON_EXHAUSTIVE",
+  "exact_document_list": "VISA_ASSISTANT_DEPENDENT",
+  "source_refs": [
+    {
+      "source_id": "FRANCE-VISAS-TOURISM-PRIVATE-STAY",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-TOURISM-PRIVATE-STAY/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-12-T-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-T-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-T-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-T-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-D/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-D/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-F/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-G/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-SHORT-STAY",
+      "source_revision": "0.3.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-SHORT-STAY/0.3.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-12-T-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-A/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-TOURIST-STAY",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-TOURIST-STAY/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-12-T-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-T-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-T-D/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-FAMILY-PURPOSE",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-FAMILY-PURPOSE/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-12-P-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-D/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-F/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-12-P-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-G/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-12-P-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-12-P-F/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Uppercase TOURISM/PRIVATE_VISIT inputs normalize to existing lower-case fact tokens to preserve prior rule behavior; route outputs carry uppercase purpose labels.",
+    "Purpose and accommodation type are independent. No private-host fact is inferred from private visit, or vice versa.",
+    "Existing Batch 2B insurance configurations only cover tourism/business. Private-visit composition retains their readiness reference but marks the scope gap rather than changing those rules or claiming an exhaustive checklist.",
+    "This is routing, not an alternative 90/180 evaluator or a visa approval determination. Tourism duration is compared against the supplied less-than-three-calendar-month description; CLAMP is an implementation convention, not a quotation."
+  ]
+}

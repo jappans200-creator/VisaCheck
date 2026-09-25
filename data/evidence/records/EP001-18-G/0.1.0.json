@@ -1,0 +1,258 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-18-G",
+  "revision": "0.1.0",
+  "candidate_rule_id": null,
+  "requirement_category": "india_passport_coverage_audit",
+  "requirement_name": "Ordinary Indian-passport verification readiness",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "SPECIFIED",
+      "values": [
+        "ordinary_adult_applicant"
+      ]
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Audit of intended narrow V1 scope only; exceptional/historical branches are discussed as exclusions or separate assessments, not newly supported routes. ordinary passport remains the existing canonical document label; no runtime or VERIFIED coverage."
+  },
+  "citations": [
+    {
+      "source_id": "EU-2018-1806",
+      "source_revision": "0.2.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": "Article 3",
+        "section": "Annex I",
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied final-audit source association and prior linked evidence, not independently retrieved/inspected. Audit inventory/readiness is a repository finding, not an official statement certifying completeness.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied audit finding, pending source verification: The India layer is structurally ready for verification only for Indian nationality plus ordinary passport, subject to remaining V1 conditions.",
+    "does_not_establish": "No claim all Indian documents covered. Exact India/ordinary/France recognition matrix still unresolved.",
+    "application_stage": "procedural",
+    "classification": "INFORMATIONAL_PROCEDURAL",
+    "required_applicant_inputs": [],
+    "reference_events": [],
+    "exceptions": [],
+    "dependencies": [
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-18-A",
+          "revision": "0.1.0",
+          "path": "records/EP001-18-A/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-18-B",
+          "revision": "0.1.0",
+          "path": "records/EP001-18-B/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-18-C",
+          "revision": "0.1.0",
+          "path": "records/EP001-18-C/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-18-D",
+          "revision": "0.1.0",
+          "path": "records/EP001-18-D/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-18-E",
+          "revision": "0.1.0",
+          "path": "records/EP001-18-E/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-18-F",
+          "revision": "0.1.0",
+          "path": "records/EP001-18-F/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Audit cross-reference; prior proposition is not promoted or duplicated.",
+        "evidence_reference": {
+          "id": "EP001-04-G",
+          "revision": "0.1.0",
+          "path": "records/EP001-04-G/0.1.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Dedicated evidence verification and promotion pass required; source provenance, versions, locators/excerpts, applicability, exceptions/conflicts/dependencies and reviewer metadata incomplete.",
+        "evidence_reference": null,
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "conflicts": [],
+    "reviewer_notes": "Coverage/audit record only. Null candidate_rule_id intentionally avoids a new independent runtime rule, including findings classified DETERMINISTIC_CANDIDATE. Structural research/readiness is not VERIFIED, production ready, legal advice or guaranteed complete. All source inspections and review metadata remain pending."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-24T22:16:05Z",
+      "actor": null,
+      "description": "Recorded externally supplied final audit findings and repository cross-references only. Timestamp is encoding, not source retrieval/verification."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

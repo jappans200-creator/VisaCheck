@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "EC-TRAVEL-DOCUMENTS-PART-I",
+  "source_revision": "0.1.0",
+  "url": "https://home-affairs.ec.europa.eu/document/travel-documents-issued-third-countries-and-territorial-entities-part-i_en",
+  "authority": "European Commission / Migration and Home Affairs",
+  "title": "Travel documents issued by third countries and territorial entities \u2014 Part I",
+  "source_type": "Government dataset",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-04 research; no independent confirmation supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": "2026-09-16",
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-04 reference only; no retrieval, inspection, source-version assessment or review performed. Dataset lead only. Publication date 16 September 2026 was supplied, not independently checked. Exact India + ordinary passport + France matrix entry has NOT been inspected or established.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

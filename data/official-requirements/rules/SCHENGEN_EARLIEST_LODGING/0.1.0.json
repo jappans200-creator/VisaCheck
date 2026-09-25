@@ -1,0 +1,102 @@
+{
+  "rule_id": "SCHENGEN_EARLIEST_LODGING",
+  "rule_revision": "0.1.0",
+  "bundle_id": "SCHENGEN_CORE",
+  "application_stage": "application_timing",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "requirement": "Ordinary lodging must not be more than six calendar months before the explicitly intended visit.",
+  "applicability": {
+    "all": [
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      }
+    ]
+  },
+  "review_gate": {
+    "ordinary_condition": {
+      "all": [
+        {
+          "fact": "passport.document_type",
+          "op": "eq",
+          "value": "ordinary"
+        },
+        {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        }
+      ]
+    },
+    "affirmative_triggers": [],
+    "reason_code": "SPECIAL_ROUTE_REQUIRES_REVIEW"
+  },
+  "evaluator": "relative_date_boundary",
+  "parameters": {
+    "actual_date": {
+      "fact": "application.intended_lodging_date"
+    },
+    "reference_date": {
+      "fact": "trip.intended_entry_date"
+    },
+    "amount": -6,
+    "unit": "CALENDAR_MONTHS",
+    "calendar_policy": "CLAMP",
+    "comparison": "GTE"
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.4.0",
+      "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-06-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-06-A/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-06-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-06-A/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-FAQ",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-FAQ/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-06-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-06-A/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "implementation_notes": [
+    "Earliest-lodging check only; PASS does not establish timely/latest lodging, appointment availability or processing completion.",
+    "CLAMP is the implementation convention for impossible target dates, not quoted legal wording. No fixed-day conversion.",
+    "Seafarers and other special conditions require review. The unresolved 15-calendar-day/two-week issue is not evaluated."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "EU-2009-810",
+  "source_revision": "0.1.0",
+  "url": "https://eur-lex.europa.eu/eli/reg/2009/810/2024-06-11/eng",
+  "authority": "European Union / EUR-Lex",
+  "title": "Regulation (EC) No 810/2009 establishing a Community Code on Visas (Visa Code), current consolidated text used during research.",
+  "source_type": "Legislation",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as an approved official source in the supplied EP001-02 external research. No independent provenance confirmation or named reviewer record supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": "2024-06-11",
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Registered solely from supplied EP001-02 material. No source retrieval, inspection, verbatim excerpt or reference copy. Consolidation date transcribed from the supplied URL; the description of this text as current is an external-research assertion, not independently checked.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

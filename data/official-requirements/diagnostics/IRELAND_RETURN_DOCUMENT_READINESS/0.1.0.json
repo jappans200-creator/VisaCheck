@@ -1,0 +1,165 @@
+{
+  "diagnostic_id": "IRELAND_RETURN_DOCUMENT_READINESS",
+  "diagnostic_revision": "0.1.0",
+  "bundle_id": "IRELAND_RESIDENT",
+  "application_stage": "irish_re_entry",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "fact": "passport.issuing_country",
+        "op": "eq",
+        "value": "IN"
+      },
+      {
+        "fact": "residence.country",
+        "op": "eq",
+        "value": "IE"
+      }
+    ]
+  },
+  "review_gate": {
+    "ordinary_condition": {
+      "all": [
+        {
+          "fact": "passport.document_type",
+          "op": "eq",
+          "value": "ordinary"
+        },
+        {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        }
+      ]
+    },
+    "affirmative_triggers": [
+      {
+        "fact": "residence.permit_type",
+        "op": "in",
+        "value": [
+          "STAMP 4 EUFAM",
+          "Stamp 4 EUFAM",
+          "stamp_4_eufam"
+        ]
+      }
+    ],
+    "reason_code": "SPECIAL_ROUTE_REQUIRES_REVIEW"
+  },
+  "facts": {
+    "visa_status": "travel.irish_entry_visa_requirement_status",
+    "card_present": "residence.irish_residence_card_present",
+    "card_expiry": "residence.irish_residence_card_expiry_date",
+    "return_date": "trip.intended_return_to_ireland_date",
+    "renewal_status": "residence.irish_irp_renewal_status"
+  },
+  "required_visa_status": "VISA_REQUIRED",
+  "pending_renewal_status": "PENDING",
+  "validity_parameters": {
+    "amount": 0,
+    "unit": "CALENDAR_DAYS"
+  },
+  "results": {
+    "ready": "RETURN_TO_IRELAND_READY",
+    "action_required": "RETURN_TO_IRELAND_ACTION_REQUIRED",
+    "unknown": "RETURN_TO_IRELAND_UNKNOWN"
+  },
+  "action_code": "IRISH_GUIDANCE_MAY_REQUIRE_D_ENTRY_VISA_FROM_ABROAD",
+  "source_refs": [
+    {
+      "source_id": "IE-TRAVEL-REENTRY",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/IE-TRAVEL-REENTRY/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-05-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-F/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-05-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-G/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-J",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-J/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "IE-REGISTRATION-RENEWAL",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/IE-REGISTRATION-RENEWAL/0.1.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-G/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-F/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-G/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-19-J",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-19-J/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "implementation_notes": [
+    "Standalone return-document diagnostic, not French eligibility or a guarantee of admission. Never combined into an application FAIL.",
+    "VISA_REQUIRED for Ireland is an explicit supplied fact; no Schengen Annex equivalence or nationality classification is inferred.",
+    "READY means a present card whose expiry is on or after supplied return date. It does not require one additional month.",
+    "Expired/absent return card with renewal PENDING produces ACTION_REQUIRED and the cautious D-entry-visa guidance code. No grant is promised and emergency cases require review.",
+    "Renewal completion alone is not proof of a new valid card. Current permission, card evidence and renewal status remain separate.",
+    "No historical temporary expired-IRP arrangements or emergency eligibility are implemented. Effective dates remain unverified; no release."
+  ]
+}

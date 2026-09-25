@@ -1,0 +1,66 @@
+{
+  "rule_revision": "0.1.0",
+  "bundle_id": "SCHENGEN_CORE",
+  "application_stage": "visa_application",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      },
+      {
+        "fact": "passport.document_type",
+        "op": "eq",
+        "value": "ordinary"
+      }
+    ]
+  },
+  "rule_id": "SCHENGEN_TRAVEL_DOCUMENT_MAX_AGE",
+  "requirement": "At the visa application stage, the travel document must have been issued within the previous ten calendar years relative to application.lodging_date; the exact anniversary satisfies the ordinary boundary.",
+  "evaluator": "maximum_document_age",
+  "parameters": {
+    "issue_date": {
+      "fact": "passport.issue_date"
+    },
+    "reference_date": {
+      "fact": "application.lodging_date"
+    },
+    "amount": 10,
+    "unit": "YEARS",
+    "calendar_policy": "CLAMP"
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/EU-2009-810/0.2.0.json",
+      "locator": "Article 12(c)",
+      "locator_basis": "Supplied Batch 1A specification; existing evidence locator remains Article 12.",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-04-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-04-E/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "implementation_notes": [
+    "Draft implementation of the user-supplied Batch 1A specification and clarifications; pinned evidence remains NEEDS_REVIEW. Evaluation is not verification or authorization to publish.",
+    "Effective dates have not been established. No temporal applicability filter is configured for these isolated draft evaluations. No release is created.",
+    "Applicability is deliberately limited to ordinary documents, schengen regime and short_stay type. It makes no assertion about other document types or border-entry assessment.",
+    "CLAMP is an implementation convention supplied for this batch, not a quotation or independently source-verified legal wording: an impossible target day uses the final valid day of that month.",
+    "application.lodging_date is explicitly supplied. No fallback to intended_lodging_date, entry, departure or current time. Compare lodging to issue_date plus ten calendar years using CLAMP and an inclusive boundary."
+  ]
+}

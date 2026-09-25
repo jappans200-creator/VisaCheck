@@ -1,0 +1,1455 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_pack_id": "EP-001",
+  "version": "0.11.0",
+  "research_profile": {
+    "passport_country": "IN",
+    "passport_document_type": "ordinary",
+    "residence_country": "IE",
+    "residence_status": "legal_resident",
+    "destination_country": "FR",
+    "destination_territory": "metropolitan_france",
+    "visa_regime": "schengen",
+    "visa_type": "short_stay",
+    "applicant_conditions": {
+      "mode": "SPECIFIED",
+      "values": [
+        "ordinary_adult_applicant"
+      ]
+    }
+  },
+  "purposes": [
+    "tourism",
+    "private_visit"
+  ],
+  "assessment_date": null,
+  "research_started_at": null,
+  "research_last_updated_at": null,
+  "source_policy": {
+    "official_sources_only": true,
+    "authority_hierarchy": [
+      "Applicable official legal instruments and implementing decisions",
+      "Responsible government visa/immigration authorities",
+      "Responsible embassy/consulate instructions",
+      "Officially designated service provider within delegated procedural scope",
+      "Other government authority only where directly relevant"
+    ],
+    "delegated_provider_scope": "Operational instructions only within evidenced delegation; no independent eligibility authority.",
+    "excluded_authority_types": [
+      "VisaChanceChecker",
+      "Community/statistical outcome sources",
+      "Social media and forums",
+      "Blogs and unofficial visa websites",
+      "Travel agencies"
+    ],
+    "conflict_handling_policy": "Record and review contradictions. Do not automatically choose the strictest, most specific, or latest-looking statement."
+  },
+  "reviewer_status": "PENDING",
+  "reviewer_assignments": [],
+  "completeness_status": "READY_FOR_REVIEW",
+  "coverage_by_purpose": [
+    {
+      "purpose": "tourism",
+      "status": "READY_FOR_REVIEW",
+      "notes": "All 20 research slots populated for intended ordinary-adult IN ordinary-passport / IE legal-resident / Metropolitan FR Schengen short-stay scope. Structurally ready for EVIDENCE VERIFICATION AND PROMOTION, pending and not started. Not VERIFIED, production ready, legal advice or guaranteed complete. Minors and exceptional categories unsupported; supplied-reference gaps remain."
+    },
+    {
+      "purpose": "private_visit",
+      "status": "READY_FOR_REVIEW",
+      "notes": "All 20 research slots populated for intended ordinary-adult IN ordinary-passport / IE legal-resident / Metropolitan FR Schengen short-stay scope. Structurally ready for EVIDENCE VERIFICATION AND PROMOTION, pending and not started. Not VERIFIED, production ready, legal advice or guaranteed complete. Minors and exceptional categories unsupported; supplied-reference gaps remain."
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "question_id": "EP001-Q01",
+      "question": "Which applicant-condition branches, including minors and family-member cases, will be supported or referred outside scope?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q02",
+      "question": "Which exact Irish residence document/permission category applies?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q03",
+      "question": "What assessment, submission, entry, exit and return dates should verification cover?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q04",
+      "question": "Which assistant classifications correspond to tourism and private visit?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q05",
+      "question": "How do the official sources delimit Metropolitan France territorial applicability?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q06",
+      "question": "What itinerary and application-location facts determine jurisdiction?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q07",
+      "question": "Can the complete applicable assistant checklist be obtained without submitting an application?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q08",
+      "question": "Which versions, amendments and transitional provisions apply?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q09",
+      "question": "Which statements concern application, border entry or Irish re-entry?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q10",
+      "question": "Are there conflicts between applicable official sources?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q11",
+      "question": "Who owns review and is independent review required before rule conversion?",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q12",
+      "question": "EP001-01: supply exact official excerpts/locators, source retrieval and review provenance, applicable version/date checks and exception analysis; identify whether proposition I is architecture-only or has direct official support.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q13",
+      "question": "EP001-02: supply inspected official provenance, verbatim excerpts and missing locators, date/version review, reviewer identity and exception analysis. Verify the applicability of the supplied Visa Code consolidation without treating its title as proof it is current.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q14",
+      "question": "EP001-03: obtain inspected provenance, exact excerpts/missing locators, applicable version/date review and exception review. Supplied June 28 Visa Code consolidation and France-Visas URL variants are preserved separately, without assuming equivalence to prior references.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q15",
+      "question": "EP001-04: review departure versus requested-visa-expiry discrepancy (J), emergency exception, ten-year comparison event, several-visit coverage and exact recognition matrix entry; obtain inspected provenance and complete review metadata.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q16",
+      "question": "EP001-05: inspect supplied sources and complete provenance, version/date/exception reviews. Pending-renewal satisfaction of the French one-calendar-month-after-return requirement remains unknown. Historical notices are not current exceptions.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q17",
+      "question": "EP001-06: review Article 9 fifteen-calendar-day versus FAQ two-weeks wording; inspect supplied sources and complete date/version, applicability and exception reviews. Preserve lodging/admissibility, recommendation, operational estimate and legal decision-period distinctions; working-day calendar is not supplied.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q18",
+      "question": "EP001-07: Confirm exact route/purpose supporting-document lists and review non-exhaustive Annex II examples; presence does not establish substantive acceptance. Obtain inspected provenance, excerpts, locators and completed reviewer/date/version/exception checks.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q19",
+      "question": "EP001-08: Verify border financial amounts, category/segment applicability and day-count details. Application-stage use of border figures remains unestablished; no automatic refusal thresholds. Obtain inspected provenance, excerpts, locators and completed reviewer/date/version/exception checks.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q20",
+      "question": "EP001-09: Review applicable private-host certificate conditions, original/validation requirements and stages; preserve Article 14 accommodation-means alternative. Obtain inspected provenance, excerpts, locators and completed reviewer/date/version/exception checks.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q21",
+      "question": "EP001-10: Review Article 15 scope, coverage wording and multiple-entry/third-party exceptions; currency EUR 30000 without conversion. No unreviewed policy equivalence. Obtain inspected provenance, excerpts, locators and completed reviewer/date/version/exception checks.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q22",
+      "question": "EP001-11: Review itinerary/return evidence, border ticket-or-means alternative and prior competence dependencies; no mandatory non-refundable purchase. Obtain inspected provenance, excerpts, locators and completed reviewer/date/version/exception checks.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q23",
+      "question": "EP001-12-T: Review applicable tourism documents and boundaries; no remote-work or mixed-purpose inference. Inspected provenance, excerpts, locators and date/version/applicability/exception checks remain pending.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q24",
+      "question": "EP001-12-P: Review visit versus settlement/special-family routing; no complete universal private-visit checklist supplied. Inspected provenance, excerpts, locators and date/version/applicability/exception checks remain pending.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q25",
+      "question": "EP001-13: Review age exactly 12 against under-12 exemption and over-12 general-process wording. Intended ordinary-adult product scope is not VERIFIED coverage; no numeric adulthood threshold supplied. Inspected provenance, excerpts, locators and date/version/applicability/exception checks remain pending.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q26",
+      "question": "EP001-14: Review conditional reuse: prior visa issue versus fingerprint-capture date, strict less-than-59-month interval and general appearance exemptions versus Ireland attendance. No reuse guarantee or medical determination. Inspected provenance, excerpts, locators and date/version/applicability/exception checks remain pending.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q27",
+      "question": "Verification-pass work item \u2014 Existing authorisation handling: EP001-01-I remains UNRESOLVED; distinguish profile visa necessity from existing usable Schengen authorisation.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q28",
+      "question": "Verification-pass work item \u2014 Passport validity wording: EP001-04-J remains UNRESOLVED: intended/last departure versus requested-visa expiry.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q29",
+      "question": "Verification-pass work item \u2014 Application timing wording: EP001-06-J remains UNRESOLVED: Visa Code 15 calendar days versus FAQ two weeks.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q30",
+      "question": "Verification-pass work item \u2014 Age exactly 12: Review under-12 versus over-12 biometric wording and local interaction; do not infer the boundary answer.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q31",
+      "question": "Verification-pass work item \u2014 Reuse versus local attendance: General biometric reuse/appearance-exemption guidance versus Ireland attendance remains pending.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q32",
+      "question": "Verification-pass work item \u2014 Pending Irish renewal: Whether pending renewal satisfies French one-calendar-month-after-return IRP requirement remains unestablished.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q33",
+      "question": "Verification-pass work item \u2014 Border financial amounts: Exact application-stage role, if any, of published border-entry reference figures remains unestablished.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q34",
+      "question": "Verification-pass work item \u2014 Document recognition: Inspect exact India + ordinary passport + France recognition matrix entry; no result currently established.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q35",
+      "question": "Verification-pass work item \u2014 Provenance and review: Retrieve/inspect exact current official sources; bounded excerpts/locators, source versions/effective dates, applicability, exceptions/dependencies/conflicts and reviewer identity/time/basis remain incomplete.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    },
+    {
+      "question_id": "EP001-Q36",
+      "question": "Verification-pass work item \u2014 Passport return operational gap: Earlier records do not contain a detailed current passport-return procedure. Obtain official instructions and check staleness; do not infer coverage from a passing mention.",
+      "blocking": true,
+      "status": "PENDING",
+      "resolution": null
+    }
+  ],
+  "source_references": [
+    {
+      "id": "EU-2018-1806",
+      "revision": "0.2.0",
+      "path": "sources/EU-2018-1806/0.2.0.json"
+    },
+    {
+      "id": "EU-2004-38",
+      "revision": "0.2.0",
+      "path": "sources/EU-2004-38/0.2.0.json"
+    },
+    {
+      "id": "EC-2023-1392",
+      "revision": "0.2.0",
+      "path": "sources/EC-2023-1392/0.2.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-IRELAND",
+      "revision": "0.3.0",
+      "path": "sources/FRANCE-VISAS-IRELAND/0.3.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-SCHENGEN",
+      "revision": "0.2.0",
+      "path": "sources/FRANCE-VISAS-SCHENGEN/0.2.0.json"
+    },
+    {
+      "id": "EU-2009-810",
+      "revision": "0.4.0",
+      "path": "sources/EU-2009-810/0.4.0.json"
+    },
+    {
+      "id": "EU-2016-399",
+      "revision": "0.1.0",
+      "path": "sources/EU-2016-399/0.1.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-SHORT-STAY",
+      "revision": "0.3.0",
+      "path": "sources/FRANCE-VISAS-SHORT-STAY/0.3.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-LONG-STAY",
+      "revision": "0.1.0",
+      "path": "sources/FRANCE-VISAS-LONG-STAY/0.1.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-FAQ",
+      "revision": "0.2.0",
+      "path": "sources/FRANCE-VISAS-FAQ/0.2.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-APPLICATION-PROCESS",
+      "revision": "0.2.0",
+      "path": "sources/FRANCE-VISAS-APPLICATION-PROCESS/0.2.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-ARRIVAL",
+      "revision": "0.1.0",
+      "path": "sources/FRANCE-VISAS-ARRIVAL/0.1.0.json"
+    },
+    {
+      "id": "EC-TRAVEL-RESIDENCE-DOCUMENTS",
+      "revision": "0.1.0",
+      "path": "sources/EC-TRAVEL-RESIDENCE-DOCUMENTS/0.1.0.json"
+    },
+    {
+      "id": "EC-TRAVEL-DOCUMENTS-PART-I",
+      "revision": "0.1.0",
+      "path": "sources/EC-TRAVEL-DOCUMENTS-PART-I/0.1.0.json"
+    },
+    {
+      "id": "IE-TRAVEL-REENTRY",
+      "revision": "0.1.0",
+      "path": "sources/IE-TRAVEL-REENTRY/0.1.0.json"
+    },
+    {
+      "id": "IE-REGISTRATION-RENEWAL",
+      "revision": "0.1.0",
+      "path": "sources/IE-REGISTRATION-RENEWAL/0.1.0.json"
+    },
+    {
+      "id": "IE-TRAVEL-CONFIRMATION-2026-PDF",
+      "revision": "0.1.0",
+      "path": "sources/IE-TRAVEL-CONFIRMATION-2026-PDF/0.1.0.json"
+    },
+    {
+      "id": "IE-TRAVEL-CONFIRMATION-EXTENSION-2026",
+      "revision": "0.1.0",
+      "path": "sources/IE-TRAVEL-CONFIRMATION-EXTENSION-2026/0.1.0.json"
+    },
+    {
+      "id": "IE-TRAVEL-CONFIRMATION-SUMMER-2026",
+      "revision": "0.1.0",
+      "path": "sources/IE-TRAVEL-CONFIRMATION-SUMMER-2026/0.1.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-TOURIST-STAY",
+      "revision": "0.1.0",
+      "path": "sources/FRANCE-VISAS-TOURIST-STAY/0.1.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-TOURISM-PRIVATE-STAY",
+      "revision": "0.2.0",
+      "path": "sources/FRANCE-VISAS-TOURISM-PRIVATE-STAY/0.2.0.json"
+    },
+    {
+      "id": "FRANCE-VISAS-FAMILY-PURPOSE",
+      "revision": "0.1.0",
+      "path": "sources/FRANCE-VISAS-FAMILY-PURPOSE/0.1.0.json"
+    }
+  ],
+  "evidence_record_references": [
+    {
+      "id": "EP001-01-A",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-A/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-B",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-B/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-C",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-C/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-D",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-D/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-E",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-E/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-F",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-F/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-G",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-G/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-H",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-H/0.2.0.json"
+    },
+    {
+      "id": "EP001-01-I",
+      "revision": "0.2.0",
+      "path": "records/EP001-01-I/0.2.0.json"
+    },
+    {
+      "id": "EP001-02-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-J/0.1.0.json"
+    },
+    {
+      "id": "EP001-02-K",
+      "revision": "0.1.0",
+      "path": "records/EP001-02-K/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-J/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-K",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-K/0.1.0.json"
+    },
+    {
+      "id": "EP001-03-L",
+      "revision": "0.1.0",
+      "path": "records/EP001-03-L/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-J/0.1.0.json"
+    },
+    {
+      "id": "EP001-04-K",
+      "revision": "0.1.0",
+      "path": "records/EP001-04-K/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-05-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-05-J/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-J/0.1.0.json"
+    },
+    {
+      "id": "EP001-06-K",
+      "revision": "0.1.0",
+      "path": "records/EP001-06-K/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-07-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-07-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-08-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-08-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-09-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-09-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-09-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-09-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-09-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-09-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-09-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-09-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-09-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-09-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-09-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-09-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-10-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-10-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-11-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-11-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-11-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-11-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-11-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-11-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-11-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-11-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-11-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-11-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-11-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-11-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-T-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-T-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-T-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-T-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-T-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-T-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-T-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-T-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-T-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-T-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-T-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-T-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-12-P-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-12-P-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-13-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-13-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-14-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-14-J/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-15-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-15-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-16-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-16-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-17-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-17-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-18-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-18-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-A",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-A/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-B",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-B/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-C",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-C/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-D",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-D/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-E",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-E/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-F",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-F/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-G",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-G/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-H",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-H/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-I",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-I/0.1.0.json"
+    },
+    {
+      "id": "EP001-19-J",
+      "revision": "0.1.0",
+      "path": "records/EP001-19-J/0.1.0.json"
+    }
+  ],
+  "research_slot_references": [
+    {
+      "slot_id": "EP001-01",
+      "path": "checklist.md#ep001-01",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-02",
+      "path": "checklist.md#ep001-02",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-03",
+      "path": "checklist.md#ep001-03",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-04",
+      "path": "checklist.md#ep001-04",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-05",
+      "path": "checklist.md#ep001-05",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-06",
+      "path": "checklist.md#ep001-06",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-07",
+      "path": "checklist.md#ep001-07",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-08",
+      "path": "checklist.md#ep001-08",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-09",
+      "path": "checklist.md#ep001-09",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-10",
+      "path": "checklist.md#ep001-10",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-11",
+      "path": "checklist.md#ep001-11",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-12-T",
+      "path": "checklist.md#ep001-12-t",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-12-P",
+      "path": "checklist.md#ep001-12-p",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-13",
+      "path": "checklist.md#ep001-13",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-14",
+      "path": "checklist.md#ep001-14",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-15",
+      "path": "checklist.md#ep001-15",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-16",
+      "path": "checklist.md#ep001-16",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-17",
+      "path": "checklist.md#ep001-17",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-18",
+      "path": "checklist.md#ep001-18",
+      "status": "NEEDS_REVIEW"
+    },
+    {
+      "slot_id": "EP001-19",
+      "path": "checklist.md#ep001-19",
+      "status": "NEEDS_REVIEW"
+    }
+  ],
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-23T16:30:05Z",
+      "actor": null,
+      "description": "Created empty research infrastructure only. Research has not started; no sources or requirements registered."
+    },
+    {
+      "version": "0.2.0",
+      "changed_at": "2026-09-23T21:40:34Z",
+      "actor": null,
+      "description": "Registered five supplied source references and propositions EP001-01-A through I. A\u2013H NEEDS_REVIEW; I UNRESOLVED. External research dates remain unknown; no browsing or runtime rules. All other slots unchanged."
+    },
+    {
+      "version": "0.3.0",
+      "changed_at": "2026-09-23T21:48:46Z",
+      "actor": null,
+      "description": "Infrastructure correction: schema 2.0.0 and immutable 0.2.0 source/evidence revisions. EP001-01 statuses unchanged; no research."
+    },
+    {
+      "version": "0.4.0",
+      "changed_at": "2026-09-23T22:07:02Z",
+      "actor": null,
+      "description": "Recorded EP001-02-A through K as NEEDS_REVIEW using five new SUPPLIED_REFERENCE sources and existing FRANCE-VISAS-SCHENGEN@0.2.0. No research, schema changes or runtime rules; EP001-01 unchanged."
+    },
+    {
+      "version": "0.5.0",
+      "changed_at": "2026-09-23T22:15:08Z",
+      "actor": null,
+      "description": "EP001-03-A through L recorded as NEEDS_REVIEW. Reused FAQ; added new revisions under three existing source IDs to preserve supplied URLs/consolidation. Earlier evidence citations/statuses unchanged."
+    },
+    {
+      "version": "0.6.0",
+      "changed_at": "2026-09-23T22:24:31Z",
+      "actor": null,
+      "description": "Recorded EP001-04-A through K; J UNRESOLVED, others NEEDS_REVIEW. Reused three exact supplied source references, added four supplied references. No earlier revisions/statuses changed."
+    },
+    {
+      "version": "0.7.0",
+      "changed_at": "2026-09-24T21:45:43Z",
+      "actor": null,
+      "description": "Recorded EP001-05-A through J NEEDS_REVIEW; historical re-entry periods preserved. No prior evidence or applicant-condition changes."
+    },
+    {
+      "version": "0.8.0",
+      "changed_at": "2026-09-24T21:51:57Z",
+      "actor": null,
+      "description": "Recorded EP001-06-A through K; J UNRESOLVED, others NEEDS_REVIEW. Supplied PDF/FAQ references preserved as new revisions; prior records and applicant conditions unchanged."
+    },
+    {
+      "version": "0.9.0",
+      "changed_at": "2026-09-24T21:59:15Z",
+      "actor": null,
+      "description": "Recorded five independent slots EP001-07 through EP001-11: 34 NEEDS_REVIEW records. Reused three source revisions, added tourist-stay reference. Prior evidence/statuses and applicant_conditions unchanged."
+    },
+    {
+      "version": "0.10.0",
+      "changed_at": "2026-09-24T22:07:06Z",
+      "actor": null,
+      "description": "Recorded four independent slots: 31 NEEDS_REVIEW records. Intended profile explicitly ordinary_adult_applicant per supplied EP001-13-H, not VERIFIED coverage. Prior evidence/statuses unchanged."
+    },
+    {
+      "version": "0.11.0",
+      "changed_at": "2026-09-24T22:16:05Z",
+      "actor": null,
+      "description": "Final five-slot audit batch: 42 NEEDS_REVIEW records. All 20 slots populated; READY_FOR_REVIEW means structural handoff only, not VERIFIED/complete/production ready. Next phase EVIDENCE VERIFICATION AND PROMOTION remains pending. Earlier statuses/revisions untouched."
+    }
+  ]
+}

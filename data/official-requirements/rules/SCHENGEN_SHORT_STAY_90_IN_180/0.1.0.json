@@ -1,0 +1,104 @@
+{
+  "rule_id": "SCHENGEN_SHORT_STAY_90_IN_180",
+  "rule_revision": "0.1.0",
+  "bundle_id": "SCHENGEN_CORE",
+  "application_stage": "short_stay_calculation",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "requirement": "For every day of the proposed stay, qualifying presence must not exceed 90 unique calendar dates in the inclusive 180-calendar-day lookback window. Entry and exit dates count. A new visa does not reset presence.",
+  "applicability": {
+    "all": [
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      }
+    ]
+  },
+  "evaluator": "rolling_presence_window",
+  "parameters": {
+    "history": {
+      "fact": "trip.schengen_stay_history"
+    },
+    "history_status": {
+      "fact": "trip.stay_history_status"
+    },
+    "proposed_entry_date": {
+      "fact": "trip.intended_entry_date"
+    },
+    "proposed_exit_date": {
+      "fact": "trip.intended_exit_date"
+    },
+    "maximum_days": 90,
+    "window_amount": 180,
+    "window_unit": "CALENDAR_DAYS",
+    "direction": "LOOKBACK_INCLUSIVE",
+    "entry_day_counts": true,
+    "exit_day_counts": true,
+    "excluded_authorization_types": [
+      "RESIDENCE_PERMIT",
+      "LONG_STAY_VISA"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/EU-2009-810/0.1.0.json",
+      "locator": "Articles 1 and 2",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-02-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-02-B/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "EU-2016-399",
+      "source_revision": "0.1.0",
+      "path": "data/evidence/sources/EU-2016-399/0.1.0.json",
+      "locator": "Article 6",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-02-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-02-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-02-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-02-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-02-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-02-D/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "evidence_gaps": [
+    {
+      "status": "EVIDENCE_GAP",
+      "requirement": "Exclusion of periods authorized under residence permits or long-stay visas",
+      "evidence_refs": [],
+      "basis": "Implemented solely from supplied Batch 1B specification; no corresponding evidence record found. No claim of source verification."
+    }
+  ],
+  "implementation_notes": [
+    "Draft engineering implementation only. No release or evidence promotion. Effective dates remain unestablished; no temporal applicability filter configured.",
+    "The adapter supplies relevant stay intervals. No geography is inferred. Authorization belongs to each historical stay, not the applicant's residence status or a newly issued visa.",
+    "NONE is an explicit assertion of no relevant previous stays; missing interval detail may then normalize to []. An empty array never implies NONE. COMPLETE requires an explicit interval array. UNKNOWN/INCOMPLETE remain UNKNOWN conservatively.",
+    "Malformed intervals are rejected, even if claimed excluded. Valid intervals outside every evaluated window cannot contribute. Unresolved authorization uses lower/upper unique-presence counts: if it cannot change compliance, PASS is possible; unresolved counts or first violation dates are never reported as exact.",
+    "No reset by calendar year, fixed blocks, or visa issuance. This is presence calculation only, not visa necessity, approval probability, or a complete eligibility determination."
+  ]
+}

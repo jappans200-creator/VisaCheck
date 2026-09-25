@@ -1,0 +1,156 @@
+{
+  "rule_revision": "0.1.0",
+  "bundle_id": "FRANCE_SHORT_STAY",
+  "composes_with": [
+    "SCHENGEN_CORE",
+    "IRELAND_RESIDENT"
+  ],
+  "application_stage": "application_jurisdiction",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "review_gate": {
+    "ordinary_condition": {
+      "all": [
+        {
+          "fact": "passport.document_type",
+          "op": "eq",
+          "value": "ordinary"
+        },
+        {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        }
+      ]
+    },
+    "affirmative_triggers": [
+      {
+        "fact": "residence.permit_type",
+        "op": "in",
+        "value": [
+          "STAMP 4 EUFAM",
+          "Stamp 4 EUFAM",
+          "stamp_4_eufam"
+        ]
+      },
+      {
+        "not": {
+          "fact": "residence.legal_status",
+          "op": "in",
+          "value": [
+            "legal_resident",
+            "not_legal_resident"
+          ]
+        }
+      }
+    ],
+    "reason_code": "SPECIAL_ROUTE_REQUIRES_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "fact": "passport.issuing_country",
+        "op": "eq",
+        "value": "IN"
+      },
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      },
+      {
+        "fact": "application.competent_state",
+        "op": "eq",
+        "value": "FR"
+      }
+    ]
+  },
+  "implementation_notes": [
+    "Supplied Batch 2A specification implemented as a nonpublishable draft. No independently established effective dates or release.",
+    "Scope is the currently supported ordinary IN profile. Country, regime and competence restrictions are data, not generic evaluator conditions. No competent-state inference.",
+    "residence.legal_status uses legal_resident or not_legal_resident; other/missing values remain unresolved. It is not inferred from residence country, physical presence, permission, card possession or card expiry.",
+    "An explicit complete applicant_conditions list [] or [ordinary_adult_applicant] supplies ordinary context; unknown or other conditions require review. EUFAM permit-type indicators also require review. Special-category conditions, including minority and emergencies, must be represented by the adapter; no age cutoff or exemption is invented."
+  ],
+  "rule_id": "FRANCE_IE_APPLICATION_JURISDICTION",
+  "requirement": "For this ordinary route, application in Ireland requires legal residence in the Republic of Ireland and supplied France competence.",
+  "evaluator": "condition_match",
+  "parameters": {
+    "condition": {
+      "all": [
+        {
+          "fact": "residence.country",
+          "op": "eq",
+          "value": "IE"
+        },
+        {
+          "fact": "residence.legal_status",
+          "op": "eq",
+          "value": "legal_resident"
+        }
+      ]
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/EU-2009-810/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-03-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-03-H",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-H/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-03-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-G/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.3.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.3.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-03-F",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-F/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-03-H",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-03-H/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-05-I",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-05-I/0.1.0.json"
+        }
+      ]
+    }
+  ]
+}

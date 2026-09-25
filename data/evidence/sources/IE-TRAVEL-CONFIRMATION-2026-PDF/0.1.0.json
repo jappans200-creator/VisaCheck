@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "IE-TRAVEL-CONFIRMATION-2026-PDF",
+  "source_revision": "0.1.0",
+  "url": "https://www.irishimmigration.ie/wp-content/uploads/2026/01/Downloadable-Letter-For-Persons-Who-Intend-to-Travel-To-be-printed-by-customers.pdf",
+  "authority": "Immigration Service Delivery / Department of Justice, Home Affairs and Migration, Ireland",
+  "title": "Travel Confirmation Notice \u2013 For customers who intend travelling with an expired Irish Residence Permit (IRP) card",
+  "source_type": "Official government notice / PDF",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-05 research; not independently inspected or verified.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": "2026-02-28",
+  "effective_date_known": false,
+  "effective_date_notes": "Supplied historical arrangement dates only; not a current September 2026 general rule. Dates unverified; unknown start remains null.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-05 reference only. No retrieval, inspection, reviewer or independent date/version verification. Absent metadata remains null.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

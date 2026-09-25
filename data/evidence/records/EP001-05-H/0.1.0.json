@@ -1,0 +1,246 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-05-H",
+  "revision": "0.1.0",
+  "candidate_rule_id": null,
+  "requirement_category": "irish_residence_evidence_validity",
+  "requirement_name": "Historical time-bounded expired-IRP travel arrangements",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied research profile only; not a claim that broader legal requirements are limited to this nationality/residence. Other document categories require separate research, not automatic FAIL."
+  },
+  "citations": [
+    {
+      "source_id": "IE-TRAVEL-CONFIRMATION-2026-PDF",
+      "source_revision": "0.1.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-05 paraphrase association only; stage: irish_reentry. No inspected text or exact guidance locator supplied.",
+      "effective_from": null,
+      "effective_to": "2026-02-28",
+      "effective_date_known": false,
+      "effective_date_notes": "Supplied historical period only; date/version review remains PENDING. Not applicable as a current general September 2026 exception.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "source_id": "IE-TRAVEL-CONFIRMATION-EXTENSION-2026",
+      "source_revision": "0.1.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-05 paraphrase association only; stage: irish_reentry. No inspected text or exact guidance locator supplied.",
+      "effective_from": null,
+      "effective_to": "2026-02-28",
+      "effective_date_known": false,
+      "effective_date_notes": "Supplied historical period only; date/version review remains PENDING. Not applicable as a current general September 2026 exception.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "source_id": "IE-TRAVEL-CONFIRMATION-SUMMER-2026",
+      "source_revision": "0.1.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-05 paraphrase association only; stage: irish_reentry. No inspected text or exact guidance locator supplied.",
+      "effective_from": "2026-07-13",
+      "effective_to": "2026-08-31",
+      "effective_date_known": true,
+      "effective_date_notes": "Supplied historical period only; date/version review remains PENDING. Not applicable as a current general September 2026 exception.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied research paraphrase; pending verification: Supplied temporary Travel Confirmation Notice arrangements permitted qualifying residents with recently expired IRP cards and timely renewal applications to use expired IRP for specified re-entry periods. January/February arrangement ended 28 February 2026; a separate summer arrangement ran 13 July through 31 August 2026.",
+    "does_not_establish": "Historical only: neither establishes expired IRP plus renewal receipt = current PASS in September 2026. Neither overrides C or establishes French admissibility. Do not transfer January/February conditions to the summer measure without evidence.",
+    "application_stage": "irish_reentry",
+    "classification": "INFORMATIONAL_PROCEDURAL",
+    "required_applicant_inputs": [],
+    "reference_events": [
+      {
+        "name": "historical_february_end",
+        "source_wording": "Supplied end date: 28 February 2026.",
+        "notes": "Start unknown; announcement date 30 January is not assumed effective start."
+      },
+      {
+        "name": "historical_summer_period",
+        "source_wording": "Supplied period: 13 July 2026 through 31 August 2026.",
+        "notes": "Separate historical arrangement; no current general exception."
+      }
+    ],
+    "exceptions": [],
+    "dependencies": [],
+    "conflicts": [],
+    "reviewer_notes": "Research only. Keep legal residence, physical presence, immigration permission, physical IRP, IRP expiry, Schengen exemption, Irish re-entry and community statistical features distinct. No runtime evaluator or model implemented. Missing facts remain unknown. January/February conditions supplied: renewal submitted before IRP expiry; proof of renewal required; if permission expired before submission the person was considered out of permission and arrangement did not apply. Carry expired IRP, proof of renewal and Travel Confirmation Notice. Summer measure is separate; full qualifying conditions not supplied. Future residence.permission_type may also be required; no applicant-condition/adult coverage promoted."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-24T21:45:43Z",
+      "actor": null,
+      "description": "Encoded supplied EP001-05 material and historical-notice supplement only; timestamp is encoding, not source inspection or review."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

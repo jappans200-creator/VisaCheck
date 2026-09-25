@@ -1,0 +1,211 @@
+{
+  "schema_version": "2.0.0",
+  "evidence_id": "EP001-05-I",
+  "revision": "0.1.0",
+  "candidate_rule_id": null,
+  "requirement_category": "irish_residence_evidence_validity",
+  "requirement_name": "STAMP 4 EUFAM and EU-family branch",
+  "applicability": {
+    "purposes": {
+      "mode": "SPECIFIED",
+      "values": [
+        "tourism",
+        "private_visit"
+      ]
+    },
+    "passport": {
+      "issuing_countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IN"
+        ]
+      },
+      "document_types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "ordinary"
+        ]
+      }
+    },
+    "residence": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "IE"
+        ]
+      },
+      "legal_status_conditions": {
+        "mode": "SPECIFIED",
+        "values": [
+          "legal_resident"
+        ]
+      }
+    },
+    "destination": {
+      "countries": {
+        "mode": "SPECIFIED",
+        "values": [
+          "FR"
+        ]
+      },
+      "territories": {
+        "mode": "SPECIFIED",
+        "values": [
+          "metropolitan_france"
+        ]
+      }
+    },
+    "visa": {
+      "regimes": {
+        "mode": "SPECIFIED",
+        "values": [
+          "schengen"
+        ]
+      },
+      "types": {
+        "mode": "SPECIFIED",
+        "values": [
+          "short_stay"
+        ]
+      }
+    },
+    "applicant_conditions": {
+      "mode": "SPECIFIED",
+      "values": [
+        "STAMP_4_EUFAM_or_qualifying_EU_family_situation"
+      ]
+    },
+    "excluded_conditions": {
+      "mode": "UNDETERMINED",
+      "values": []
+    },
+    "scope_notes": "Supplied research profile only; not a claim that broader legal requirements are limited to this nationality/residence. Other document categories require separate research, not automatic FAIL."
+  },
+  "citations": [
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "relationship": "SUPPORTS",
+      "locator": {
+        "article": null,
+        "section": null,
+        "heading": null,
+        "page": null,
+        "paragraph": null,
+        "other": null
+      },
+      "supporting_excerpt": null,
+      "excerpt_language": null,
+      "translation": null,
+      "translation_status": "NOT_PROVIDED",
+      "applicability_notes": "Supplied EP001-05 paraphrase association only; stage: supporting_documentation. No inspected text or exact guidance locator supplied.",
+      "effective_from": null,
+      "effective_to": null,
+      "effective_date_known": false,
+      "effective_date_notes": "Not supplied; applicability dates still require review.",
+      "translation_relied_on": false,
+      "date_version_review": {
+        "status": "PENDING",
+        "unknown_details": null,
+        "non_blocking_reason": null,
+        "basis": null,
+        "review_reference": null,
+        "reviewer_id": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "interpretation": {
+    "explicitly_establishes": "Supplied research paraphrase; pending verification: STAMP 4 EUFAM / qualifying EU-family situations are a distinct free-movement/exemption branch and should not automatically inherit the ordinary IN/IE short-stay route.",
+    "does_not_establish": "No automatic exemption solely from a label; preserve prior EP001-01 qualifying conditions and review uncertainty. Do not duplicate or override earlier evidence.",
+    "application_stage": "visa_necessity",
+    "classification": "INFORMATIONAL_PROCEDURAL",
+    "required_applicant_inputs": [
+      {
+        "name": "stamp_or_permission_category",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer legal status, valid card, exemption or failure.",
+        "reason_required": "Future modelling implication only."
+      },
+      {
+        "name": "EU_family/free_movement_status",
+        "type": "string",
+        "unit": null,
+        "missing_value_meaning": "Unknown; do not infer legal status, valid card, exemption or failure.",
+        "reason_required": "Future modelling implication only."
+      }
+    ],
+    "reference_events": [],
+    "exceptions": [],
+    "dependencies": [
+      {
+        "description": "Qualifying EU-family conditions require prior evidence review.",
+        "evidence_reference": {
+          "id": "EP001-01-D",
+          "revision": "0.2.0",
+          "path": "records/EP001-01-D/0.2.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      },
+      {
+        "description": "Permanent residence documentation branch retained separately.",
+        "evidence_reference": {
+          "id": "EP001-01-E",
+          "revision": "0.2.0",
+          "path": "records/EP001-01-E/0.2.0.json"
+        },
+        "status": "PENDING",
+        "resolution": null,
+        "blocking": true
+      }
+    ],
+    "conflicts": [],
+    "reviewer_notes": "Research only. Keep legal residence, physical presence, immigration permission, physical IRP, IRP expiry, Schengen exemption, Irish re-entry and community statistical features distinct. No runtime evaluator or model implemented. Missing facts remain unknown. Future residence.permission_type may also be required; no applicant-condition/adult coverage promoted."
+  },
+  "research_status": "NEEDS_REVIEW",
+  "review": {
+    "reviewer_id": null,
+    "reviewed_at": null,
+    "checks": {
+      "official_source_confirmed": {
+        "status": "PENDING",
+        "note": "Approved source attribution supplied, but source-verification record/reviewer not provided.",
+        "references": []
+      },
+      "scope_confirmed": {
+        "status": "PENDING",
+        "note": "Research profile supplied; exact provision scope and conditional exception applicability not fully documented.",
+        "references": []
+      },
+      "interpretation_supported": {
+        "status": "PENDING",
+        "note": "External review paraphrase supplied; exact official supporting text is absent.",
+        "references": []
+      },
+      "version_and_dates_checked": {
+        "status": "PENDING",
+        "note": "Effective dates and applicable-version assessment are missing; a URL consolidation identifier alone is not verification.",
+        "references": []
+      },
+      "exceptions_considered": {
+        "status": "PENDING",
+        "note": "Branch limitations supplied; complete exception conditions and analysis are not provided.",
+        "references": []
+      }
+    },
+    "verification_basis": null,
+    "rejection_reason": null
+  },
+  "change_history": [
+    {
+      "version": "0.1.0",
+      "changed_at": "2026-09-24T21:45:43Z",
+      "actor": null,
+      "description": "Encoded supplied EP001-05 material and historical-notice supplement only; timestamp is encoding, not source inspection or review."
+    }
+  ],
+  "metadata_completeness": "INCOMPLETE"
+}

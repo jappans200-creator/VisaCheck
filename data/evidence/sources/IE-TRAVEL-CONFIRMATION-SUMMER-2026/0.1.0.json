@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "IE-TRAVEL-CONFIRMATION-SUMMER-2026",
+  "source_revision": "0.1.0",
+  "url": "https://www.irishimmigration.ie/minister-brophy-announces-initiative-to-facilitate-customers-travelling-during-the-summer-months/",
+  "authority": "Irish Immigration",
+  "title": null,
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-05 research; not independently inspected or verified.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": "2026-07-13",
+  "effective_to": "2026-08-31",
+  "effective_date_known": true,
+  "effective_date_notes": "Supplied historical arrangement dates only; not a current September 2026 general rule. Dates unverified; unknown start remains null.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-05 reference only. No retrieval, inspection, reviewer or independent date/version verification. Absent metadata remains null. Page title not supplied; not inferred from URL. Separate summer measure; full conditions not supplied.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "configuration_id": "SCHENGEN_BIOMETRICS_PROCEDURE",
+  "revision": "0.1.0",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      }
+    ]
+  },
+  "facts": {
+    "age": "identity.age",
+    "physical_impossibility": "biometrics.physical_impossibility_status",
+    "exemption": "biometrics.fingerprint_exemption_status",
+    "previous_present": "biometrics.previous_schengen_biometrics_present",
+    "collection_date": "biometrics.previous_biometrics_date",
+    "lodging_date": "application.lodging_date",
+    "reuse_confirmed": "biometrics.reuse_confirmed"
+  },
+  "declared_status": "DECLARED",
+  "not_declared_status": "NOT_DECLARED",
+  "fingerprint_exempt_below_age": 12,
+  "unresolved_age_boundary": 12,
+  "identifiers": {
+    "photograph": true,
+    "fingerprints": 10
+  },
+  "reuse_parameters": {
+    "amount": 59,
+    "unit": "CALENDAR_MONTHS",
+    "calendar_policy": "CLAMP",
+    "comparison": "LT"
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.4.0",
+      "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-13-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-13-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-13-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-13-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-G",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-G/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-IRELAND",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-IRELAND/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-13-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-13-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-13-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-13-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-J",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-J/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "source_id": "FRANCE-VISAS-APPLICATION-PROCESS",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/FRANCE-VISAS-APPLICATION-PROCESS/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-14-A",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-A/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-B/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-C",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-C/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-D",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-D/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-E",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-E/0.1.0.json"
+        },
+        {
+          "evidence_id": "EP001-14-J",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-14-J/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "previous_biometrics_date is reused only with explicit previous_schengen_biometrics_present=true and means the collection date supplied for the current research specification. Never substitute visa issuance date.",
+    "The record EP001-14-D contains distinct issued-visa and fingerprint-collection wording; this implementation uses the supplied collection-date contract, not an equivalence between those events.",
+    "CLAMP for impossible anniversaries is an implementation convention. Exactly the configured month boundary is not less than it. No implicit current date.",
+    "Potential reuse and reported confirmed reuse remain separate. No automatic exemption from attendance, even when fingerprints are exempt.",
+    "Exact age 12 appearance wording remains unresolved. Under-12 fingerprint treatment does not implement the complete child submission route. Physical impossibility is declared routing, never medical judgment."
+  ]
+}

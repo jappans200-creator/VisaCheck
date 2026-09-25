@@ -1,0 +1,101 @@
+{
+  "rule_id": "SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE",
+  "rule_revision": "0.1.0",
+  "bundle_id": "SCHENGEN_CORE",
+  "application_stage": "visa_necessity_baseline",
+  "requirement": "Look up the ordinary short-stay nationality baseline in pinned partial reference data. This is not a final visa-requirement determination.",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "evaluator": "reference_classification",
+  "key_fact": "passport.issuing_country",
+  "reference_data": {
+    "reference_id": "SCHENGEN_VISA_NATIONALITY",
+    "reference_version": "2025-12-30",
+    "path": "data/official-requirements/reference-data/schengen-visa-nationality/2025-12-30.json"
+  },
+  "allowed_classifications": [
+    "ANNEX_I_VISA_REQUIRED",
+    "ANNEX_II_VISA_EXEMPT"
+  ],
+  "applicability": {
+    "all": [
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      }
+    ]
+  },
+  "special_routing": {
+    "document_fact": "passport.document_type",
+    "ordinary_document_values": [
+      "ordinary"
+    ],
+    "conditions_fact": "identity.applicant_conditions",
+    "ordinary_condition_values": [
+      "ordinary_adult_applicant"
+    ],
+    "review_condition_values": [
+      "diplomatic_passport",
+      "service_passport",
+      "official_passport",
+      "special_passport",
+      "school_excursion",
+      "refugee",
+      "stateless_person",
+      "crew_member",
+      "local_border_traffic",
+      "nato_armed_forces",
+      "international_organisation_travel_document",
+      "eu_family_member",
+      "free_movement",
+      "eu_family_free_movement",
+      "member_state_derogation"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2018-1806",
+      "source_revision": "0.2.0",
+      "path": "data/evidence/sources/EU-2018-1806/0.2.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-01-A",
+          "revision": "0.2.0",
+          "path": "data/evidence/records/EP001-01-A/0.2.0.json"
+        },
+        {
+          "evidence_id": "EP001-01-C",
+          "revision": "0.2.0",
+          "path": "data/evidence/records/EP001-01-C/0.2.0.json"
+        },
+        {
+          "evidence_id": "EP001-01-F",
+          "revision": "0.2.0",
+          "path": "data/evidence/records/EP001-01-F/0.2.0.json"
+        },
+        {
+          "evidence_id": "EP001-01-H",
+          "revision": "0.2.0",
+          "path": "data/evidence/records/EP001-01-H/0.2.0.json"
+        }
+      ]
+    }
+  ],
+  "implementation_notes": [
+    "Use classifyBaseline(model, rule, referenceData), separate from compliance PASS/FAIL evaluation. No final visa entitlement is determined.",
+    "For this supported ordinary-national passport context passport.issuing_country supplies the normalized nationality lookup key. Non-ordinary documents are routed to review; issuer is not generalized into nationality for refugee or other special travel documents.",
+    "The official/evidence layer uses ISO-style codes; applicant normalization currently trims supplied tokens without converting country aliases. The community layer uses display names. The adapter must supply an ISO code; the classifier never converts display names or guesses nationality.",
+    "Applicant conditions [] explicitly means no declared special conditions; null means unknown, not ordinary. Only configured ordinary tokens are permitted without review. Unrecognized tokens return UNKNOWN rather than being discarded.",
+    "Special-condition tokens are routing labels only, not findings that an exemption applies. Non-ordinary document types always require separate review. Residence is not a lookup key or exemption condition.",
+    "Pinned source/evidence revisions remain NEEDS_REVIEW. The supplied consolidation date labels reference data only; effective dates remain unknown and no release is created."
+  ]
+}

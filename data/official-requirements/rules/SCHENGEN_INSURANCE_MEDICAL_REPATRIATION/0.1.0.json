@@ -1,0 +1,87 @@
+{
+  "rule_id": "SCHENGEN_INSURANCE_MEDICAL_REPATRIATION",
+  "rule_revision": "0.1.0",
+  "bundle_id": "SCHENGEN_CORE",
+  "application_stage": "supporting_documentation",
+  "publication": {
+    "status": "DRAFT_NOT_PUBLISHABLE",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "requirement": "Insurance includes medical repatriation",
+  "applicability": {
+    "all": [
+      {
+        "all": [
+          {
+            "fact": "trip.visa_regime",
+            "op": "eq",
+            "value": "schengen"
+          },
+          {
+            "fact": "trip.visa_type",
+            "op": "eq",
+            "value": "short_stay"
+          }
+        ]
+      },
+      {
+        "fact": "trip.purpose",
+        "op": "in",
+        "value": [
+          "tourism",
+          "business"
+        ]
+      }
+    ]
+  },
+  "review_gate": {
+    "ordinary_condition": {
+      "all": [
+        {
+          "fact": "passport.document_type",
+          "op": "eq",
+          "value": "ordinary"
+        },
+        {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        }
+      ]
+    },
+    "affirmative_triggers": [],
+    "reason_code": "SPECIAL_ROUTE_REQUIRES_REVIEW"
+  },
+  "evaluator": "boolean_requirement",
+  "parameters": {
+    "actual": {
+      "fact": "supporting_evidence.travel_medical_insurance.medical_repatriation_covered"
+    },
+    "expected": true
+  },
+  "source_refs": [
+    {
+      "source_id": "EU-2009-810",
+      "source_revision": "0.4.0",
+      "path": "data/evidence/sources/EU-2009-810/0.4.0.json",
+      "evidence_refs": [
+        {
+          "evidence_id": "EP001-10-B",
+          "revision": "0.1.0",
+          "path": "data/evidence/records/EP001-10-B/0.1.0.json"
+        }
+      ]
+    }
+  ],
+  "implementation_notes": [
+    "Supplied Batch 2B ordinary tourism/business scope only. Private-visit and other purposes are not silently included by this insurance configuration.",
+    "Each result tests only its named supplied facts, not overall policy acceptance, authenticity, reliability, complete visa eligibility or approval. No aggregate insurance approval is calculated.",
+    "Declared special/exempt routes require separate review; no substantive exemption decision. No currency conversion or current-date dependency.",
+    "SCHENGEN territorial_scope is an explicitly supplied coverage assertion, not inferred from policy text, destinations or geography.",
+    "Only the supplied Batch 2B checks are implemented; this is not a complete Article 15 checklist. The pinned treatment record has wider wording, which is not silently encoded beyond this specification.",
+    "Effective dates remain unverified. No release or evidence promotion."
+  ]
+}

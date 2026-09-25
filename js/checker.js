@@ -1,350 +1,78 @@
-// Wires up the "Check my odds" form: loads the CSV once, then on submit
-// reads the form fields, runs the matching engine (match.js), and renders
-// the Visa Verdict results into the page.
-
-// To actually receive "download my checklist" emails and outcome reports
-// from this page, create free Formspree forms (formspree.io) and paste
-// their endpoints below — same pattern as js/waitlist.js and js/report.js.
-const CHECKLIST_FORMSPREE_ENDPOINT = ""; // e.g. "https://formspree.io/f/abcdwxyz"
-const OUTCOME_FORMSPREE_ENDPOINT = ""; // e.g. "https://formspree.io/f/abcdwxyz"
-
-let datasetRows = [];
-
-fetch("data/visa_outcomes.csv")
-  .then((res) => res.text())
-  .then((text) => {
-    datasetRows = parseCSV(text);
-  })
-  .catch((err) => {
-    console.error("Could not load visa dataset:", err);
-  });
-
-const form = document.getElementById("check-form");
-let lastProfile = null;
-let lastSampleSize = 0;
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  if (datasetRows.length === 0) {
-    alert("The dataset is still loading — please try again in a second.");
-    return;
-  }
-
-  const otherVisas = Array.from(
-    document.querySelectorAll('input[name="other-visas"]:checked')
-  ).map((el) => el.value);
-
-  const priorRejectionEl = document.querySelector('input[name="prior-rejection"]:checked');
-
-  const profile = {
-    nationality: document.getElementById("nationality").value.trim(),
-    residence: document.getElementById("residence").value.trim(),
-    permitType: document.getElementById("permit-type").value.trim(),
-    monthsRemaining: monthsRemaining(document.getElementById("permit-expiry").value),
-    destination: document.getElementById("destination").value,
-    otherVisas,
-    countriesVisited: Number(document.getElementById("countries-visited").value) || 0,
-    priorRejection: priorRejectionEl ? priorRejectionEl.value : "No",
-  };
-
-  renderResults(profile);
-
-  // Honest, local-only tally used by the landing page counters (see
-  // js/counters.js) until there's a real backend to count this globally.
-  const CHECK_COUNT_KEY = "visacheck_check_count";
-  const currentCount = Number(localStorage.getItem(CHECK_COUNT_KEY) || "0");
-  localStorage.setItem(CHECK_COUNT_KEY, String(currentCount + 1));
+// Canonical static preview controller. No legal calculations or thresholds here.
+(function(){
+'use strict';
+const form=document.getElementById('check-form'),sections=document.getElementById('form-sections'),output=document.getElementById('results'),notice=document.getElementById('form-status'),submit=document.getElementById('check-submit');
+const fields=VisaCheckV1Fields;
+const node=(tag,text,parent)=>{const n=document.createElement(tag);if(text!==null)n.textContent=text;parent.append(n);return n;};
+const sectionMap=new Map();
+for(const f of fields){
+ if(!sectionMap.has(f.section)){const d=node('details',null,sections);d.className='form-section';d.open=sectionMap.size===0;node('summary',f.section,d);sectionMap.set(f.section,d);}
+ const row=node('div',null,sectionMap.get(f.section));row.className='form-row';row.dataset.field=f.id;node('label',f.label,row).htmlFor=f.id;
+ const select=f.type==='boolean'||f.type==='select';const input=node(select?'select':'input',null,row);input.id=f.id;input.name=f.id;
+ if(select){node('option','Unsure / not supplied',input).value='';for(const [value,label] of f.type==='boolean'?[['yes','Yes'],['no','No']]:f.options)node('option',label,input).value=value;}
+ else{input.type=['date','number'].includes(f.type)?f.type:'text';if(f.type==='number'){input.min='0';input.step='any';}}
+ if(f.help){const help=node('small',f.help,row);help.id=f.id+'-help';help.className='field-help';input.setAttribute('aria-describedby',help.id);}
+}
+const historySection=sectionMap.get('Previous Schengen Travel');
+const historyPanel=node('div',null,historySection);historyPanel.id='stay-history';
+const stays=node('div',null,historyPanel);const add=node('button','Add previous stay',historyPanel);add.type='button';
+historyPanel.append(document.getElementById('history_complete').closest('.form-row'));
+function currentValues(){
+ const values=Object.fromEntries(fields.map(f=>[f.id,document.getElementById(f.id).value]));
+ values.stays=[...stays.children].map(row=>Object.fromEntries([...row.querySelectorAll('[data-stay]')].map(i=>[i.dataset.stay,i.value])));
+ return values;
+}
+function addStay(){
+ const row=node('fieldset',null,stays);row.className='stay-row';node('legend','Previous stay',row);
+ for(const [key,label] of [['entry_date','Entry date'],['exit_date','Exit date'],['authorization_type','Authorization type']]){
+  const lab=node('label',label,row),input=node(key==='authorization_type'?'select':'input',null,lab);input.dataset.stay=key;
+  if(key==='authorization_type'){for(const [value,text] of [['UNKNOWN','Unsure'],['SHORT_STAY','Short stay'],['RESIDENCE_PERMIT','Residence permit'],['LONG_STAY_VISA','Long-stay visa']])node('option',text,input).value=value;}else input.type='date';
+ }
+ const remove=node('button','Remove stay',row);remove.type='button';remove.onclick=()=>{row.remove();document.getElementById('history_complete').value='';conditional();};
+ document.getElementById('history_complete').value='';conditional();
+}
+add.onclick=addStay;
+function conditional(){
+ const values=currentValues();
+ for(const f of fields){
+  const input=document.getElementById(f.id),show=VisaCheckV1Adapter.isVisible(f,values,fields);
+  input.closest('.form-row').hidden=!show;input.disabled=!show;
+  if(!show)input.value='';
+ }
+ historyPanel.hidden=values.history!=='yes';
+ if(historyPanel.hidden)stays.replaceChildren();
+ document.getElementById('purpose-note').hidden=values.purpose!=='private_visit';
+}
+form.addEventListener('change',event=>{
+ if(event.target.closest('.stay-row'))document.getElementById('history_complete').value='';
+ conditional();
 });
-
-// With very few matching cases (common while the dataset is still small), a
-// percentage like "100%" or "0%" from 1-2 cases would look far more
-// confident than it should. Below this, we don't show a percentage at all.
-const MIN_CASES_FOR_PERCENT = 3;
-
-// Some destinations currently have data pulled mostly from "what went
-// wrong" advice forums, which skew far more negative than real-world
-// approval rates. Until more balanced data comes in, we show the case
-// reasons for these but suppress the headline percentage.
-const UNRELIABLE_PERCENT_DESTINATIONS = ["United States"];
-
-function renderResults(profile) {
-  const permitWarningEl = document.getElementById("permit-validity-warning");
-  const months = profile.monthsRemaining;
-
-  if (months < 0) {
-    permitWarningEl.style.display = "block";
-    permitWarningEl.innerHTML =
-      "⛔ <strong>Your permit has already expired.</strong> You cannot apply for a Schengen visa with an expired residence permit — any application will be rejected immediately.";
-  } else if (months < 3) {
-    permitWarningEl.style.display = "block";
-    permitWarningEl.innerHTML =
-      "⚠️ <strong>Less than 3 months remaining on your permit.</strong> Most Schengen consulates require at least 3 months' validity — and some (like Cyprus) require 6 months. This is one of the most common hidden rejection reasons. The odds below do not fully account for this.";
-  } else {
-    permitWarningEl.style.display = "none";
-  }
-
-  const sample = selectSample(datasetRows, profile);
-  const { percent, sampleSize } = computeApproval(sample);
-  const reasons = topRejectionReasons(sample);
-
-  lastProfile = profile;
-  lastSampleSize = sampleSize;
-
-  const resultsEl = document.getElementById("results");
-  const noDataCard = document.getElementById("no-data-card");
-  const noDataTitle = document.getElementById("no-data-title");
-  const noDataText = document.getElementById("no-data-text");
-  const verdictCard = document.getElementById("verdict-card");
-  const shareBtn = document.getElementById("share-btn");
-  const nextStepsCard = document.getElementById("next-steps-card");
-  const reasonsList = document.getElementById("reasons-list");
-  const warningEl = document.getElementById("low-sample-warning");
-  const embassyCard = document.getElementById("embassy-card");
-  const embassyList = document.getElementById("embassy-list");
-  const outcomeCard = document.getElementById("outcome-capture-card");
-  const outcomeHeading = document.getElementById("outcome-heading");
-
-  const isUnreliable = UNRELIABLE_PERCENT_DESTINATIONS.includes(profile.destination) && sampleSize > 0;
-  const showVerdict = !isUnreliable && percent !== null && sampleSize >= MIN_CASES_FOR_PERCENT;
-
-  if (showVerdict) {
-    noDataCard.style.display = "none";
-    verdictCard.style.display = "block";
-    shareBtn.style.display = "block";
-    nextStepsCard.style.display = "block";
-
-    const colorTier = getOddsColorTier(percent);
-    verdictCard.className = "verdict-card theme-" + colorTier;
-
-    document.getElementById("verdict-profile").textContent =
-      `${profile.nationality || "Applicant"} · ${profile.permitType || "No permit"} · ` +
-      `${getFlagEmoji(profile.destination)} ${profile.destination}`;
-    document.getElementById("verdict-pct").textContent = percent + "%";
-    document.getElementById("verdict-message").textContent = getCountryMessage(profile.destination, percent);
-    document.getElementById("verdict-sample").textContent =
-      `Based on ${sampleSize} real application${sampleSize === 1 ? "" : "s"} from people with your profile`;
-
-    renderNextSteps(colorTier, profile, reasons);
-
-    shareBtn.onclick = () => handleShareClick(profile, percent, colorTier, sampleSize);
-  } else {
-    verdictCard.style.display = "none";
-    shareBtn.style.display = "none";
-    document.getElementById("share-status").style.display = "none";
-    nextStepsCard.style.display = "none";
-    noDataCard.style.display = "block";
-
-    if (isUnreliable) {
-      noDataTitle.textContent = "Odds not shown yet";
-      noDataText.textContent =
-        `Our ${sampleSize} case${sampleSize === 1 ? "" : "s"} for this destination come mostly from people ` +
-        `describing a rejection — not a random sample — so a percentage here would be misleading. ` +
-        `See the common reasons below instead.`;
-    } else if (percent === null || sampleSize === 0) {
-      noDataTitle.textContent = "No data yet";
-      noDataText.textContent = "We don't have enough data for this destination yet. Check the reasons and consider reporting your own outcome once you apply.";
-    } else {
-      noDataTitle.textContent = "Too few cases";
-      noDataText.textContent =
-        `Only ${sampleSize} similar case${sampleSize === 1 ? "" : "s"} on record — too few to turn into a percentage yet.`;
-    }
-  }
-
-  if (showVerdict && sampleSize < 8) {
-    warningEl.style.display = "block";
-    warningEl.textContent =
-      "Small sample size for this exact profile — treat this estimate as rough, not precise.";
-  } else {
-    warningEl.style.display = "none";
-  }
-
-  document.getElementById("reasons-card").style.display = "block";
-  reasonsList.innerHTML = "";
-  if (reasons.length === 0) {
-    const li = document.createElement("li");
-    li.textContent = "Not enough rejected cases in this sample to identify common reasons.";
-    reasonsList.appendChild(li);
-  } else {
-    reasons.forEach(({ reason, count }) => {
-      const li = document.createElement("li");
-      li.textContent = `${reason} (${count} case${count === 1 ? "" : "s"})`;
-      reasonsList.appendChild(li);
-    });
-  }
-
-  if (isSchengen(profile.destination)) {
-    const embassies = bestEmbassies(datasetRows, profile);
-    if (embassies.length > 0) {
-      embassyCard.style.display = "block";
-      embassyList.innerHTML = "";
-      embassies.forEach(({ country, rate, total }) => {
-        const row = document.createElement("div");
-        row.className = "embassy-row";
-        row.innerHTML = `<span>${country}</span><span class="embassy-rate ${approvalColor(rate)}">${rate}% <span style="color:var(--text-faint); font-weight:400;">(${total} cases)</span></span>`;
-        embassyList.appendChild(row);
-      });
-    } else {
-      embassyCard.style.display = "none";
-    }
-  } else {
-    embassyCard.style.display = "none";
-  }
-
-  // Outcome capture: always offered once someone has a result, regardless
-  // of whether we had enough data for a percentage — a report is exactly
-  // what fixes that for the next person.
-  outcomeCard.style.display = "block";
-  outcomeHeading.textContent =
-    sampleSize > 0
-      ? `${sampleSize} people with your exact profile have shared their outcome. Here is what we learned from them.`
-      : `Be the first to share an outcome for a profile like yours.`;
-  document.getElementById("outcome-buttons").style.display = "flex";
-  document.getElementById("outcome-thanks").style.display = "none";
-
-  resultsEl.style.display = "block";
-  resultsEl.scrollIntoView({ behavior: "smooth", block: "start" });
+conditional();
+async function json(path){const response=await fetch(path);if(!response.ok)throw new Error('Could not load '+path);return response.json();}
+let loadPromise;
+function load(){if(!loadPromise)loadPromise=(async()=>{const config=await json('data/official-requirements/integration/v1-preview.json');const assets=Object.fromEntries(await Promise.all(Object.entries(config.assets).map(async([id,path])=>[id,await json(path)])));const refs=new Set();const walk=v=>{if(!v||typeof v!=='object')return;if(v.source_id&&v.path)refs.add(v.path);Object.values(v).forEach(walk);};walk(assets);const sources={};await Promise.all([...refs].map(async path=>{try{sources[path]=await json(path);}catch{/* A missing source link must not invent a URL or change evaluation. */}}));return {config,assets,sources};})().catch(error=>{loadPromise=null;throw error;});return loadPromise;}
+let dataset={records:[],issues:[],state:'loading'};
+const communityLoad=fetch('data/visa_outcomes.csv').then(r=>{if(!r.ok)throw new Error('Dataset load failed');return r.text();}).then(text=>{dataset={...ingestOutcomeCSV(text),state:'loaded'};}).catch(()=>{dataset.state='unavailable';});
+function community(values){
+ if(dataset.state!=='loaded')return {message:'Community dataset '+dataset.state+'.',issues:[]};
+ const country={IN:'India',IE:'Ireland',FR:'France',ES:'Spain',GB:'United Kingdom'};
+ const profile={nationality:country[values.nationality]||null,residence:country[values.residence]||null,destination:country[values.destination]||null,permitType:values.permit_type||null,monthsRemaining:monthsRemaining(values.irp_expiry),countriesVisited:nonNegativeNumber(values.visited,true),priorRejection:values.refusal==='yes'?'Yes':values.refusal==='no'?'No':null,otherVisas:values.other_visas?.trim()?values.other_visas.split(',').map(v=>v.trim()):null};
+ const sample=selectSample(dataset.records,profile),stats=computeApproval(sample);
+ let message=stats.sampleSize>=3&&profile.destination!=='United States'?`Approval rate among similar records: ${stats.percent}% (${stats.sampleSize} records).`:`${stats.sampleSize} similar records — too few or insufficiently representative to show a percentage.`;
+ if(stats.sampleSize>=3&&stats.sampleSize<8)message+=' Small sample; treat this as rough, not precise.';
+ return {message,reasons:topRejectionReasons(sample),issues:dataset.issues,statistics:stats};
 }
-
-function approvalColorFromTier(tier) {
-  return tier === "green" ? "green" : tier === "deepred" ? "red" : tier;
-}
-
-function renderNextSteps(colorTier, profile, reasons) {
-  const heading = document.getElementById("next-steps-heading");
-  const body = document.getElementById("next-steps-body");
-  const dest = profile.destination;
-  const reasonItems = reasons.length
-    ? reasons.map((r) => `<li>${r.reason}</li>`).join("")
-    : "<li>Not enough rejected cases in this sample to break down yet.</li>";
-
-  if (colorTier === "green") {
-    heading.textContent = "Ready when you are";
-    body.innerHTML = `
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Ready to apply? Use iVisa — trusted by millions</a>
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Find flights to ${dest}</a>
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Get travel insurance before you go</a>
-    `;
-  } else if (colorTier === "amber") {
-    heading.textContent = "Worth strengthening before you apply";
-    body.innerHTML = `
-      <details class="expandable">
-        <summary>Here is what separates approvals from rejections at your odds level</summary>
-        <div class="expandable-body">
-          <p>Among similar cases, these came up most for the ones that got rejected:</p>
-          <ul>${reasonItems}</ul>
-        </div>
-      </details>
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Get your application professionally reviewed</a>
-      <div class="checklist-capture">
-        <label for="checklist-email" style="display:block; font-size:0.88rem; color:var(--text-dim); margin-bottom:6px;">Download your personalised document checklist</label>
-        <div style="display:flex; gap:8px;">
-          <input type="email" id="checklist-email" placeholder="you@example.com" style="flex:1;">
-          <button id="checklist-btn" class="btn-primary" style="white-space:nowrap;">Get checklist</button>
-        </div>
-        <div id="checklist-status" style="display:none; margin-top:8px; font-size:0.85rem; color:var(--green);">Thanks — check your inbox shortly.</div>
-      </div>
-    `;
-    wireChecklistCapture();
-  } else if (colorTier === "orange") {
-    heading.textContent = "Here's how to improve your odds";
-    body.innerHTML = `
-      <details class="expandable">
-        <summary>Most people in your situation who got approved made these specific changes first</summary>
-        <div class="expandable-body">
-          <p>The most common reasons similar profiles were rejected:</p>
-          <ul>${reasonItems}</ul>
-        </div>
-      </details>
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Get professional help before applying</a>
-      <a class="next-step-link" href="${isSchengen(dest) ? "#embassy-card" : "#"}">See if a different embassy gives you better odds</a>
-    `;
-  } else {
-    heading.textContent = "Before you spend the application fee";
-    body.innerHTML = `
-      <details class="expandable" open>
-        <summary>Before you spend €90 you need to understand why your odds are this low</summary>
-        <div class="expandable-body">
-          <p>The most common reasons similar profiles were rejected:</p>
-          <ul>${reasonItems}</ul>
-        </div>
-      </details>
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Get professional immigration advice</a>
-      <a class="next-step-link" href="#" target="_blank" rel="noopener">Check alternative destinations with better odds for your profile</a>
-    `;
-  }
-}
-
-function wireChecklistCapture() {
-  const btn = document.getElementById("checklist-btn");
-  const emailInput = document.getElementById("checklist-email");
-  const status = document.getElementById("checklist-status");
-  if (!btn) return;
-  btn.addEventListener("click", async () => {
-    const email = emailInput.value.trim();
-    if (!email) return;
-    if (!CHECKLIST_FORMSPREE_ENDPOINT) {
-      console.warn("Checklist request captured locally only — CHECKLIST_FORMSPREE_ENDPOINT is not set:", email);
-      status.style.display = "block";
-      emailInput.value = "";
-      return;
-    }
-    try {
-      const res = await fetch(CHECKLIST_FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ email, profile: lastProfile }),
-      });
-      if (res.ok) {
-        status.style.display = "block";
-        emailInput.value = "";
-      }
-    } catch (err) {
-      // silent fail is fine here — non-critical secondary feature
-    }
-  });
-}
-
-async function handleShareClick(profile, percent, colorTier, sampleSize) {
-  const shareStatus = document.getElementById("share-status");
-  shareStatus.style.display = "block";
-  shareStatus.textContent = "Generating your images...";
-
-  const message = getCountryMessage(profile.destination, percent);
-  const result = await shareVerdict({ profile, percent, colorTier, message, sampleSize });
-
-  shareStatus.textContent = result.captionCopied
-    ? "Downloaded both images and copied the caption — paste them into your story or chat."
-    : `Downloaded both images. Caption to paste: "${result.caption}"`;
-}
-
-document.getElementById("outcome-approved-btn").addEventListener("click", () => captureOutcome("Approved"));
-document.getElementById("outcome-rejected-btn").addEventListener("click", () => captureOutcome("Rejected"));
-
-async function captureOutcome(outcome) {
-  if (!lastProfile) return;
-
-  if (OUTCOME_FORMSPREE_ENDPOINT) {
-    try {
-      await fetch(OUTCOME_FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ ...lastProfile, outcome }),
-      });
-    } catch (err) {
-      // still show the thank-you message below — don't block the UX on this
-    }
-  } else {
-    console.warn("Outcome captured locally only — OUTCOME_FORMSPREE_ENDPOINT is not set:", { ...lastProfile, outcome });
-  }
-
-  document.getElementById("outcome-buttons").style.display = "none";
-  const thanks = document.getElementById("outcome-thanks");
-  thanks.style.display = "block";
-  thanks.textContent = `Thank you. Your outcome just added to the data behind ${lastSampleSize} similar profile${lastSampleSize === 1 ? "" : "s"} — help us build this further by adding full details on the `;
-  const link = document.createElement("a");
-  link.href = "report.html";
-  link.textContent = "report page";
-  thanks.appendChild(link);
-  thanks.appendChild(document.createTextNode("."));
-}
+let generation=0;
+form.addEventListener('submit',async event=>{event.preventDefault();const token=++generation;submit.disabled=true;notice.textContent='Preparing your report…';output.hidden=true;
+ try{const {config,assets,sources}=await load();if(token!==generation)return;
+ const values=currentValues();
+ const adapted=VisaCheckV1Adapter.adapt(values,fields,config);
+ const communityValues={...adapted.active_values,permit_type:adapted.model.facts.residence.permit_type,irp_expiry:adapted.model.facts.residence.irish_residence_card_expiry_date};
+ const report=VisaCheckV1Integration.evaluate(adapted,config,assets);
+ VisaCheckV1Report.render(output,report,sources,community(communityValues));output.hidden=false;
+ if(dataset.state==='loading')communityLoad.then(()=>{if(token===generation&&!output.hidden)VisaCheckV1Report.render(output,report,sources,community(communityValues));});
+ notice.textContent='Report ready. This preview is not a visa decision.';output.focus();
+ try{localStorage.setItem('visacheck_check_count',String(Number(localStorage.getItem('visacheck_check_count')||0)+1));}catch{/* Storage is optional; applicant facts are never persisted. */}
+ }catch(error){notice.textContent='The report could not be loaded. Please try again. '+error.message;}finally{if(token===generation)submit.disabled=false;}});
+form.addEventListener('reset',()=>{generation++;submit.disabled=false;stays.replaceChildren();output.replaceChildren();output.hidden=true;notice.textContent='Form reset. No applicant data is saved by VisaCheck.';setTimeout(conditional,0);});
+})();

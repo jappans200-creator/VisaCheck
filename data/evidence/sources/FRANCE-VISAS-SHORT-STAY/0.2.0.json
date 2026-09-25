@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0.0",
+  "source_id": "FRANCE-VISAS-SHORT-STAY",
+  "source_revision": "0.2.0",
+  "url": "https://www.france-visas.gouv.fr/en/short-stay-visa",
+  "authority": "France-Visas / French government",
+  "title": "Short-stay visa",
+  "source_type": "Government guidance",
+  "language": null,
+  "official_status": "UNCONFIRMED",
+  "official_status_basis": "Identified as official in supplied EP001-03 research; no independent confirmation or review provenance supplied.",
+  "retrieved_at": null,
+  "verified_at": null,
+  "source_version": null,
+  "consolidation_date": null,
+  "published_at": null,
+  "effective_from": null,
+  "effective_to": null,
+  "effective_date_known": false,
+  "effective_date_notes": "Not supplied. Consolidation identifiers, where present, are not effective-date determinations.",
+  "reference_copy": null,
+  "reviewer_notes": "Supplied EP001-03 reference only. No retrieval or inspection. Different supplied URL path from /en/visa-de-court-sejour. Same authority/title family retained under one ID; redirect/content equivalence not verified.",
+  "metadata_completeness": "INCOMPLETE",
+  "provenance": {
+    "state": "SUPPLIED_REFERENCE",
+    "retrieval_method": null,
+    "inspected_by": null,
+    "inspected_at": null,
+    "inspection_basis": null
+  }
+}
