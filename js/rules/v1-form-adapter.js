@@ -65,14 +65,21 @@
     const adult = Number.isSafeInteger(id.age) && id.age >= config.adult_minimum_age;
     id.applicant_conditions = answers.special === true ? ['special_route'] : answers.special === false && adult ? ['ordinary_adult_applicant'] : null;
     t.family_settlement_planned = answers.special === false ? false : null;
-    const single = answers.other_schengen === false;
-    a.competent_state = france && single ? supported.destination : null;
-    t.relevant_schengen_departure_date = france && single ? t.intended_exit_date : null;
-    residence.legal_status = answers.legal === true ? 'legal_resident' : answers.legal === false ? 'not_legal_resident' : null;
-    residence.permit_type = answers.irp === true ? 'Irish IRP' : null;
-    // 'Not pending' does not distinguish completed, not started or not applicable.
-    residence.irish_irp_renewal_status = answers.renewal === true ? 'PENDING' : 'UNKNOWN';
+    const ordinaryIrelandRoute = answers.nationality === supported.nationality && passport.document_type === supported.document && residence.country === supported.residence && adult && answers.special === false;
+    const tourismScope = ordinaryIrelandRoute && france && t.purpose === 'tourism';
+    const single = tourismScope; // Product scope, never an asserted itinerary.
+    t.professional_activity_planned = tourismScope ? false : null;
+    a.competent_state = tourismScope ? supported.destination : null;
+    t.relevant_schengen_departure_date = tourismScope ? t.intended_exit_date : null;
+    // A valid IRP declaration supplies legal residence only in the supported
+    // ordinary Ireland route. No valid card does not prove unlawful residence,
+    // nor does it prove that no physical (possibly expired) card exists.
+    residence.legal_status = ordinaryIrelandRoute && answers.irp === true ? 'legal_resident' : null;
+    residence.irish_residence_card_present = ordinaryIrelandRoute && answers.irp === true ? true : null;
+    residence.permit_type = ordinaryIrelandRoute && answers.irp === true ? 'Irish IRP' : null;
+    residence.irish_irp_renewal_status = 'UNKNOWN';
     residence.irish_permission_status = null;
+    evidence.travel_medical_insurance = { present: answers.insurance === true ? true : null };
     raw.travel = { irish_entry_visa_requirement_status: passport.issuing_country === supported.issuer && passport.document_type === supported.document ? config.irish_entry_status : null };
 
     const accommodation = evidence.accommodation || (evidence.accommodation = {});
@@ -88,12 +95,6 @@
     // establish its type or prove that return funds are available.
     travel.reservation_present = answers.return_evidence === false ? false : null;
     travel.funds_to_acquire_return_present = answers.return_money;
-    const file = evidence.application_file || (evidence.application_file = {});
-    const prepared = { BOTH: [true, true], ORIGINALS: [true, false], COPIES: [false, true], NEITHER: [false, false] }[answers.supporting_prepared] || [null, null];
-    [file.supporting_originals_present, file.supporting_copies_present] = prepared;
-    a.file_complete_asserted = answers.supporting_prepared === null ? null : answers.supporting_prepared === 'BOTH';
-    file.identity_photos_qualifying_confirmed = Number.isSafeInteger(answers.photos) && answers.photos >= 0 ? answers.photos > 0 : null;
-
     if (answers.history === false) {
       t.stay_history_status = 'NONE'; t.schengen_stay_history = [];
     } else if (answers.history === true) {
@@ -106,8 +107,9 @@
     model.issues.push(...issues);
     return {
       model,
-      route_input: { nationality: answers.nationality, single_trip: single ? true : answers.other_schengen === true ? false : null },
-      assumptions: a.competent_state ? [config.competence_constraint] : [],
+      route_input: { nationality: answers.nationality, single_trip: single ? true : null },
+      assumptions: tourismScope ? [config.questionnaire_scope.tourism, config.questionnaire_scope.jurisdiction] : [],
+      readiness_declarations: { insurance_full_trip: answers.insurance ?? null, valid_irp: answers.irp ?? null },
       active_values: active
     };
   }

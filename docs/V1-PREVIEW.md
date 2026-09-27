@@ -27,17 +27,23 @@ not verified legal completeness or applicant eligibility.
 ## Explicit constraints
 
 Age is supplied for the application date. Ordinary-adult facts require an explicit
-negative special-circumstances answer and a known adult age. Country of origin is
-an optional follow-up, never inferred from nationality. The destination option
-identifies a short visit to Metropolitan France; the user separately answers whether
-other Schengen countries will be visited. Only then is France
-competence supplied as an internal preview constraint and the exit date used as
-the relevant Schengen departure date. Multi-country competence is not calculated.
-France-specific checks are withheld for an unestablished single-country trip.
+negative special-circumstances answer and a known adult age. The short questionnaire
+uses the selected Metropolitan France tourism product scope, rather than asking
+about professional work or additional Schengen countries. For the exact supported
+India/ordinary-passport/Ireland/adult profile, the adapter supplies no-professional-
+work and simple-France competence as explicit preview assumptions. These are shown
+in the report. No destination list is fabricated. Other routes do not inherit them;
+the internal resolver still accepts unresolved or multi-country scope.
 
-Actual and intended lodging dates remain distinct. Existing passport-age and
-biometric reuse evaluators require the actual date; planned dates are not silently
-substituted. Before lodging, those checks can remain UNKNOWN.
+For that ordinary Ireland route, a Yes declaration to a **valid IRP** supplies card
+presence and legal residence. No/unsure cannot establish unlawful residence or the
+absence of a physical card, so those facts stay unknown. Country of origin and the
+return-to-Ireland date are no longer collected or inferred. The return diagnostic
+remains in the internal report model and is omitted from the initial results UI.
+
+Actual and intended lodging dates remain distinct canonical facts, but neither is
+collected by the short questionnaire. Dependent checks stay UNKNOWN. Detailed
+application preparation is checklist guidance, not a set of input prerequisites.
 
 Irish entry-visa status uses the supplied Batch 2A Indian ordinary-passport
 mapping, not the Schengen baseline table. Private visits remain PARTIAL; tourism
@@ -73,5 +79,6 @@ private-visit insurance scope and unresolved age/latest-lodging questions, revie
 route constraints and jurisdiction mapping, and review the remaining legacy
 landing-page marketing claims. None of this integration promotes evidence.
 
-See [the form audit](V1-FORM-AUDIT.md) for the field inventory, derivations,
-conditional visibility, question counts and preserved unknowns.
+See [the current questionnaire specification](V1-QUESTIONNAIRE-UX.md) for the
+current inputs and unknowns. [The earlier form audit](V1-FORM-AUDIT.md) records
+the preceding milestone, not the current field count.

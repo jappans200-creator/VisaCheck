@@ -1,4 +1,6 @@
 .v1-checker { padding-top: 36px; padding-bottom: 36px; }
+/* Override the legacy #results display:none only after the report is ready. */
+.v1-checker #results:not([hidden]) { display: block; }
 .preview-notice { padding: 16px; border: 1px solid var(--amber); border-radius: var(--radius); }
 .form-section { border-bottom: 1px solid var(--border); padding: 16px 0; }
 .form-section summary { cursor: pointer; font-size: 1.1rem; font-weight: 600; padding: 8px 0; }

@@ -1,5 +1,8 @@
 # V1 form simplification audit
 
+Historical snapshot of the preceding milestone. The current short questionnaire
+is documented in [V1-QUESTIONNAIRE-UX.md](V1-QUESTIONNAIRE-UX.md).
+
 This is a form/adapter refactor. Existing rules, integration configuration,
 evaluators, source/evidence records and community scoring are unchanged.
 

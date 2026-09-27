@@ -17,17 +17,17 @@
   }
   function evaluate(adapted,config,assets){
     const model=adapted.model,route=resolve(adapted,config);
-    const report={preview:true,route,facts:model.facts,issues:model.issues,legal:[],documents:[],procedure:null,biometrics:null,irish_return:null,baseline:null,purpose:null,attention:[],source_refs:[]};
+    const report={preview:true,route,readiness_declarations:adapted.readiness_declarations||{},facts:model.facts,issues:model.issues,legal:[],documents:[],procedure:null,biometrics:null,irish_return:null,baseline:null,purpose:null,attention:[],source_refs:[]};
     if(route.status==='UNSUPPORTED')return report;
     const asset=id=>{if(!assets[id])throw new Error('Missing preview configuration: '+id);return assets[id];};
     report.purpose=procedure.evaluatePurposeRoute(model,asset('FRANCE_SHORT_STAY_PURPOSES'));
     if(report.purpose.status!=='SUPPORTED'&&route.status==='SUPPORTED'){route.status='PARTIAL';route.reason='Purpose or trip duration needs review; full tourism scope is not established.';}
     report.baseline=baseline.classifyBaseline(model,asset('SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE'),asset('nationality_reference'));
-    for(const [id,d] of Object.entries(assets))if(d.rule_id&&d.evaluator!=='reference_classification')report.legal.push({...engine.evaluateRule(model,d),label:d.requirement_name||id,requirement:d.requirement||null});
+    for(const [id,d] of Object.entries(assets))if(d.rule_id&&d.evaluator!=='reference_classification')report.legal.push({...engine.evaluateRule(model,d),label:d.requirement_name||id,requirement:d.requirement||null,configured_parameters:d.parameters});
     // Do not run France-specific conclusions when competence is unresolved.
     if(adapted.route_input.single_trip!==true)report.legal=report.legal.filter(r=>!r.rule_id.startsWith('FRANCE_'));
     const franceEstablished=adapted.route_input.single_trip===true&&model.facts.trip.destination_country===config.supported.destination;
-    for(const id of ['SCHENGEN_SUPPORTING_EVIDENCE',...(franceEstablished?['FRANCE_APPLICATION_FILE']:[])])for(const d of asset(id).items)report.documents.push({...readiness.evaluateReadiness(model,d),notes:d.notes,evidence_status:d.evidence_status, label:d.evidence_id});
+    for(const id of ['SCHENGEN_SUPPORTING_EVIDENCE',...(franceEstablished?['FRANCE_APPLICATION_FILE']:[])])for(const d of asset(id).items)report.documents.push({...readiness.evaluateReadiness(model,d),notes:d.notes,minimum_count:d.minimum_count||null,evidence_status:d.evidence_status, label:d.evidence_id});
     report.biometrics=procedure.evaluateBiometrics(model,asset('SCHENGEN_BIOMETRICS_PROCEDURE'));
     if(franceEstablished)report.procedure=procedure.evaluateSubmissionProcedure(model,asset('FRANCE_IRELAND_SUBMISSION'));
     const returnConfig=asset('IRELAND_RETURN_DOCUMENT_READINESS');
@@ -35,9 +35,9 @@
     report.irish_return.status=Object.entries(returnConfig.results).find(([,value])=>value===report.irish_return.classification)?.[0].toUpperCase()||'UNKNOWN';
     const add=(items,priority,section,predicate)=>items.filter(predicate).forEach(r=>report.attention.push({priority,section,result:r}));
     add(report.legal,1,'Official check',r=>r.status==='FAIL');add(report.legal,2,'Official check',r=>r.status==='UNKNOWN');
-    add(report.documents,3,'Document',r=>r.status==='MISSING');add(report.documents,4,'Document',r=>r.status==='UNKNOWN');
-    add([report.biometrics,...(report.procedure?.items||[])],5,'Procedure',r=>r.status==='ACTION_REQUIRED'||r.status==='UNKNOWN');
-    if(report.irish_return.status!=='READY')report.attention.push({priority:5,section:'Return to Ireland',result:report.irish_return});
+    add(report.documents.filter(r=>r.evidence_id.startsWith('SCHENGEN_')),3,'Document',r=>r.status==='MISSING');add(report.documents.filter(r=>r.evidence_id.startsWith('SCHENGEN_')),4,'Document',r=>r.status==='UNKNOWN');
+    // Preparation tasks are checklist guidance, not missing-answer penalties.
+    // Irish return remains in the internal model; it is outside the initial assessment UX.
     add(report.documents,6,'Assessment',r=>r.evidence_id==='SCHENGEN_INTENTION_INFORMATION');
     report.attention.sort((a,b)=>a.priority-b.priority);
     return report;

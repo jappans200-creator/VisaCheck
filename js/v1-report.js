@@ -27,28 +27,59 @@ function render(target,report,sources,community){
  const route=section('1. Route coverage');el('p',report.route.status+' — '+report.route.reason,route);
  const f=report.facts;const names={IN:'India',IE:'Ireland',FR:'France',ES:'Spain',GB:'United Kingdom',metropolitan_france:'Metropolitan France',short_stay:'Short stay',tourism:'Tourism',private_visit:'Private visit'};
  el('p',[report.route.route_id.split(':')[0],f.residence.country,f.trip.destination_country==='FR'?f.trip.destination_territory:f.trip.destination_country,f.trip.visa_type,f.trip.purpose].map(v=>names[v]||v||'Unknown').join(' → '),route);
- el('p','Your travel dates: '+(f.trip.intended_entry_date||'Unknown')+' to '+(f.trip.intended_exit_date||'Unknown')+'. Return to Ireland: '+(f.trip.intended_return_to_ireland_date||'Unknown')+'.',route);
+ el('p','Your travel dates: '+(f.trip.intended_entry_date||'Unknown')+' to '+(f.trip.intended_exit_date||'Unknown')+'.',route);
  if(f.trip.destination_country==='FR'&&!f.application.competent_state)el('p','Application jurisdiction needs review: France-only routing has not been established.',route);
  for(const a of report.route.assumptions)el('p',a,route);
  if(report.issues.length)el('p','Some inputs were malformed or conflicting and remain unknown. Correct them in the form.',route);
  const visa=section('2. Visa requirement');el('p',({ANNEX_I_VISA_REQUIRED:'Visa required — nationality baseline',ANNEX_II_VISA_EXEMPT:'Visa exempt — nationality baseline',UNKNOWN:'Unknown'})[report.baseline?.classification]||'Not evaluated for this route.',visa);el('p','Nationality baseline only; this is not an approval or refusal decision.',visa);if(report.baseline)sourceLinks(report.baseline,visa);
- const checks=section('3. Official requirement checks');
- const groups=[['Passport',r=>r.rule_id.includes('TRAVEL_DOCUMENT')],['Stay',r=>r.rule_id.includes('90_IN_180')],['Irish residence',r=>r.rule_id.startsWith('FRANCE_IE')],['Insurance',r=>r.rule_id.includes('INSURANCE')],['Application timing',r=>r.rule_id.includes('LODGING')]];
+ const checks=section('A. Official Eligibility Checks');
+ const groups=[['Passport',r=>r.rule_id.includes('TRAVEL_DOCUMENT')],['Stay',r=>r.rule_id.includes('90_IN_180')],['Residence',r=>r.rule_id.startsWith('FRANCE_IE')],['Insurance',r=>r.rule_id.includes('INSURANCE')],['Application timing',r=>r.rule_id.includes('LODGING')]];
  for(const [name,filter] of groups){const items=report.legal.filter(filter);if(items.length){el('h4',name,checks);items.forEach(r=>row(r,checks));}}
- const docs=section('4. Document checklist');el('p','Non-exhaustive. Use your personal France-Visas list; document presence does not establish acceptance.',docs);
- for(const [name,filter] of [['Supporting evidence',r=>r.evidence_id.startsWith('SCHENGEN_')],['Application file and private host',r=>!r.evidence_id.startsWith('SCHENGEN_')]]){const items=report.documents.filter(filter);if(items.length){el('h4',name,docs);items.forEach(r=>row(r,docs));}}
- const proc=section('5. Application procedure');if(report.purpose)row(report.purpose,proc);if(report.biometrics)row(report.biometrics,proc);
- for(const r of report.procedure?.items||[])row({...r,source_refs:report.procedure.source_refs,evidence_status:['PASSPORT_RETURN','ONLINE_FORM','FILE_ASSERTION'].includes(r.procedure_id)?'EVIDENCE_REFRESH_REQUIRED':null},proc);
- if(report.procedure){el('p','Visa decision authority: '+report.procedure.decision_authority+'. Appointment/intake provider: '+report.procedure.intake_provider.name+' — current process, verification pending.',proc);el('p',report.procedure.translation_diagnostic==='TRANSLATION_MAY_BE_REQUIRED'?'Translation into French may be requested; acceptance requires review.':report.procedure.translation_diagnostic==='UNKNOWN'?'Translation needs are unknown.':'No language trigger identified from your declared languages.',proc);
- el('h4','Operational guidance — separate from legal results',proc);
- for(const info of report.procedure.operational_information){let text=info.kind==='OPERATIONAL_RECOMMENDATION'?`Recommended lead time: ${info.amount} working days. No deadline has been calculated.`:info.kind==='OPERATIONAL_ESTIMATE'?`Processing estimate: ${info.minimum}–${info.maximum} working days. Delays can occur; this is not guaranteed.`:info.code==='LATEST_LODGING_REQUIRES_REVIEW'?'Latest application timing remains under review; the earliest-lodging check does not establish that you are applying in time.':`Current passport return process — verification pending: ${info.currency} ${info.amount} stamped addressed envelope. Normal in-person collection is not reported available. Rejection handling differs; details need confirmation.`;el('p',text,proc);sourceLinks(info,proc);}}
- const back=section('6. Return to Ireland');if(report.irish_return)row(report.irish_return,back);else el('p','Not evaluated for this route.',back);
- const attention=section('7. Items needing attention');if(!report.attention.length)el('p',report.route.status==='UNSUPPORTED'?'This route is outside preview coverage.':'No outstanding evaluated items in the listed categories. This is not an overall visa verdict.',attention);
- for(const item of report.attention)el('p',item.section+': '+label(item.result)+' — '+(item.section==='Assessment'?'Consular assessment remains required.':message(item.result)),attention);
- const comm=section('8. Community outcome data');el('p','Historical/community-based; not an official decision or guarantee. Available samples may be small or unrepresentative.',comm);
+ const docs=section('B. Application Readiness');
+ el('p','High-level declarations and evidence presence only. These do not establish legal sufficiency or consular acceptance.',docs);
+ const declared=report.readiness_declarations?.insurance_full_trip;
+ const declaration=el('article',undefined,docs);declaration.className='result-row';el('h4','Insurance for your full trip — your declaration',declaration);
+ el('p',declared===true?'PRESENT — you report having Schengen insurance for the full trip. Detailed policy requirements remain unverified.':declared===false?'MISSING / NEEDS ATTENTION — you have not confirmed suitable full-trip insurance. This does not prove that you have no insurance policy.':'UNKNOWN — you have not confirmed full-trip insurance.',declaration);
+ for(const r of report.documents.filter(r=>r.evidence_id.startsWith('SCHENGEN_')&&r.evidence_id!=='SCHENGEN_INSURANCE_EVIDENCE'))row(r,docs);
+ const comm=section('C. Historical / Community Context');
+ el('p','Historical/community-based; not an official decision or guarantee. Available samples may be small or unrepresentative.',comm);
  el('p',community?.message||'Community data unavailable. Official checks remain independent.',comm);
  for(const r of community?.reasons||[])el('p',r.reason+' ('+r.count+' cases)',comm);
  if(community?.issues?.length)el('p',community.issues.length+' dataset validation issue(s); ambiguous fields were retained as unknown.',comm);
+ const attention=section('D. How to Strengthen Your Application');
+ if(!report.attention.length)el('p',report.route.status==='UNSUPPORTED'?'This route is outside preview coverage.':'No outstanding evaluated items in the listed categories. This is not an overall visa verdict.',attention);
+ for(const item of report.attention)el('p',item.section+': '+label(item.result)+' — '+(item.section==='Assessment'?'Consular assessment remains required.':message(item.result)),attention);
+ if(declared!==true)el('p','Arrange or check your full-trip travel insurance. Review the policy requirements listed below.',attention);
+ el('p','Review unknown checks against your documents. A check may remain unknown because this short questionnaire does not collect its detailed inputs.',attention);
+ const next=section('E. Application Checklist / Next Steps');
+ el('p','Preparation guidance, not unanswered application questions. This checklist is non-exhaustive; use the personal list supplied by France-Visas. Items below are not evidence that you have or have not completed a task.',next);
+ for(const r of report.documents.filter(r=>!r.evidence_id.startsWith('SCHENGEN_')&&r.status!=='NOT_APPLICABLE')){
+  el('h4',label(r),next);
+  if(r.minimum_count)el('p','Draft checklist count: '+r.minimum_count.minimum+'. Confirm the document specifications in the official instructions.',next);
+  for(const note of r.notes||[])el('p',note,next);
+  if(r.evidence_status==='EVIDENCE_REFRESH_REQUIRED')el('p','Current process — verification pending.',next);
+  sourceLinks(r,next);
+ }
+ const insuranceRules=report.legal.filter(r=>r.rule_id.includes('INSURANCE')&&r.status!=='NOT_APPLICABLE');
+ if(insuranceRules.length){el('h4','Check your insurance policy',next);for(const r of insuranceRules){el('p',r.requirement||label(r),next);if(Number.isFinite(r.configured_parameters?.minimum)&&r.configured_parameters.required_unit)el('p','Configured minimum cover: '+r.configured_parameters.minimum+' '+r.configured_parameters.required_unit+'.',next);sourceLinks(r,next);}}
+ if(report.procedure){
+  el('h4','Application steps',next);
+  for(const r of report.procedure.items)el('p',label(r)+' — check and complete this step according to the current application instructions.',next);
+  el('p','Visa decision authority: '+report.procedure.decision_authority+'. Appointment/intake provider: '+report.procedure.intake_provider.name+' — current process, verification pending.',next);
+  el('p','Documents outside English or French may need translation into French; confirm the current instructions. Verification pending.',next);
+  sourceLinks(report.procedure,next);
+  for(const info of report.procedure.operational_information){
+   const text=info.kind==='OPERATIONAL_RECOMMENDATION'?`Recommended lead time: ${info.amount} working days. No deadline has been calculated.`:info.kind==='OPERATIONAL_ESTIMATE'?`Processing estimate: ${info.minimum}–${info.maximum} working days. Delays can occur; this is not guaranteed.`:info.code==='LATEST_LODGING_REQUIRES_REVIEW'?'Latest application timing remains under review; the earliest-lodging check does not establish that you are applying in time.':`Current passport return process — verification pending: ${info.currency} ${info.amount} stamped addressed envelope. Normal in-person collection is not reported available. Rejection handling differs; details need confirmation.`;
+   el('p',text,next);sourceLinks(info,next);
+  }
+ }
+ if(report.biometrics){
+  el('h4','Biometrics and attendance',next);
+  if(report.biometrics.identifiers?.photograph)el('p','The configured biometric identifiers include a photograph and '+report.biometrics.identifiers.fingerprints+' fingerprints, subject to the applicable procedure and exceptions.',next);
+  const previous=f.biometrics.previous_schengen_biometrics_present;
+  el('p',previous===true?'You reported previous Schengen fingerprints'+(f.biometrics.previous_biometrics_date?' collected on '+f.biometrics.previous_biometrics_date:'')+'. Reuse and attendance still need confirmation for the application.':previous===false?'You reported no previous Schengen fingerprints. Check collection and attendance instructions when preparing the application.':'Check biometric collection and attendance instructions when preparing the application.',next);
+  sourceLinks(report.biometrics,next);
+ }
  const limits=section('9. Important limitations');el('p','V1 covers a narrow ordinary-adult tourism route. Private visits have partial coverage. The checklist is non-exhaustive; the consular authority decides the visa application. Operational guidance can change. Evidence review, source verification and resolution of known gaps remain outstanding. Community statistics do not override official checks.',limits);
 }
 return {label,message,render};

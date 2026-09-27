@@ -13,7 +13,7 @@ for(const f of fields){
  else{input.type=['date','number'].includes(f.type)?f.type:'text';if(f.type==='number'){input.min='0';input.step='any';}}
  if(f.help){const help=node('small',f.help,row);help.id=f.id+'-help';help.className='field-help';input.setAttribute('aria-describedby',help.id);}
 }
-const historySection=sectionMap.get('Previous Schengen Travel');
+const historySection=sectionMap.get('Travel History');
 const historyPanel=node('div',null,historySection);historyPanel.id='stay-history';
 const stays=node('div',null,historyPanel);const add=node('button','Add previous stay',historyPanel);add.type='button';
 historyPanel.append(document.getElementById('history_complete').closest('.form-row'));
@@ -63,16 +63,31 @@ function community(values){
  return {message,reasons:topRejectionReasons(sample),issues:dataset.issues,statistics:stats};
 }
 let generation=0;
+function showReportError(error){
+ output.hidden=true;
+ output.replaceChildren();
+ notice.textContent='The report could not be displayed. Please try again.';
+ console.error('VisaCheck report evaluation/rendering failed:',error);
+}
+function renderReport(report,sources,communityValues){
+ output.replaceChildren();
+ VisaCheckV1Report.render(output,report,sources,community(communityValues));
+ if(!output.querySelector('h2')||!output.querySelector('.report-section')||!output.textContent.trim())throw new Error('Report renderer did not produce report content');
+ output.hidden=false;
+ const style=getComputedStyle(output),rect=output.getBoundingClientRect();
+ if(style.display==='none'||['hidden','collapse'].includes(style.visibility)||style.opacity==='0'||rect.width<=0||rect.height<=0)throw new Error('Rendered report is not visible');
+ notice.textContent='Report ready. This preview is not a visa decision.';
+}
 form.addEventListener('submit',async event=>{event.preventDefault();const token=++generation;submit.disabled=true;notice.textContent='Preparing your report…';output.hidden=true;
  try{const {config,assets,sources}=await load();if(token!==generation)return;
  const values=currentValues();
  const adapted=VisaCheckV1Adapter.adapt(values,fields,config);
  const communityValues={...adapted.active_values,permit_type:adapted.model.facts.residence.permit_type,irp_expiry:adapted.model.facts.residence.irish_residence_card_expiry_date};
  const report=VisaCheckV1Integration.evaluate(adapted,config,assets);
- VisaCheckV1Report.render(output,report,sources,community(communityValues));output.hidden=false;
- if(dataset.state==='loading')communityLoad.then(()=>{if(token===generation&&!output.hidden)VisaCheckV1Report.render(output,report,sources,community(communityValues));});
- notice.textContent='Report ready. This preview is not a visa decision.';output.focus();
+ renderReport(report,sources,communityValues);
+ if(dataset.state==='loading')communityLoad.then(()=>{if(token===generation&&!output.hidden)renderReport(report,sources,communityValues);}).catch(error=>{if(token===generation)showReportError(error);});
+ output.focus();
  try{localStorage.setItem('visacheck_check_count',String(Number(localStorage.getItem('visacheck_check_count')||0)+1));}catch{/* Storage is optional; applicant facts are never persisted. */}
- }catch(error){notice.textContent='The report could not be loaded. Please try again. '+error.message;}finally{if(token===generation)submit.disabled=false;}});
+ }catch(error){if(token===generation)showReportError(error);}finally{if(token===generation)submit.disabled=false;}});
 form.addEventListener('reset',()=>{generation++;submit.disabled=false;stays.replaceChildren();output.replaceChildren();output.hidden=true;notice.textContent='Form reset. No applicant data is saved by VisaCheck.';setTimeout(conditional,0);});
 })();
