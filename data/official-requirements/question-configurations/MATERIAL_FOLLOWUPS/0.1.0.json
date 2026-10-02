@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "configuration_id": "MATERIAL_FOLLOWUPS",
+  "revision": "0.1.0",
+  "release": {
+    "release_id": "VISACHECK_FRANCE_V1",
+    "version": "0.1.0"
+  },
+  "assessment": {
+    "configuration_id": "FRANCE_V1_ASSESSMENT",
+    "revision": "0.2.0"
+  },
+  "dependencies": [
+    {
+      "result_id": "FRANCE_IE_IRP_POST_RETURN_VALIDITY",
+      "revision": "0.1.0",
+      "source": "USER_INPUT",
+      "observed_fact": "identity.country_of_origin",
+      "question": "origin",
+      "facts": [
+        "identity.country_of_origin"
+      ]
+    },
+    {
+      "result_id": "FRANCE_IE_IRP_POST_RETURN_VALIDITY",
+      "revision": "0.1.0",
+      "source": "USER_INPUT",
+      "observed_fact": "trip.intended_return_to_ireland_date",
+      "question": "return",
+      "facts": [
+        "trip.return_destination_country",
+        "trip.intended_return_date"
+      ]
+    }
+  ],
+  "notes": [
+    "Presentation dependencies only; legal rule and compatibility bridge remain unchanged.",
+    "User supplied current bilingual France-Visas finding supports retaining origin applicability. No independent source verification or historical evidence promotion performed."
+  ]
+}

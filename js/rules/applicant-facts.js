@@ -15,9 +15,9 @@
     return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
   }
   const shape = {
-    identity: { age: 'integer', date_of_birth: 'date', applicant_conditions: 'strings', country_of_origin: 'country_code' },
+    identity: { nationality: 'country_code', age: 'integer', date_of_birth: 'date', applicant_conditions: 'strings', country_of_origin: 'country_code' },
     passport: { issuing_country: 'text', document_type: 'text', issue_date: 'date', expiry_date: 'date', blank_pages: 'integer', document_condition: 'text' },
-    residence: { country: 'text', legal_status: 'text', permit_type: 'text', permit_expiry_date: 'date', irish_permission_status: 'text', irish_residence_card_present: 'boolean', irish_residence_card_expiry_date: 'date', irish_irp_renewal_status: 'renewal_status' },
+    residence: { country: 'text', legal_status: 'text', document: 'residence_document', permit_type: 'text', permit_expiry_date: 'date', irish_permission_status: 'text', irish_residence_card_present: 'boolean', irish_residence_card_expiry_date: 'date', irish_irp_renewal_status: 'renewal_status' },
     // Supplied by an adapter: departure from the Member States for one visit,
     // or LAST such departure for several visits. Never inferred from geography
     // or intended_exit_date; an unresolved adapter determination must be null.
@@ -29,6 +29,8 @@
     biometrics: { previous_biometrics_date: 'date', fingerprint_condition: 'text', previous_schengen_biometrics_present: 'boolean', reuse_confirmed: 'boolean', fingerprint_exemption_status: 'text', physical_impossibility_status: 'text' },
   };
   shape.trip.intended_return_to_ireland_date = 'date';
+  shape.trip.return_destination_country = 'country_code';
+  shape.trip.intended_return_date = 'date';
   shape.trip.professional_activity_planned = 'boolean';
   shape.trip.family_settlement_planned = 'boolean';
   shape.trip.purpose = 'purpose';
@@ -74,6 +76,9 @@
         return missing(value) ? null : invalid(path);
       }
       if (missing(value)) return null;
+      if (type === 'residence_document') return object(value)
+        ? group(value, { issuing_country: 'country_code', type: 'text', present: 'boolean', expiry_date: 'date' }, path)
+        : invalid(path);
       if (type === 'country_code') return typeof value === 'string' && /^[A-Z]{2}$/.test(value.trim()) ? value.trim() : invalid(path);
       // Accept Batch 3 labels while preserving existing lower-case rule tokens.
       if (type === 'purpose') return typeof value === 'string' ? ({ TOURISM: 'tourism', PRIVATE_VISIT: 'private_visit' }[value.trim()] || value.trim()) : invalid(path);
@@ -120,7 +125,59 @@
       const read = path => path.split('.').reduce((v, key) => v[key], facts);
       if (read(start) && read(end) && read(start) > read(end)) { invalid(start, 'CONFLICTING_FACTS'); invalid(end, 'CONFLICTING_FACTS'); }
     }
-    return { facts, issues };
+    const model = { facts, issues };
+    projectLegacyIrishFacts(model);
+    return model;
+  }
+  // Temporary, explicit migration boundary. Generic facts carry no Irish legal
+  // assumptions. Only equivalent, explicitly identified events/documents feed
+  // the immutable legacy bindings. Always evaluate the returned facts + issues.
+  function projectLegacyIrishFacts(model) {
+    const { facts, issues } = model;
+    const mark = (paths, code) => paths.forEach(path => {
+      if (!issues.some(i => i.path === path && i.code === code)) issues.push({ path, code });
+    });
+    const write = (path, value) => {
+      const keys = path.split('.');
+      keys.slice(0, -1).reduce((v, key) => v[key], facts)[keys.at(-1)] = value;
+    };
+    const link = (generic, legacy) => {
+      const a = getFact(model, generic), b = getFact(model, legacy);
+      if (a.state === 'INVALID' || b.state === 'INVALID') mark([generic, legacy], 'COMPATIBILITY_INVALID_FACT');
+      else if (a.state === 'KNOWN' && b.state === 'KNOWN' && a.value !== b.value) mark([generic, legacy], 'CONFLICTING_FACTS');
+      else if (a.state === 'KNOWN' && b.state === 'MISSING') write(legacy, a.value);
+    };
+    const returnCountry = getFact(model, 'trip.return_destination_country');
+    const legacyReturn = 'trip.intended_return_to_ireland_date';
+    if (returnCountry.state === 'KNOWN' && returnCountry.value === 'IE') {
+      link('trip.intended_return_date', legacyReturn);
+    } else if (getFact(model, legacyReturn).state !== 'MISSING' && returnCountry.state !== 'MISSING') {
+      mark(['trip.return_destination_country', 'trip.intended_return_date', legacyReturn], returnCountry.state === 'INVALID' ? 'COMPATIBILITY_INVALID_FACT' : 'CONFLICTING_FACTS');
+    }
+
+    // A malformed enclosing group already invalidates every child binding.
+    if (issues.some(i => i.path === '' || i.path === 'residence')) return;
+    const doc = facts.residence.document;
+    const presence = 'residence.irish_residence_card_present';
+    const expiry = 'residence.irish_residence_card_expiry_date';
+    const issuer = getFact(model, 'residence.document.issuing_country');
+    const type = getFact(model, 'residence.document.type');
+    const hasLegacyCard = [presence, expiry].some(path => getFact(model, path).state !== 'MISSING');
+    if (issuer.state === 'INVALID' || type.state === 'INVALID') {
+      mark([presence, expiry], 'COMPATIBILITY_INVALID_FACT');
+    } else if (hasLegacyCard && ((issuer.state === 'KNOWN' && issuer.value !== 'IE') || (type.state === 'KNOWN' && type.value !== 'IRP'))) {
+      // One selected document: contradictory identities must not silently win.
+      mark(['residence.document', presence, expiry], 'CONFLICTING_FACTS');
+    } else if (doc && issuer.value === 'IE' && type.value === 'IRP') {
+      const permitType = getFact(model, 'residence.permit_type');
+      if (permitType.state === 'INVALID' || (permitType.state === 'KNOWN' && permitType.value !== 'Irish IRP')) {
+        mark(['residence.document', 'residence.permit_type', presence, expiry], permitType.state === 'INVALID' ? 'COMPATIBILITY_INVALID_FACT' : 'CONFLICTING_FACTS');
+      } else {
+        if (permitType.state === 'MISSING') facts.residence.permit_type = 'Irish IRP';
+        link('residence.document.present', presence);
+        link('residence.document.expiry_date', expiry);
+      }
+    }
   }
   function getFact(model, path) {
     if (!object(model) || !object(model.facts) || !Array.isArray(model.issues) || typeof path !== 'string' || !/^[a-zA-Z_][\w]*(?:\.(?:[a-zA-Z_]\w*|\d+))*$/.test(path)) return { state: 'INVALID', value: null };

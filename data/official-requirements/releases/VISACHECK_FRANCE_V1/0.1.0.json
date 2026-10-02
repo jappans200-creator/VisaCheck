@@ -1,0 +1,390 @@
+{
+  "schema_version": "1.0.0",
+  "release_id": "VISACHECK_FRANCE_V1",
+  "version": "0.1.0",
+  "publication": {
+    "status": "DEVELOPMENT_PREVIEW",
+    "release_ready": false,
+    "evidence_review_status": "NEEDS_REVIEW"
+  },
+  "applicability": {
+    "all": [
+      {
+        "fact": "identity.nationality",
+        "op": "eq",
+        "value": "IN"
+      },
+      {
+        "fact": "passport.issuing_country",
+        "op": "eq",
+        "value": "IN"
+      },
+      {
+        "fact": "passport.document_type",
+        "op": "eq",
+        "value": "ordinary"
+      },
+      {
+        "fact": "residence.country",
+        "op": "eq",
+        "value": "IE"
+      },
+      {
+        "fact": "trip.destination_country",
+        "op": "eq",
+        "value": "FR"
+      },
+      {
+        "fact": "trip.destination_territory",
+        "op": "eq",
+        "value": "metropolitan_france"
+      },
+      {
+        "fact": "trip.visa_regime",
+        "op": "eq",
+        "value": "schengen"
+      },
+      {
+        "fact": "trip.visa_type",
+        "op": "eq",
+        "value": "short_stay"
+      },
+      {
+        "fact": "trip.purpose",
+        "op": "in",
+        "value": [
+          "tourism",
+          "private_visit"
+        ]
+      }
+    ]
+  },
+  "exclude_when": {
+    "any": [
+      {
+        "not": {
+          "fact": "identity.age",
+          "op": "gte",
+          "value": 18
+        }
+      },
+      {
+        "not": {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        }
+      },
+      {
+        "fact": "trip.professional_activity_planned",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "fact": "trip.family_settlement_planned",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "fact": "residence.permit_type",
+        "op": "eq",
+        "value": "STAMP 4 EUFAM"
+      },
+      {
+        "fact": "context.nationality_selection",
+        "op": "eq",
+        "value": "OTHER"
+      }
+    ]
+  },
+  "coverage": {
+    "scope": "APPLICABILITY_BOUND",
+    "complete_when": {
+      "all": [
+        {
+          "fact": "trip.purpose",
+          "op": "eq",
+          "value": "tourism"
+        },
+        {
+          "fact": "identity.age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "fact": "identity.applicant_conditions",
+          "op": "subset",
+          "value": [
+            "ordinary_adult_applicant"
+          ]
+        },
+        {
+          "fact": "residence.legal_status",
+          "op": "eq",
+          "value": "legal_resident"
+        },
+        {
+          "fact": "trip.professional_activity_planned",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "fact": "trip.family_settlement_planned",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "fact": "context.single_trip",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    },
+    "notes": "Only the ordinary tourism preview has supported runtime coverage. Private visit remains partial; research is unverified and the document list is non-exhaustive."
+  },
+  "evaluation_context": {
+    "assessment_date": null
+  },
+  "groups": [
+    {
+      "id": "LOCAL_RULES",
+      "when": {
+        "fact": "context.single_trip",
+        "op": "eq",
+        "value": true
+      },
+      "assets": [
+        {
+          "key": "FRANCE_IE_APPLICATION_JURISDICTION",
+          "role": "rule",
+          "id": "FRANCE_IE_APPLICATION_JURISDICTION",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/FRANCE_IE_APPLICATION_JURISDICTION/0.1.0.json"
+        },
+        {
+          "key": "FRANCE_IE_IRP_DOCUMENT_PRESENCE",
+          "role": "rule",
+          "id": "FRANCE_IE_IRP_DOCUMENT_PRESENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/FRANCE_IE_IRP_DOCUMENT_PRESENCE/0.1.0.json"
+        },
+        {
+          "key": "FRANCE_IE_IRP_POST_RETURN_VALIDITY",
+          "role": "rule",
+          "id": "FRANCE_IE_IRP_POST_RETURN_VALIDITY",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/FRANCE_IE_IRP_POST_RETURN_VALIDITY/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "SHARED_RULES",
+      "when": {
+        "always": true
+      },
+      "assets": [
+        {
+          "key": "SCHENGEN_EARLIEST_LODGING",
+          "role": "rule",
+          "id": "SCHENGEN_EARLIEST_LODGING",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_EARLIEST_LODGING/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_INSURANCE_COVERAGE_AMOUNT",
+          "role": "rule",
+          "id": "SCHENGEN_INSURANCE_COVERAGE_AMOUNT",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_COVERAGE_AMOUNT/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_INSURANCE_DATE_COVERAGE",
+          "role": "rule",
+          "id": "SCHENGEN_INSURANCE_DATE_COVERAGE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_DATE_COVERAGE/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE",
+          "role": "rule",
+          "id": "SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_EMERGENCY_OR_HOSPITAL_COVERAGE/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_INSURANCE_MEDICAL_REPATRIATION",
+          "role": "rule",
+          "id": "SCHENGEN_INSURANCE_MEDICAL_REPATRIATION",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_MEDICAL_REPATRIATION/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_INSURANCE_PRESENCE",
+          "role": "rule",
+          "id": "SCHENGEN_INSURANCE_PRESENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_PRESENCE/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_INSURANCE_TERRITORY",
+          "role": "rule",
+          "id": "SCHENGEN_INSURANCE_TERRITORY",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_INSURANCE_TERRITORY/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_SHORT_STAY_90_IN_180",
+          "role": "rule",
+          "id": "SCHENGEN_SHORT_STAY_90_IN_180",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_SHORT_STAY_90_IN_180/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_TRAVEL_DOCUMENT_BLANK_PAGES",
+          "role": "rule",
+          "id": "SCHENGEN_TRAVEL_DOCUMENT_BLANK_PAGES",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_TRAVEL_DOCUMENT_BLANK_PAGES/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_TRAVEL_DOCUMENT_MAX_AGE",
+          "role": "rule",
+          "id": "SCHENGEN_TRAVEL_DOCUMENT_MAX_AGE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_TRAVEL_DOCUMENT_MAX_AGE/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_TRAVEL_DOCUMENT_REMAINING_VALIDITY",
+          "role": "rule",
+          "id": "SCHENGEN_TRAVEL_DOCUMENT_REMAINING_VALIDITY",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_TRAVEL_DOCUMENT_REMAINING_VALIDITY/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "SHARED_READINESS",
+      "when": {
+        "always": true
+      },
+      "assets": [
+        {
+          "key": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "role": "readiness",
+          "id": "SCHENGEN_SUPPORTING_EVIDENCE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/SCHENGEN_SUPPORTING_EVIDENCE/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "LOCAL_READINESS",
+      "when": {
+        "fact": "context.single_trip",
+        "op": "eq",
+        "value": true
+      },
+      "assets": [
+        {
+          "key": "FRANCE_APPLICATION_FILE",
+          "role": "readiness",
+          "id": "FRANCE_APPLICATION_FILE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/document-readiness/FRANCE_APPLICATION_FILE/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "SHARED_SERVICES",
+      "when": {
+        "always": true
+      },
+      "assets": [
+        {
+          "key": "IRELAND_RETURN_DOCUMENT_READINESS",
+          "role": "return_diagnostic",
+          "id": "IRELAND_RETURN_DOCUMENT_READINESS",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/diagnostics/IRELAND_RETURN_DOCUMENT_READINESS/0.1.0.json"
+        },
+        {
+          "key": "FRANCE_SHORT_STAY_PURPOSES",
+          "role": "purpose",
+          "id": "FRANCE_SHORT_STAY_PURPOSES",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/procedure-configurations/FRANCE_SHORT_STAY_PURPOSES/0.1.0.json"
+        },
+        {
+          "key": "SCHENGEN_BIOMETRICS_PROCEDURE",
+          "role": "biometrics",
+          "id": "SCHENGEN_BIOMETRICS_PROCEDURE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/procedure-configurations/SCHENGEN_BIOMETRICS_PROCEDURE/0.1.0.json"
+        },
+        {
+          "key": "nationality_reference",
+          "role": "reference",
+          "id": "SCHENGEN_VISA_NATIONALITY",
+          "revision": "2025-12-30",
+          "path": "data/official-requirements/reference-data/schengen-visa-nationality/2025-12-30.json"
+        },
+        {
+          "key": "SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE",
+          "role": "baseline",
+          "id": "SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/rules/SCHENGEN_SHORT_STAY_VISA_REQUIREMENT_BASELINE/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "LOCAL_PROCEDURE",
+      "when": {
+        "fact": "context.single_trip",
+        "op": "eq",
+        "value": true
+      },
+      "assets": [
+        {
+          "key": "FRANCE_IRELAND_SUBMISSION",
+          "role": "submission",
+          "id": "FRANCE_IRELAND_SUBMISSION",
+          "revision": "0.1.0",
+          "path": "data/official-requirements/procedure-configurations/FRANCE_IRELAND_SUBMISSION/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "ASSESSMENT_POLICY",
+      "when": {
+        "always": true
+      },
+      "assets": [
+        {
+          "key": "assessment",
+          "role": "assessment",
+          "id": "FRANCE_V1_ASSESSMENT",
+          "revision": "0.2.0",
+          "path": "data/official-requirements/assessment-configurations/FRANCE_V1_ASSESSMENT/0.2.0.json"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "document_attention_ids": [
+      "SCHENGEN_INSURANCE_EVIDENCE",
+      "SCHENGEN_ACCOMMODATION_EVIDENCE",
+      "SCHENGEN_FINANCIAL_EVIDENCE",
+      "SCHENGEN_RETURN_FUNDS_EVIDENCE",
+      "SCHENGEN_RETURN_ONWARD_EVIDENCE",
+      "SCHENGEN_ITINERARY_EVIDENCE",
+      "SCHENGEN_PURPOSE_EVIDENCE",
+      "SCHENGEN_INTENTION_INFORMATION"
+    ],
+    "assessment_ids": [
+      "SCHENGEN_INTENTION_INFORMATION"
+    ]
+  }
+}

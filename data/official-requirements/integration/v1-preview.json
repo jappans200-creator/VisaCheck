@@ -43,5 +43,17 @@
   "questionnaire_scope": {
     "tourism": "The ordinary India\u2013Ireland\u2013Metropolitan France tourism preview is evaluated on a no-professional-work basis. This is the selected product scope, not independent verification of planned activities.",
     "jurisdiction": "The selected Metropolitan France destination is treated as the simple France application route for this tourism preview. No multi-country itinerary has been declared or inferred; additional itinerary information would require jurisdiction review."
+  },
+  "runtime_releases": [
+    {
+      "release_id": "VISACHECK_FRANCE_V1",
+      "version": "0.1.0",
+      "path": "data/official-requirements/releases/VISACHECK_FRANCE_V1/0.1.0.json"
+    }
+  ],
+  "question_configuration": {
+    "configuration_id": "MATERIAL_FOLLOWUPS",
+    "revision": "0.1.0",
+    "path": "data/official-requirements/question-configurations/MATERIAL_FOLLOWUPS/0.1.0.json"
   }
 }

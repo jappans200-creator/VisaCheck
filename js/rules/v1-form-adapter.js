@@ -55,6 +55,8 @@
     const id = raw.identity || (raw.identity = {}), passport = raw.passport || (raw.passport = {});
     const residence = raw.residence || (raw.residence = {}), evidence = raw.supporting_evidence || (raw.supporting_evidence = {});
     const supported = config.supported;
+    // "Other" is a coverage choice, not a known nationality country code.
+    id.nationality = /^[A-Z]{2}$/.test(answers.nationality || '') ? answers.nationality : null;
     passport.issuing_country = answers.nationality === supported.nationality && passport.document_type === supported.document ? supported.issuer : null;
     // Destination option explicitly identifies Metropolitan France and a short visit.
     // No corresponding derivation exists for other destinations or unknown purposes.
@@ -75,8 +77,11 @@
     // ordinary Ireland route. No valid card does not prove unlawful residence,
     // nor does it prove that no physical (possibly expired) card exists.
     residence.legal_status = ordinaryIrelandRoute && answers.irp === true ? 'legal_resident' : null;
-    residence.irish_residence_card_present = ordinaryIrelandRoute && answers.irp === true ? true : null;
-    residence.permit_type = ordinaryIrelandRoute && answers.irp === true ? 'Irish IRP' : null;
+    // Legacy presence/type bindings are supplied by the explicit IRP bridge.
+    residence.document = ordinaryIrelandRoute && answers.irp === true ? {
+      issuing_country: 'IE', type: 'IRP', present: true,
+      expiry_date: residence.irish_residence_card_expiry_date ?? null
+    } : null;
     residence.irish_irp_renewal_status = 'UNKNOWN';
     residence.irish_permission_status = null;
     evidence.travel_medical_insurance = { present: answers.insurance === true ? true : null };
@@ -105,6 +110,9 @@
     }
     const model = factsAPI.normalizeApplicantFacts(raw);
     model.issues.push(...issues);
+    if (residence.document) for (const issue of issues) {
+      if (issue.path === 'residence.irish_residence_card_expiry_date') model.issues.push({ ...issue, path: 'residence.document.expiry_date' });
+    }
     return {
       model,
       route_input: { nationality: answers.nationality, single_trip: single ? true : null },

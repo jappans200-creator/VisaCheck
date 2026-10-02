@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>VisaCheck — V1 checker preview</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/v1-checker.css"></head>
-<body><nav class="nav"><div class="wrap"><a class="brand" href="index.html">VisaCheck<span class="dot">.</span></a><a href="report.html">Report an outcome</a></div></nav>
-<main class="wrap v1-checker"><h1>Check your visa application preparation</h1>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>VisaCheck — V1 checker preview</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/v1-checker.css"><link rel="stylesheet" href="css/passport-experiment.css"></head>
+<body class="passport-experiment"><a class="skip-link" href="#check-form">Skip to questionnaire</a><nav class="nav"><div class="wrap"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">V</span>VisaCheck<span class="dot">.</span></a><div class="nav-links"><span class="preview-tag">V1 preview</span><a href="report.html">Report an outcome</a></div></div></nav>
+<main class="wrap v1-checker"><header class="checker-intro"><p class="eyebrow">Your digital travel companion</p><h1>A little clarity.<br>Before you travel.</h1><p class="intro-lede">Understand your visa readiness before you apply.</p></header>
 <p class="preview-notice">V1 DEVELOPMENT / PREVIEW — official-source evidence is pending verification. No overall visa verdict is provided.</p>
-<p>India ordinary passport → legal residence in Ireland → Metropolitan France → short-stay Schengen tourism. Ordinary adults only. Private visits have partial coverage.</p>
-<p>Open each section and enter what you know. Blank or unsure answers remain unknown. Nothing is sent to a backend or saved by VisaCheck. Serve this static site over HTTP to load the local data files.</p>
+<div class="passport-book"><aside class="book-intro"><div class="book-imprint"><span class="eyebrow">VisaCheck / travel readiness</span><span class="book-monogram" aria-hidden="true">V<span>c</span></span><h2>Your journey.<br>Your preparation.</h2><p>A clearer picture of your documents, your next steps, and what still needs attention.</p></div><div class="book-route"><span class="eyebrow">The V1 route</span><p>India <span aria-hidden="true">→</span> Ireland <span aria-hidden="true">→</span> France</p><small>India ordinary passport → legal residence in Ireland → Metropolitan France → short-stay Schengen tourism. Ordinary adults only. Private visits have partial coverage.</small></div><p class="book-footnote">Independent guidance.<br>Your next step starts with what you know.</p></aside><div class="questionnaire-page"><div class="page-heading"><span class="eyebrow">01 / Your details</span><span class="page-edition">VisaCheck · Preview</span></div><h2>Check your preparation</h2>
+<p class="questionnaire-note">Open each section and enter what you know. Blank or unsure answers remain unknown. Nothing is sent to a backend or saved by VisaCheck.</p>
 <noscript>This checker needs JavaScript enabled.</noscript>
 <form id="check-form" class="checker-card"><div id="form-sections"></div>
 <p id="purpose-note" hidden>Some private-visit requirements are still under review, including insurance. Coverage is partial.</p>
-<div class="form-actions"><button id="check-submit" type="submit" class="btn-primary">Create my report</button><button type="reset">Reset</button></div></form>
+<div class="form-actions"><button id="check-submit" type="submit" class="btn-primary">Create my report <span aria-hidden="true">↗</span></button><button type="reset">Reset</button></div></form></div></div>
 <p id="form-status" role="status" aria-live="polite"></p><div id="results" tabindex="-1" hidden></div>
-</main><footer class="wrap">The consular authority makes the visa decision. <a href="report.html">Report a community outcome</a>.</footer>
+</main><footer class="wrap">Independent visa-readiness tool. Not affiliated with a government or consulate.<br>The consular authority makes the visa decision. <a href="report.html">Report a community outcome</a>.</footer>
 <script src="js/csv-parse.js"></script>
 <script src="js/outcome-data.js"></script>
 <script src="js/match.js"></script>
@@ -25,7 +25,12 @@
 <script src="js/rules/application-procedure.js"></script>
 <script src="js/v1-form-fields.js"></script>
 <script src="js/rules/v1-form-adapter.js"></script>
+<script src="js/rules/assessment.js"></script>
+<script src="js/rules/assessment-adapter.js"></script>
+<script src="js/rules/runtime-release.js"></script>
 <script src="js/rules/v1-integration.js"></script>
 <script src="js/v1-report.js"></script>
+<script src="js/country-options.js"></script>
+<script src="js/rules/material-questions.js"></script>
 <script src="js/checker.js"></script>
 </body></html>

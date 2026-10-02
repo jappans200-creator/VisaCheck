@@ -13,6 +13,34 @@ for(const f of fields){
  else{input.type=['date','number'].includes(f.type)?f.type:'text';if(f.type==='number'){input.min='0';input.step='any';}}
  if(f.help){const help=node('small',f.help,row);help.id=f.id+'-help';help.className='field-help';input.setAttribute('aria-describedby',help.id);}
 }
+// Follow-ups are activated by evaluated material dependencies, never by country branches.
+const followupPanel=node('section',null,sections);followupPanel.id='material-followups';followupPanel.className='form-section';followupPanel.hidden=true;
+let followupAnswers={},enabledFollowups=[],questionConfig=null,scopeKey=null,dynamicSubmit=false;
+function resetFollowups(){followupAnswers={};enabledFollowups=[];followupPanel.replaceChildren();followupPanel.hidden=true;}
+function renderFollowups(report){
+ enabledFollowups=VisaCheckMaterialQuestions.resolve(report,questionConfig,followupAnswers);
+ if(!enabledFollowups.includes('origin'))delete followupAnswers.origin;
+ if(!enabledFollowups.includes('return'))for(const key of ['return','return_country','return_date'])delete followupAnswers[key];
+ followupPanel.replaceChildren();followupPanel.hidden=!enabledFollowups.length;
+ if(followupPanel.hidden)return;
+ node('h3','Official profile follow-up',followupPanel);
+ const unresolved=report.legal.some(r=>r.status==='UNKNOWN'&&report.assessment_configuration.results.some(b=>b.result_id===r.rule_id&&b.role==='BLOCKING'&&b.material));
+ node('p',unresolved?'We need a few more details to complete an official profile check.':'Your follow-up answers are included below. You can change them here.',followupPanel);
+ const control=(key,label,type,options)=>{
+  const row=node('div',null,followupPanel);row.className='form-row';node('label',label,row).htmlFor='followup-'+key;
+  const input=node(type==='date'?'input':'select',null,row);input.id='followup-'+key;input.name=input.id;
+  if(type==='date')input.type='date';else{node('option','Unsure / not supplied',input).value='';for(const [code,name]of options)node('option',name,input).value=code;}
+  input.value=followupAnswers[key]||'';
+  input.addEventListener('change',()=>{followupAnswers=VisaCheckMaterialQuestions.change(followupAnswers,key,input.value);dynamicSubmit=true;form.requestSubmit();});
+ };
+ if(enabledFollowups.includes('origin'))control('origin','Country of origin','country',VisaCheckCountryOptions);
+ if(enabledFollowups.includes('return')){
+  control('return','After this trip, are you returning to your country of residence?','select',[['yes','Yes'],['no','No / onward travel']]);
+  if(followupAnswers.return==='no')control('return_country','Country of intended return (after any onward travel)','country',VisaCheckCountryOptions);
+  if(followupAnswers.return==='yes'||followupAnswers.return==='no'&&followupAnswers.return_country)control('return_date','On what date will you return?','date');
+  if(followupAnswers.return==='no')node('p','Supply your intended return country and date if known. Onward travel is not assumed to be a return to your residence; an unresolved residence-return check still needs review.',followupPanel);
+ }
+}
 const historySection=sectionMap.get('Travel History');
 const historyPanel=node('div',null,historySection);historyPanel.id='stay-history';
 const stays=node('div',null,historyPanel);const add=node('button','Add previous stay',historyPanel);add.type='button';
@@ -45,12 +73,38 @@ function conditional(){
 }
 form.addEventListener('change',event=>{
  if(event.target.closest('.stay-row'))document.getElementById('history_complete').value='';
+ const currentScope=JSON.stringify(['nationality','residence','destination','purpose','document','special','age'].map(id=>document.getElementById(id).value));
+ if(scopeKey!==null&&scopeKey!==currentScope){resetFollowups();generation++;submit.disabled=false;output.hidden=true;output.replaceChildren();notice.textContent='Your profile changed. Create an updated report.';}
+ scopeKey=currentScope;
  conditional();
 });
 conditional();
 async function json(path){const response=await fetch(path);if(!response.ok)throw new Error('Could not load '+path);return response.json();}
 let loadPromise;
-function load(){if(!loadPromise)loadPromise=(async()=>{const config=await json('data/official-requirements/integration/v1-preview.json');const assets=Object.fromEntries(await Promise.all(Object.entries(config.assets).map(async([id,path])=>[id,await json(path)])));const refs=new Set();const walk=v=>{if(!v||typeof v!=='object')return;if(v.source_id&&v.path)refs.add(v.path);Object.values(v).forEach(walk);};walk(assets);const sources={};await Promise.all([...refs].map(async path=>{try{sources[path]=await json(path);}catch{/* A missing source link must not invent a URL or change evaluation. */}}));return {config,assets,sources};})().catch(error=>{loadPromise=null;throw error;});return loadPromise;}
+function load(){
+ if(!loadPromise)loadPromise=(async()=>{
+  const config=await json('data/official-requirements/integration/v1-preview.json');
+  config.releases=await VisaCheckRuntimeRelease.loadRegistry(config.runtime_releases,json);
+  if(config.question_configuration){questionConfig=VisaCheckMaterialQuestions.validate(await json(config.question_configuration.path),config.question_configuration);}
+  return config;
+ })().catch(error=>{loadPromise=null;throw error;});
+ return loadPromise;
+}
+const selectedLoads=new Map();
+function loadSelected(selection){
+ const key=JSON.stringify(selection.asset_refs);
+ if(!selectedLoads.has(key))selectedLoads.set(key,readSelected(selection).catch(error=>{selectedLoads.delete(key);throw error;}));
+ return selectedLoads.get(key);
+}
+async function readSelected(selection){
+ const assets=await VisaCheckRuntimeRelease.loadAssets(selection,json);
+ const refs=new Set();
+ const walk=v=>{if(!v||typeof v!=='object')return;if(v.source_id&&v.path)refs.add(v.path);Object.values(v).forEach(walk);};
+ walk(assets);
+ const sources={};
+ await Promise.all([...refs].map(async path=>{try{sources[path]=await json(path);}catch{/* Existing optional display-copy policy: pinned provenance stays on results. */}}));
+ return {assets,sources};
+}
 let dataset={records:[],issues:[],state:'loading'};
 const communityLoad=fetch('data/visa_outcomes.csv').then(r=>{if(!r.ok)throw new Error('Dataset load failed');return r.text();}).then(text=>{dataset={...ingestOutcomeCSV(text),state:'loaded'};}).catch(()=>{dataset.state='unavailable';});
 function community(values){
@@ -79,15 +133,24 @@ function renderReport(report,sources,communityValues){
  notice.textContent='Report ready. This preview is not a visa decision.';
 }
 form.addEventListener('submit',async event=>{event.preventDefault();const token=++generation;submit.disabled=true;notice.textContent='Preparing your report…';output.hidden=true;
- try{const {config,assets,sources}=await load();if(token!==generation)return;
+ try{const config=await load();if(token!==generation)return;
  const values=currentValues();
- const adapted=VisaCheckV1Adapter.adapt(values,fields,config);
+ const adapted=VisaCheckMaterialQuestions.apply(VisaCheckV1Adapter.adapt(values,fields,config),followupAnswers,enabledFollowups);
+ const {assets,sources}=await loadSelected(VisaCheckV1Integration.select(adapted,config));
+ if(token!==generation)return;
  const communityValues={...adapted.active_values,permit_type:adapted.model.facts.residence.permit_type,irp_expiry:adapted.model.facts.residence.irish_residence_card_expiry_date};
- const report=VisaCheckV1Integration.evaluate(adapted,config,assets);
+ let report=VisaCheckV1Integration.evaluate(adapted,config,assets);
+ const nextFollowups=VisaCheckMaterialQuestions.resolve(report,questionConfig,followupAnswers);
+ if(enabledFollowups.some(key=>!nextFollowups.includes(key))){
+  // Clear inactive answers before producing the final canonical report as well.
+  renderFollowups(report);
+  report=VisaCheckV1Integration.evaluate(VisaCheckMaterialQuestions.apply(VisaCheckV1Adapter.adapt(values,fields,config),followupAnswers,enabledFollowups),config,assets);
+ }
+ renderFollowups(report);
  renderReport(report,sources,communityValues);
  if(dataset.state==='loading')communityLoad.then(()=>{if(token===generation&&!output.hidden)renderReport(report,sources,communityValues);}).catch(error=>{if(token===generation)showReportError(error);});
- output.focus();
+ if(!dynamicSubmit)output.focus();dynamicSubmit=false;
  try{localStorage.setItem('visacheck_check_count',String(Number(localStorage.getItem('visacheck_check_count')||0)+1));}catch{/* Storage is optional; applicant facts are never persisted. */}
  }catch(error){if(token===generation)showReportError(error);}finally{if(token===generation)submit.disabled=false;}});
-form.addEventListener('reset',()=>{generation++;submit.disabled=false;stays.replaceChildren();output.replaceChildren();output.hidden=true;notice.textContent='Form reset. No applicant data is saved by VisaCheck.';setTimeout(conditional,0);});
+form.addEventListener('reset',()=>{generation++;submit.disabled=false;resetFollowups();stays.replaceChildren();output.replaceChildren();output.hidden=true;notice.textContent='Form reset. No applicant data is saved by VisaCheck.';setTimeout(conditional,0);});
 })();

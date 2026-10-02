@@ -41,10 +41,13 @@ const submit=async()=>{
 assert.equal(await evaluate("VisaCheckV1Fields.length"),35);
 for(const id of ['return','activity','other_schengen','legal','amount','insurance_from','physical','completed','actual_lodging'])assert.equal(await evaluate(`document.getElementById(${JSON.stringify(id)})===null`),true);
 await fill(complete());const normal=await submit();assert.ok(normal.legalCount>0);
+assert.equal(await evaluate("window.__smokeReport.runtime.release_id"),'VISACHECK_FRANCE_V1');
+assert.equal(await evaluate("window.__smokeReport.runtime.asset_refs.length"),23);
+assert.equal(await evaluate("window.__smokeReport.legal.find(r=>r.rule_id==='FRANCE_IE_IRP_POST_RETURN_VALIDITY').status"),'UNKNOWN');
 await evaluate("document.getElementById('results').scrollIntoView({block:'start',behavior:'instant'})");
 require('node:fs').writeFileSync('/tmp/visacheck-report-normal.png',Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
 let text=await evaluate("document.querySelector('#results').innerText");
-assert.match(text,/SUPPORTED/);assert.match(text,/Visa required/);assert.match(text,/Official Eligibility Checks/);assert.match(text,/Application Readiness/);assert.match(text,/Historical \/ Community Context/);assert.match(text,/How to Strengthen Your Application/);assert.match(text,/Application Checklist \/ Next Steps/);assert.match(text,/Identity photos/);assert.match(text,/Draft checklist count: 2/);assert.match(text,/Approval rate among similar records|similar records/);
+assert.match(text,/78% \(9 records\)|78 \/ 100/);assert.match(text,/SUPPORTED/);assert.match(text,/Visa required/);assert.match(text,/Official Eligibility Checks/);assert.match(text,/Application Readiness/);assert.match(text,/Historical \/ Community Context/);assert.match(text,/How to Strengthen Your Application/);assert.match(text,/Application Checklist \/ Next Steps/);assert.match(text,/Identity photos/i);assert.match(text,/Draft checklist count: 2/);assert.match(text,/historical\/community comparison is 78\/100 from 9 records/);
 assert.ok(!text.includes('6. Return to Ireland'));assert.ok(await evaluate("document.querySelectorAll('#results .source-link').length>0"));
 await fill({insurance:'no'});await submit();assert.match(await evaluate("document.querySelector('#results').innerText"),/MISSING \/ NEEDS ATTENTION/);
 assert.equal(await evaluate("[...document.querySelectorAll('.result-row')].find(r=>r.querySelector('h4').textContent==='Insurance coverage amount').querySelector('.status').textContent"),'UNKNOWN');
@@ -61,6 +64,10 @@ await evaluate("document.getElementById('results').scrollIntoView({block:'start'
 require('node:fs').writeFileSync('/tmp/visacheck-report-partial.png',Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
 await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});assert.ok(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'));
 await fill({destination:'ES'});await submit();assert.match(await evaluate("document.querySelector('#results').innerText"),/UNSUPPORTED/);
+assert.deepEqual(await evaluate("window.__smokeReport.runtime.asset_refs"),[]);
+assert.deepEqual(await evaluate("window.__smokeReport.legal"),[]);
+assert.equal(await evaluate("window.__smokeReport.procedure"),null);
+assert.equal(await evaluate("document.querySelectorAll('#results .source-link').length"),0);
 await evaluate("document.querySelector('#check-form').reset()");assert.ok(await evaluate("document.querySelector('#results').hidden && document.querySelector('#entry').value===''") );
 await send('Page.reload');await until("document.querySelector('#irp') !== null");assert.equal(await evaluate("document.querySelector('#entry').value"),'');
 assert.deepEqual(errors,[]);assert.deepEqual(failed.filter(u=>!u.endsWith('favicon.ico')),[]);
